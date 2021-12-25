@@ -1,0 +1,676 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: nisala
+      changes:
+        - createTable:
+            tableName: transaction
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: account_no_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: account_no_scheme_name
+                  type: varchar(256)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: account_no
+                  type: varchar(40)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: customer_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: transaction_reference
+                  type: varchar(35)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: statement_reference
+                  type: varchar(35)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: credit_debit_indicator
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: booking_date_time
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: value_date_time
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: transaction_information
+                  type: varchar(500)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: address_line
+                  type: varchar(70)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: txn_amount
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: txn_amount_cur_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: txn_amount_cur_code
+                  type: varchar(3)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: txn_amount_cur_numeric
+                  type: varchar(3)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: txn_source_cur_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: txn_source_cur_code
+                  type: varchar(3)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: txn_source_cur_numeric
+                  type: varchar(3)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: txn_target_cur_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: txn_target_cur_code
+                  type: varchar(3)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: txn_target_cur_numeric
+                  type: varchar(3)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: txn_unit_cur_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: txn_unit_cur_code
+                  type: varchar(3)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: txn_unit_cur_numeric
+                  type: varchar(3)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: txn_exchange_rate_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: txn_exchange_rate
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: txn_exchange_rate_type
+                  type: varchar(10)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: txn_instructed_amount
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: txn_instructed_cur_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: txn_instructed_cur_code
+                  type: varchar(3)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: txn_instructed_cur_numeric
+                  type: varchar(3)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: txn_quotation_date
+                  type: datetime
+                  constraints:
+                    nullable: true
+              - column:
+                  name: charge_amount
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: charge_amount_cur_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: charge_amount_cur_code
+                  type: varchar(3)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: charge_amount_cur_numeric
+                  type: varchar(3)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: charge_source_cur_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: charge_source_cur_code
+                  type: varchar(3)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: charge_source_cur_numeric
+                  type: varchar(3)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: charge_target_cur_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: charge_target_cur_code
+                  type: varchar(3)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: charge_target_cur_numeric
+                  type: varchar(3)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: charge_unit_cur_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: charge_unit_cur_code
+                  type: varchar(3)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: charge_unit_cur_numeric
+                  type: varchar(3)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: charge_exchange_rate_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: charge_exchange_rate
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: charge_exchange_rate_type
+                  type: varchar(10)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: charge_instructed_amount
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: charge_instructed_cur_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: charge_instructed_cur_code
+                  type: varchar(3)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: charge_instructed_cur_numeric
+                  type: varchar(3)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: charge_quotation_date
+                  type: datetime
+                  constraints:
+                    nullable: true
+              - column:
+                  name: contract_identification
+                  type: varchar(35)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: bank_transaction_code_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_bank_trans_code_id
+                    references: bank_transaction_code(id)
+              - column:
+                  name: bank_transaction_code
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: bank_transaction_sub_code_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_bank_trans_sub_code_id
+                    references: bank_transaction_sub_code(id)
+              - column:
+                  name: bank_transaction_sub_code
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: prop_bank_trans_code_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_prop_bank_trans_code_id
+                    references: prop_bank_trans_code(id)
+              - column:
+                  name: prop_bank_trans_code
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: balance_amount
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: actual_amount
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: balance_credit_debit_indicator
+                  type: varchar(10)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: balance_type
+                  type: varchar(30)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: merchant_details_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_merchant_details_id
+                    references: merchant_details(id)
+              - column:
+                  name: creditor_agent_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: cr_agent_scheme_name
+                  type: varchar(70)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: cr_agent_identification
+                  type: varchar(35)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: cr_agent_name
+                  type: varchar(150)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: creditor_agent_branch_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: cr_agentbrh_address_type
+                  type: varchar(30)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: cr_agentbrh_department
+                  type: varchar(70)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: cr_agentbrh_sub_department
+                  type: varchar(70)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: cr_agentbrh_street_name
+                  type: varchar(70)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: cr_agentbrh_building_no
+                  type: varchar(16)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: cr_agentbrh_post_code
+                  type: varchar(16)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: cr_agentbrh_town_name
+                  type: varchar(70)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: cr_agentbrh_country_sub_div
+                  type: varchar(35)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: cr_agentbrh_country_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: cr_agentbrh_address_line
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: creditor_acc_scheme_name
+                  type: varchar(70)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: creditor_acc_identification
+                  type: varchar(35)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: creditor_acc_name
+                  type: varchar(150)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: creditor_acc_secondary_identi
+                  type: varchar(35)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: debtor_agent_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: dr_agent_scheme_name
+                  type: varchar(70)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: dr_agent_identification
+                  type: varchar(35)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: dr_agent_name
+                  type: varchar(150)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: debtor_agent_branch_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: dr_agentbrh_address_type
+                  type: varchar(30)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: dr_agentbrh_department
+                  type: varchar(70)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: dr_agentbrh_sub_department
+                  type: varchar(70)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: dr_agentbrh_street_name
+                  type: varchar(70)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: dr_agentbrh_building_no
+                  type: varchar(16)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: dr_agentbrh_post_code
+                  type: varchar(16)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: dr_agentbrh_town_name
+                  type: varchar(35)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: dr_agentbrh_country_sub_div
+                  type: varchar(35)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: dr_agentbrh_country_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: dr_agentbrh_address_line
+                  type: varchar(70)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: debtor_acc_scheme_name
+                  type: varchar(70)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: debtor_acc_identification
+                  type: varchar(35)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: debtor_acc_name
+                  type: varchar(150)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: debtor_acc_secondary_identi
+                  type: varchar(35)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: card_instrument_scheme_name
+                  type: varchar(30)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: card_instrument_auth_type
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: card_instrument_name
+                  type: varchar(70)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: card_instrument_Identi
+                  type: varchar(35)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: supplementary_data_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_supplementary_data_id
+                    references: supplementary_data(id)
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: version
+                  type: bigint
+                  constraints:
+                    nullable: false
+
+
+  #  - changeSet:
+  #      id: 2
+  #      author: nisala
+  #      changes:
+  #        - createTable:
+  #            tableName: common_seq
+  #            columns:
+  #              - column:
+  #                  name: next_val
+  #                  type: bigint
+  #
+  #  - changeSet:
+  #      id: 3
+  #      author: nisala
+  #      changes:
+  #        - insert:
+  #            tableName: common_seq
+  #            columns:
+  #               - column:
+  #                  name: next_val
+  #                  value: 1
+  - changeSet:
+      id: 4
+      author: Rangana
+      changes:
+        - addColumn:
+            tableName: transaction
+            columns:
+              - column:
+                  name: transaction_group_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: Fk_tr_transaction_group_id
+                    references: transaction_group(id)
+  - changeSet:
+      id: 5
+      author: Rangana
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed: current_timestamp
+                  constraints:
+                    nullable: false
+            tableName: transaction
+  - changeSet:
+      id: 6
+      author: Amal
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: branch_code
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+            tableName: transaction
+  - changeSet:
+      id: 7
+      author: Amal
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: department_code
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+            tableName: transaction
+  - changeSet:
+      id: 8
+      author: Amal
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: channel_code
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+            tableName: transaction

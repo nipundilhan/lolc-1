@@ -1,0 +1,310 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: MENUKAJ
+      changes:
+        - sql:
+            splitStatements: true
+            sql: CREATE  TRIGGER BATCH_DETAIL_BI BEFORE INSERT  ON batch_detail FOR EACH ROW SET NEW.sync_ts := Now();
+  - changeSet:
+      id: 2
+      author: MENUKAJ
+      changes:
+        - sql:
+            splitStatements: true
+            sql: CREATE  TRIGGER BATCH_DETAIL_BU BEFORE UPDATE  ON batch_detail FOR EACH ROW SET NEW.sync_ts := Now();
+  - changeSet:
+      id: 3
+      author: MENUKAJ
+      changes:
+        - sql:
+            splitStatements: true
+            sql: CREATE  TRIGGER CHARGE_WITHDRAWAL_BI BEFORE INSERT  ON charge_withdrawal FOR EACH ROW SET NEW.sync_ts := Now();
+  - changeSet:
+      id: 4
+      author: MENUKAJ
+      changes:
+        - sql:
+            splitStatements: true
+            sql: CREATE  TRIGGER CHARGE_WITHDRAWAL_BU BEFORE UPDATE  ON charge_withdrawal FOR EACH ROW SET NEW.sync_ts := Now();
+  - changeSet:
+      id: 5
+      author: MENUKAJ
+      changes:
+        - sql:
+            splitStatements: true
+            sql: CREATE  TRIGGER CHEQUE_DEPOSIT_BI BEFORE INSERT  ON cheque_deposit FOR EACH ROW SET NEW.sync_ts := Now();
+  - changeSet:
+      id: 6
+      author: MENUKAJ
+      changes:
+        - sql:
+            splitStatements: true
+            sql: CREATE  TRIGGER CHEQUE_DEPOSIT_BU BEFORE UPDATE  ON cheque_deposit FOR EACH ROW SET NEW.sync_ts := Now();
+  - changeSet:
+      id: 7
+      author: MENUKAJ
+      changes:
+        - sql:
+            splitStatements: true
+            sql: CREATE  TRIGGER CHEQUE_DEPOSIT_BATCH_BI BEFORE INSERT  ON cheque_deposit_batch FOR EACH ROW SET NEW.sync_ts := Now();
+  - changeSet:
+      id: 8
+      author: MENUKAJ
+      changes:
+        - sql:
+            splitStatements: true
+            sql: CREATE  TRIGGER CHEQUE_DEPOSIT_BATCH_BU BEFORE UPDATE  ON cheque_deposit_batch FOR EACH ROW SET NEW.sync_ts := Now();
+  - changeSet:
+      id: 9
+      author: MENUKAJ
+      changes:
+        - sql:
+            splitStatements: true
+            sql: CREATE  TRIGGER CHEQUE_WITHDRAWAL_BI BEFORE INSERT  ON cheque_withdrawal FOR EACH ROW SET NEW.sync_ts := Now();
+  - changeSet:
+      id: 10
+      author: MENUKAJ
+      changes:
+        - sql:
+            splitStatements: true
+            sql: CREATE  TRIGGER CHEQUE_WITHDRAWAL_BU BEFORE UPDATE  ON cheque_withdrawal FOR EACH ROW SET NEW.sync_ts := Now();
+  - changeSet:
+      id: 11
+      author: MENUKAJ
+      changes:
+        - sql:
+            splitStatements: true
+            sql: CREATE  TRIGGER COMMON_WITHDRAWAL_BI BEFORE INSERT  ON common_withdrawal FOR EACH ROW SET NEW.sync_ts := Now();
+  - changeSet:
+      id: 12
+      author: MENUKAJ
+      changes:
+        - sql:
+            splitStatements: true
+            sql: CREATE  TRIGGER COMMON_WITHDRAWAL_BU BEFORE UPDATE  ON common_withdrawal FOR EACH ROW SET NEW.sync_ts := Now();
+  - changeSet:
+      id: 13
+      author: MENUKAJ
+      changes:
+        - sql:
+            splitStatements: true
+            sql: CREATE  TRIGGER COUNTER_CASH_DEPOSIT_BI BEFORE INSERT  ON counter_cash_deposit FOR EACH ROW SET NEW.sync_ts := Now();
+  - changeSet:
+      id: 14
+      author: MENUKAJ
+      changes:
+        - sql:
+            splitStatements: true
+            sql: CREATE  TRIGGER COUNTER_CASH_DEPOSIT_BU BEFORE UPDATE  ON counter_cash_deposit FOR EACH ROW SET NEW.sync_ts := Now();
+  - changeSet:
+      id: 15
+      author: MENUKAJ
+      changes:
+        - sql:
+            splitStatements: true
+            sql: CREATE  TRIGGER COUNTER_CASH_WITHDRAWAL_BI BEFORE INSERT  ON counter_cash_withdrawal FOR EACH ROW SET NEW.sync_ts := Now();
+  - changeSet:
+      id: 16
+      author: MENUKAJ
+      changes:
+        - sql:
+            splitStatements: true
+            sql: CREATE  TRIGGER COUNTER_CASH_WITHDRAWAL_BU BEFORE UPDATE  ON counter_cash_withdrawal FOR EACH ROW SET NEW.sync_ts := Now();
+  - changeSet:
+      id: 17
+      author: MENUKAJ
+      changes:
+        - sql:
+            splitStatements: true
+            sql: CREATE  TRIGGER INWRD_CHQ_BATCH_BI BEFORE INSERT  ON inwrd_chq_batch FOR EACH ROW SET NEW.sync_ts := Now();
+  - changeSet:
+      id: 18
+      author: MENUKAJ
+      changes:
+        - sql:
+            splitStatements: true
+            sql: CREATE  TRIGGER INWRD_CHQ_BATCH_BU BEFORE UPDATE  ON inwrd_chq_batch FOR EACH ROW SET NEW.sync_ts := Now();
+  - changeSet:
+      id: 19
+      author: MENUKAJ
+      changes:
+        - sql:
+            splitStatements: true
+            sql: CREATE  TRIGGER TRANSACTION_EVENT_BI BEFORE INSERT  ON transaction_event FOR EACH ROW SET NEW.sync_ts := Now();
+  - changeSet:
+      id: 20
+      author: MENUKAJ
+      changes:
+        - sql:
+            splitStatements: true
+            sql: CREATE  TRIGGER TRANSACTION_EVENT_BU BEFORE UPDATE  ON transaction_event FOR EACH ROW SET NEW.sync_ts := Now();
+  - changeSet:
+      id: 21
+      author: MENUKAJ
+      changes:
+        - sql:
+            splitStatements: true
+            sql: CREATE  TRIGGER TRANSACTION_REVERSAL_BI BEFORE INSERT  ON transaction_reversal FOR EACH ROW SET NEW.sync_ts := Now();
+  - changeSet:
+      id: 22
+      author: MENUKAJ
+      changes:
+        - sql:
+            splitStatements: true
+            sql: CREATE  TRIGGER TRANSACTION_REVERSAL_BU BEFORE UPDATE  ON transaction_reversal FOR EACH ROW SET NEW.sync_ts := Now();
+  - changeSet:
+      id: 23
+      author: MENUKAJ
+      changes:
+        - sql:
+            splitStatements: true
+            sql: CREATE  TRIGGER TRANSFER_BI BEFORE INSERT  ON transfer FOR EACH ROW SET NEW.sync_ts := Now();
+  - changeSet:
+      id: 24
+      author: MENUKAJ
+      changes:
+        - sql:
+            splitStatements: true
+            sql: CREATE  TRIGGER TRANSFER_BU BEFORE UPDATE  ON transfer FOR EACH ROW SET NEW.sync_ts := Now();
+  - changeSet:
+      id: 25
+      author: MENUKAJ
+      changes:
+        - sql:
+            splitStatements: true
+            sql: CREATE  TRIGGER TRANSFER_CHARGES_BI BEFORE INSERT  ON transfer_charges FOR EACH ROW SET NEW.sync_ts := Now();
+  - changeSet:
+      id: 26
+      author: MENUKAJ
+      changes:
+        - sql:
+            splitStatements: true
+            sql: CREATE  TRIGGER TRANSFER_CHARGES_BU BEFORE UPDATE  ON transfer_charges FOR EACH ROW SET NEW.sync_ts := Now();
+  - changeSet:
+      id: 27
+      author: MENUKAJ
+      changes:
+        - sql:
+            splitStatements: true
+            sql: CREATE  TRIGGER TRANSFER_TAXES_BI BEFORE INSERT  ON transfer_taxes FOR EACH ROW SET NEW.sync_ts := Now();
+  - changeSet:
+      id: 28
+      author: MENUKAJ
+      changes:
+        - sql:
+            splitStatements: true
+            sql: CREATE  TRIGGER TRANSFER_TAXES_BU BEFORE UPDATE  ON transfer_taxes FOR EACH ROW SET NEW.sync_ts := Now();
+  - changeSet:
+      id: 29
+      author: MENUKAJ
+      changes:
+        - sql:
+            splitStatements: true
+            sql: CREATE  TRIGGER TRANSFER_UNRECO_CHARGES_BI BEFORE INSERT  ON transfer_unreco_charges FOR EACH ROW SET NEW.sync_ts := Now();
+  - changeSet:
+      id: 30
+      author: MENUKAJ
+      changes:
+        - sql:
+            splitStatements: true
+            sql: CREATE  TRIGGER TRANSFER_UNRECO_CHARGES_BU BEFORE UPDATE  ON transfer_unreco_charges FOR EACH ROW SET NEW.sync_ts := Now();
+  - changeSet:
+      id: 31
+      author: MENUKAJ
+      changes:
+        - sql:
+            splitStatements: true
+            sql: CREATE  TRIGGER UNRECOVERABLE_CHARGES_BI BEFORE INSERT  ON unrecoverable_charges FOR EACH ROW SET NEW.sync_ts := Now();
+  - changeSet:
+      id: 32
+      author: MENUKAJ
+      changes:
+        - sql:
+            splitStatements: true
+            sql: CREATE  TRIGGER UNRECOVERABLE_CHARGES_BU BEFORE UPDATE  ON unrecoverable_charges FOR EACH ROW SET NEW.sync_ts := Now();
+  - changeSet:
+      id: 33
+      author: Rangana
+      changes:
+        - sql:
+            splitStatements: true
+            sql: CREATE  TRIGGER TRANSACTION_BI BEFORE INSERT  ON transaction FOR EACH ROW SET NEW.sync_ts := Now();
+  - changeSet:
+      id: 34
+      author: Rangana
+      changes:
+        - sql:
+            splitStatements: true
+            sql: CREATE  TRIGGER TRANSACTION_BU BEFORE UPDATE  ON transaction FOR EACH ROW SET NEW.sync_ts := Now();
+  - changeSet:
+      id: 35
+      author: Rangana
+      changes:
+        - sql:
+            splitStatements: true
+            sql: CREATE  TRIGGER BATCH_BI BEFORE INSERT  ON batch FOR EACH ROW SET NEW.sync_ts := Now();
+  - changeSet:
+      id: 36
+      author: Rangana
+      changes:
+        - sql:
+            splitStatements: true
+            sql: CREATE  TRIGGER BATCH_BU BEFORE UPDATE  ON batch FOR EACH ROW SET NEW.sync_ts := Now();
+
+  - changeSet:
+      id: 37
+      author: VenukiR
+      changes:
+        - sql:
+            splitStatements: true
+            sql: CREATE  TRIGGER STANDING_ORDER_CONSENT_BI BEFORE INSERT  ON batch FOR EACH ROW SET NEW.sync_ts := Now();
+  - changeSet:
+      id: 38
+      author: VenukiR
+      changes:
+        - sql:
+            splitStatements: true
+            sql: CREATE  TRIGGER STANDING_ORDER_CONSENT_BU BEFORE UPDATE  ON batch FOR EACH ROW SET NEW.sync_ts := Now();
+  - changeSet:
+      id: 39
+      author: VenukiR
+      changes:
+        - sql:
+            splitStatements: true
+            sql: CREATE  TRIGGER STANDING_ORDER_DETAIL_BI BEFORE INSERT  ON batch FOR EACH ROW SET NEW.sync_ts := Now();
+  - changeSet:
+      id: 40
+      author: VenukiR
+      changes:
+        - sql:
+            splitStatements: true
+            sql: CREATE  TRIGGER STANDING_ORDER_DETAIL_BU BEFORE UPDATE  ON batch FOR EACH ROW SET NEW.sync_ts := Now();
+  - changeSet:
+      id: 41
+      author: VenukiR
+      changes:
+        - sql:
+            splitStatements: true
+            sql: CREATE  TRIGGER STANDING_ORDER_CHARGES_BI BEFORE INSERT  ON batch FOR EACH ROW SET NEW.sync_ts := Now();
+  - changeSet:
+      id: 42
+      author: VenukiR
+      changes:
+        - sql:
+            splitStatements: true
+            sql: CREATE  TRIGGER STANDING_ORDER_CHARGES_BU BEFORE UPDATE  ON batch FOR EACH ROW SET NEW.sync_ts := Now();
+  - changeSet:
+      id: 43
+      author: Senitha
+      changes:
+        - sql:
+            splitStatements: true
+            sql: CREATE  TRIGGER account_balance_bi  BEFORE INSERT  ON account_balance FOR EACH ROW SET NEW.sync_ts := Now();
+  - changeSet:
+      id: 44
+      author: Senitha
+      changes:
+        - sql:
+            splitStatements: true
+            sql: CREATE  TRIGGER account_balance_bu BEFORE UPDATE  ON account_balance FOR EACH ROW SET NEW.sync_ts := Now();

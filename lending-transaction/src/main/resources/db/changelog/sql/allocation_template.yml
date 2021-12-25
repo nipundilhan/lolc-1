@@ -1,0 +1,260 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Dilhan
+      changes:
+        - createTable:
+            tableName: allocation_template
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: code
+                  type: varchar(4)
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: name
+                  type: varchar(70)
+                  constraints:
+                    nullable: false                           
+              - column:
+                  name: loan_account_status_id
+                  type: bigint
+                  constraints:
+                    nullable: false                    
+              - column:
+                  name: loan_account_status_code
+                  type: varchar(4)
+                  constraints:
+                    nullable: false                    
+              - column:
+                  name: status
+                  type: varchar(8)
+                  constraints:
+                    nullable: false                                      
+              - column:
+                  name: created_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(120)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp   
+                  
+  - changeSet:
+      id: 2
+      author: Dilhan
+      changes: 
+        - createTable:
+            tableName: allocation_template_history
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: allocation_template_id
+                  type: bigint
+                  constraints:
+                    nullable: false   
+              - column:
+                  name: code
+                  type: varchar(4)
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: name
+                  type: varchar(70)
+                  constraints:
+                    nullable: false                           
+              - column:
+                  name: loan_account_status_id
+                  type: bigint
+                  constraints:
+                    nullable: false                    
+              - column:
+                  name: loan_account_status_code
+                  type: varchar(4)
+                  constraints:
+                    nullable: false                       
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: his_created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: his_created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false                  
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false 
+  - changeSet:
+      id: 3
+      author: Dilhan
+      changes: 
+        - createTable:
+            tableName: allocation_template_pending
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false       
+              - column:
+                  name: allocation_template_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_allocation_template_pending
+                    references: allocation_template(id)
+              - column:
+                  name: lending_workflow_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_lend_wf_atp
+                    references: lending_workflow(id)      
+              - column:
+                  name: code
+                  type: varchar(4)
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: name
+                  type: varchar(70)
+                  constraints:
+                    nullable: false                           
+              - column:
+                  name: loan_account_status_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false                    
+              - column:
+                  name: loan_account_status_code
+                  type: varchar(4)
+                  constraints:
+                    nullable: false                    
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false   
+              - column:
+                  name: approve_status
+                  type: varchar(30)
+                  constraints:
+                    nullable: true                                                                          
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false  
+              - column:
+                  name: approved_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: approved_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false                    
+                                   

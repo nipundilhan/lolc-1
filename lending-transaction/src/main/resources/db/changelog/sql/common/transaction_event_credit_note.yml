@@ -1,0 +1,70 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Sanatha
+      changes:
+        - createTable:
+            tableName: trans_event_credit_note
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(35)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: trans_event_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: Fk_tran_event__cr_id
+                    references: transaction_event(id)
+              - column:
+                  name: credit_note_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: Fk_treve_cre_id
+                    references: credit_note_type(id)
+              - column:
+                  name: status
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed: current_timestamp
+                  constraints:
+                    nullable: false      
+              - column:
+                  name: created_user
+                  type: varchar(25)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: datetime
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(25)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: datetime
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: varchar(10)
+                  constraints:
+                    nullable: false

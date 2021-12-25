@@ -1,0 +1,13 @@
+package com.fusionx.lending.transaction.enums;
+
+public enum TransferType {
+    COUNTERCASHWITHDRAWAL,
+    CHARGEWITHDRAWAL,
+    CHEQUEWITHDRAWAL,
+    COMMONWITHDRAWAL,
+    STATEMENTGENERATION,
+    PDCHEQUEDEPOSIT,
+    CREDITINTEREST,
+    COUNTERCASHDEPOSIT,
+    ODINTEREST
+}

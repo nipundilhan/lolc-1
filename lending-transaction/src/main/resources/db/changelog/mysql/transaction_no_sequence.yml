@@ -1,0 +1,21 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Sanatha
+      changes:
+        - createTable:
+            tableName: transaction_no_seq
+            columns:
+              - column:
+                  name: next_val
+                  type: bigint
+  - changeSet:
+      id: 2
+      author: Sanatha
+      changes:
+        - insert:
+            tableName: transaction_no_seq
+            columns:
+              - column:
+                  name: next_val
+                  value: 1

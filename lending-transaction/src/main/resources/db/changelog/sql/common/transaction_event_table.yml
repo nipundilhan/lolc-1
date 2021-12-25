@@ -1,0 +1,291 @@
+databaseChangeLog:
+  - changeSet:
+      id: 10
+      author: Thamokshi
+      changes:
+        - createTable:
+            tableName: transaction_event
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(35)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: code
+                  type: varchar(35)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: version
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: 22
+      author: Thamokshi
+      changes:
+        - createTable:
+            tableName: trans_event_sub_code
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(35)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: trans_event_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: Fk_trans_event_id
+                    references: transaction_event(id)
+              - column:
+                  name: trans_code_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: Fk_treve_code_id
+                    references: bank_transaction_code(id)
+              - column:
+                  name: trans_sub_code_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: Fk_treve_sub_code_id
+                    references: bank_transaction_sub_code(id)
+              - column:
+                  name: trans_event_code
+                  type: varchar(35)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sub_code_desc
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(25)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: datetime
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(25)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: datetime
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: 31
+      author: Thamokshi
+      changes:
+        - createTable:
+            tableName: trans_event_acc_status
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(35)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: trans_event_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: Fk_trans_acc_event_id
+                    references: transaction_event(id)
+              - column:
+                  name: trans_event_code
+                  type: varchar(35)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: acc_status
+                  type: varchar(35)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: acc_status_desc
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(25)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: datetime
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(25)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: datetime
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: 4
+      author: Thamokshi
+      changes:
+        - dropColumn:
+            columns:
+              - column:
+                  name: sub_code_desc
+                  type: varchar(255)
+            tableName: trans_event_sub_code
+  - changeSet:
+      id: 5
+      author: Thamokshi
+      changes:
+        - dropColumn:
+            columns:
+              - column:
+                  name: trans_event_code
+                  type: varchar(35)
+            tableName: trans_event_sub_code
+  - changeSet:
+      id: 60
+      author: Thamokshi
+      changes:
+        - dropNotNullConstraint:
+            columnDataType: varchar(255)
+            columnName: acc_status_desc
+            tableName: trans_event_acc_status
+  - changeSet:
+      id: 7
+      author: Kilasi
+      changes:
+        - addColumn:
+            tableName: trans_event_sub_code
+            columns:
+              - column:
+                  name: curr_conversion_rate_type
+                  type: varchar(50)
+                  constraints:
+                    nullable: true
+
+  - changeSet:
+      id: 4
+      author: MenukaJ
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed: current_timestamp
+                  constraints:
+                    nullable: false
+            tableName: transaction_event
+
+  - changeSet:
+      id: 11
+      author: Sanatha
+      changes:
+        - addColumn:
+            tableName: transaction_event
+            columns:
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: created_date
+                  type: datetime
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: datetime
+                  constraints:
+                    nullable: true
+
+
+
+  - changeSet:
+      id: 12
+      author: Sanatha
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed: current_timestamp
+                  constraints:
+                    nullable: false
+            tableName: trans_event_acc_status

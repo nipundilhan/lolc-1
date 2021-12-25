@@ -1,0 +1,78 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: NipunDilhan
+      changes:
+        - createTable:
+            tableName: credit_note_transaction_type
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: posting_type
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: is_debit_balance_enable
+                  type: varchar(5)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: credit_note_type_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_12101_cnt_1
+                    references: credit_note_type(id)
+              - column:
+                  name: transaction_sub_code_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_12101_btsc_2
+                    references: bank_transaction_sub_code(id)                    
+              - column:
+                  name: status
+                  type: varchar(8)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: created_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(120)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed: current_timestamp 

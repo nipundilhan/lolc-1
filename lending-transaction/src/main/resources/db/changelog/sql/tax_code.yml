@@ -1,0 +1,128 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: dilki
+      changes:
+        - createTable:
+            tableName: tax_trans_code_mapping
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: tax_code
+                  type: varchar(4)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: tax_name
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: tax_code_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: varchar(300)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: transaction_code_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_bank_tran_code_id_tcm
+                    references: bank_transaction_code(id)
+              - column:
+                  name: transaction_code_name
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: transaction_sub_code_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_bank_tran_sub_code_id_tcm
+                    references: bank_transaction_sub_code(id)
+              - column:
+                  name: transaction_sub_code_name
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: status
+                  type: varchar(8)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: created_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(120)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed: current_timestamp  
+                  
+  - changeSet:
+       id: 2
+       author: dilki
+       changes:
+       - dropColumn:
+           columns:
+              - column:
+                  name: tax_name
+                  type: varchar(20)
+                  constraints:
+                    nullable: false               
+           tableName: tax_trans_code_mapping    
+          
+  - changeSet:
+      id: 3
+      author: dilki
+      changes:
+      - addColumn:
+          columns:
+              - column:
+                  name: tax_name
+                  type: varchar(70)
+                  constraints:
+                    nullable: false                                
+          tableName: tax_trans_code_mapping
+          
+
+                  
+                  

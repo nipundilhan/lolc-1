@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <!--  <include file="db/changelog/mysql/sequence.yml"/>
+    <include file="db/changelog/mysql/transaction_no_sequence.yml"/> -->
+    <include file="db/changelog/sql/common/bank_transaction_code.yml"/>
+    <include file="db/changelog/sql/common/bank_transaction_sub_code.yml"/>
+    <include file="db/changelog/sql/common/transaction_group.yml"/>
+    <include file="db/changelog/sql/common/comn_currency_table.yaml"/>
+    <include file="db/changelog/sql/common/frequency.yml"/>
+    <include file="db/changelog/sql/common/transaction_event_table.yml"/>
+    <include file="db/changelog/sql/common/transaction_event_insert.yml"/>
+    <include file="db/changelog/sql/common/frequency_days.yml"/>
+    <include file="db/changelog/sql/lending_workflow.yml"/>	
+    <include file="db/changelog/sql/allocation_template.yml"/> 
+    <include file="db/changelog/sql/allocation_order.yml"/>
+    <include file="db/changelog/sql/common/alert_log.yml"/>
+    <include file="db/changelog/sql/common/period.yml"/>
+    <include file="db/changelog/sql/common/credit_note_type.yml"/>
+    <include file="db/changelog/sql/core_transaction_method.yml"/>
+    <include file="db/changelog/sql/tax_code.yml"/>
+    <include file="db/changelog/sql/tax_event.yml"/>
+	<include file="db/changelog/sql/common/transaction_event_credit_note.yml"/>
+	<include file="db/changelog/sql/waive_off_type.yml"/>
+	<include file="db/changelog/sql/waive_off_transaction_type.yml"/>
+	<include file="db/changelog/sql/waive_off_approval_group.yml"/>
+	<include file="db/changelog/sql/waive_off_approval_types.yml"/>
+	<include file="db/changelog/sql/waive_off_approval_users.yml"/>
+	<include file="db/changelog/sql/credit_note_transaction_type.yml"/>
+	
+</databaseChangeLog>
+
+

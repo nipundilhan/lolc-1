@@ -1,0 +1,186 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Thamokshi
+      changes:
+        - createTable:
+            tableName: alert_log
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: log_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: event_category
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: alert_event_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: alert_event
+                  type: varchar(10)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: alert_type_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: alert_type
+                  type: varchar(10)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: account_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: account_number
+                  type: varchar(70)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: account_schema
+                  type: varchar(10)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: alert_mask_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: alert_mask
+                  type: varchar(10)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: contact_type_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: contact_type
+                  type: varchar(10)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: contact_value
+                  type: varchar(70)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: customer_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: customer
+                  type: varchar(100)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: transaction_amount
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: transaction_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: message_header
+                  type: varchar(500)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: message_body
+                  type: varchar(2500)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: message_footer
+                  type: varchar(500)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: priority_level
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: service_provider_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: service_provider
+                  type: varchar(70)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: comment
+                  type: varchar(2000)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: delivery_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: delivery_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue: 0
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: 2
+      author: Udara
+      changes:
+        - addColumn:
+            tableName: alert_log
+            columns:
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed: current_timestamp

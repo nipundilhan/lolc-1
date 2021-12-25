@@ -1,0 +1,107 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: GANESHA
+      changes:
+        - createTable:
+            tableName: allocation_order
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: VARCHAR(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: reference_code
+                  type: varchar(4)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: account_status
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: bank_transaction_code_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_bank_tran_code_id
+                    references: bank_transaction_code(id)
+              - column:
+                  name: bank_transaction_code
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: bank_transaction_sub_code_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_bank_tran_sub_code_id
+                    references: bank_transaction_sub_code(id)
+              - column:
+                  name: bank_transaction_sub_code
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: allocation_order
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(8)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: created_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(120)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed: current_timestamp
+  - changeSet:
+      id: 2
+      author: Sanatha
+      changes:
+        - addColumn:
+            tableName: allocation_order
+            columns:
+              - column:
+                  name: allocation_template_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_allo_template_id
+                    references: allocation_template(id)                

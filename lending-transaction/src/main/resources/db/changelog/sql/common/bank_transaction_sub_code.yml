@@ -1,0 +1,111 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: nisala
+      changes:
+        - createTable:
+            tableName: bank_transaction_sub_code
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(35)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: code_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_code_id
+                    references: bank_transaction_code(id)
+              - column:
+                  name: sub_code
+                  type: varchar(35)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: 2
+      author: Nisala
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: posting_type
+                  type: varchar(10)
+              - column:
+                  name: allow_dormant
+                  type: varchar(10)
+              - column:
+                  name: transaction_category
+                  type: varchar(20)
+            tableName: bank_transaction_sub_code
+
+  - changeSet:
+      id: 3
+      author: nisala
+      changes:
+        - modifyDataType:
+            columnName: created_user
+            newDataType: varchar(255)
+            tableName: bank_transaction_sub_code
+        - modifyDataType:
+            columnName: modified_user
+            newDataType: varchar(255)
+            tableName: bank_transaction_sub_code
+
+  - changeSet:
+      id: 4
+      author: MenukaJ
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed: current_timestamp
+                  constraints:
+                    nullable: false
+            tableName: bank_transaction_sub_code                       

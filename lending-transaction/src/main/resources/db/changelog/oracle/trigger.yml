@@ -1,0 +1,257 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Menuka
+      changes:
+        - sql:
+            splitStatements: true
+            dbms: oracle
+            endDelimiter: \nGO
+            sql: CREATE OR REPLACE  TRIGGER BATCH_DETAIL_BIU BEFORE INSERT OR UPDATE ON batch_detail REFERENCING NEW AS NEW FOR EACH ROW BEGIN :NEW.sync_ts := SYSDATE; END;/
+  - changeSet:
+      id: 2
+      author: Menuka
+      changes:
+        - sql:
+            splitStatements: true
+            dbms: oracle
+            endDelimiter: \nGO
+            sql: CREATE OR REPLACE  TRIGGER CHARGE_WITHDRAWAL_BIU BEFORE INSERT OR UPDATE ON charge_withdrawal REFERENCING NEW AS NEW FOR EACH ROW BEGIN :NEW.sync_ts := SYSDATE; END;/
+  - changeSet:
+      id: 3
+      author: Menuka
+      changes:
+        - sql:
+            splitStatements: true
+            dbms: oracle
+            endDelimiter: \nGO
+            sql: CREATE OR REPLACE  TRIGGER CHEQUE_DEPOSIT_BIU BEFORE INSERT OR UPDATE ON cheque_deposit REFERENCING NEW AS NEW FOR EACH ROW BEGIN :NEW.sync_ts := SYSDATE; END;/
+  - changeSet:
+      id: 4
+      author: Menuka
+      changes:
+        - sql:
+            splitStatements: true
+            dbms: oracle
+            endDelimiter: \nGO
+            sql: CREATE OR REPLACE  TRIGGER CHEQUE_DEPOSIT_BATCH_BIU BEFORE INSERT OR UPDATE ON cheque_deposit_batch REFERENCING NEW AS NEW FOR EACH ROW BEGIN :NEW.sync_ts := SYSDATE; END;/
+  - changeSet:
+      id: 5
+      author: Menuka
+      changes:
+        - sql:
+            splitStatements: true
+            dbms: oracle
+            endDelimiter: \nGO
+            sql: CREATE OR REPLACE  TRIGGER CHEQUE_WITHDRAWAL_BIU BEFORE INSERT OR UPDATE ON cheque_withdrawal REFERENCING NEW AS NEW FOR EACH ROW BEGIN :NEW.sync_ts := SYSDATE; END;/
+  - changeSet:
+      id: 6
+      author: Menuka
+      changes:
+        - sql:
+            splitStatements: true
+            dbms: oracle
+            endDelimiter: \nGO
+            sql: CREATE OR REPLACE  TRIGGER COMMON_WITHDRAWAL_BIU BEFORE INSERT OR UPDATE ON common_withdrawal REFERENCING NEW AS NEW FOR EACH ROW BEGIN :NEW.sync_ts := SYSDATE; END;/
+  - changeSet:
+      id: 7
+      author: Menuka
+      changes:
+        - sql:
+            splitStatements: true
+            dbms: oracle
+            endDelimiter: \nGO
+            sql: CREATE OR REPLACE  TRIGGER COUNTER_CASH_DEPOSIT_BIU BEFORE INSERT OR UPDATE ON counter_cash_deposit REFERENCING NEW AS NEW FOR EACH ROW BEGIN :NEW.sync_ts := SYSDATE; END;/
+  - changeSet:
+      id: 8
+      author: Menuka
+      changes:
+        - sql:
+            splitStatements: true
+            dbms: oracle
+            endDelimiter: \nGO
+            sql: CREATE OR REPLACE  TRIGGER COUNTER_CASH_WITHDRAWAL_BIU BEFORE INSERT OR UPDATE ON counter_cash_withdrawal REFERENCING NEW AS NEW FOR EACH ROW BEGIN :NEW.sync_ts := SYSDATE; END;/
+  - changeSet:
+      id: 9
+      author: Menuka
+      changes:
+        - sql:
+            splitStatements: true
+            dbms: oracle
+            endDelimiter: \nGO
+            sql: CREATE OR REPLACE  TRIGGER INWRD_CHQ_BATCH_BIU BEFORE INSERT OR UPDATE ON inwrd_chq_batch REFERENCING NEW AS NEW FOR EACH ROW BEGIN :NEW.sync_ts := SYSDATE; END;/
+  - changeSet:
+      id: 10
+      author: Menuka
+      changes:
+        - sql:
+            splitStatements: true
+            dbms: oracle
+            endDelimiter: \nGO
+            sql: CREATE OR REPLACE  TRIGGER TRANSACTION_EVENT_BIU BEFORE INSERT OR UPDATE ON transaction_event REFERENCING NEW AS NEW FOR EACH ROW BEGIN :NEW.sync_ts := SYSDATE; END;/
+  - changeSet:
+      id: 11
+      author: Menuka
+      changes:
+        - sql:
+            splitStatements: true
+            dbms: oracle
+            endDelimiter: \nGO
+            sql: CREATE OR REPLACE  TRIGGER TRANSACTION_REVERSAL_BIU BEFORE INSERT OR UPDATE ON transaction_reversal REFERENCING NEW AS NEW FOR EACH ROW BEGIN :NEW.sync_ts := SYSDATE; END;/
+  - changeSet:
+      id: 12
+      author: Menuka
+      changes:
+        - sql:
+            splitStatements: true
+            dbms: oracle
+            endDelimiter: \nGO
+            sql: CREATE OR REPLACE  TRIGGER TRANSFER_BIU BEFORE INSERT OR UPDATE ON transfer REFERENCING NEW AS NEW FOR EACH ROW BEGIN :NEW.sync_ts := SYSDATE; END;/
+  - changeSet:
+      id: 13
+      author: Menuka
+      changes:
+        - sql:
+            splitStatements: true
+            dbms: oracle
+            endDelimiter: \nGO
+            sql: CREATE OR REPLACE  TRIGGER TRANSFER_CHARGES_BIU BEFORE INSERT OR UPDATE ON transfer_charges REFERENCING NEW AS NEW FOR EACH ROW BEGIN :NEW.sync_ts := SYSDATE; END;/
+  - changeSet:
+      id: 14
+      author: Menuka
+      changes:
+        - sql:
+            splitStatements: true
+            dbms: oracle
+            endDelimiter: \nGO
+            sql: CREATE OR REPLACE  TRIGGER TRANSFER_TAXES_BIU BEFORE INSERT OR UPDATE ON transfer_taxes REFERENCING NEW AS NEW FOR EACH ROW BEGIN :NEW.sync_ts := SYSDATE; END;/
+  - changeSet:
+      id: 15
+      author: Menuka
+      changes:
+        - sql:
+            splitStatements: true
+            dbms: oracle
+            endDelimiter: \nGO
+            sql: CREATE OR REPLACE  TRIGGER TRANSFER_UNRECO_CHARGES_BIU BEFORE INSERT OR UPDATE ON transfer_unreco_charges REFERENCING NEW AS NEW FOR EACH ROW BEGIN :NEW.sync_ts := SYSDATE; END;/
+  - changeSet:
+      id: 16
+      author: Menuka
+      changes:
+        - sql:
+            splitStatements: true
+            dbms: oracle
+            endDelimiter: \nGO
+            sql: CREATE OR REPLACE  TRIGGER UNRECOVERABLE_CHARGES_BIU BEFORE INSERT OR UPDATE ON unrecoverable_charges REFERENCING NEW AS NEW FOR EACH ROW BEGIN :NEW.sync_ts := SYSDATE; END;/
+
+  - changeSet:
+      id: 17
+      author: Senitha
+      changes:
+        - sql:
+            splitStatements: true
+            dbms: oracle
+            endDelimiter: \nGO
+            sql: CREATE OR REPLACE EDITIONABLE TRIGGER CREDIT_INTEREST_SCHEDULE_LOG_BIU BEFORE INSERT OR UPDATE ON CREDIT_INTEREST_SCHEDULE_LOG REFERENCING NEW AS NEW FOR EACH ROW BEGIN :NEW.sync_ts := SYSDATE; END;/
+
+  - changeSet:
+      id: 18
+      author: Senitha
+      changes:
+        - sql:
+            splitStatements: true
+            dbms: oracle
+            endDelimiter: \nGO
+            sql: CREATE OR REPLACE EDITIONABLE TRIGGER OD_INTEREST_ERROR_LOG_BIU BEFORE INSERT OR UPDATE ON OD_INTEREST_ERROR_LOG REFERENCING NEW AS NEW FOR EACH ROW BEGIN :NEW.sync_ts := SYSDATE; END;/
+
+              #  - changeSet:
+              #      id: 19
+              #      author:  Senitha
+              #      changes:
+              #        -  sql:
+              #            splitStatements:  true
+              #            dbms: oracle
+              #            endDelimiter:  \nGO
+              #            sql:   CREATE OR REPLACE EDITIONABLE TRIGGER OD_INT_APPLY_SCHEDULE_LOG_BIU BEFORE INSERT OR UPDATE ON ON OD_INT_APPLY_SCHEDULE_LOG REFERENCING NEW AS NEW FOR EACH ROW BEGIN :NEW.sync_ts := SYSDATE; END;/
+
+  - changeSet:
+      id: 20
+      author: Senitha
+      changes:
+        - sql:
+            splitStatements: true
+            dbms: oracle
+            endDelimiter: \nGO
+            sql: CREATE OR REPLACE EDITIONABLE TRIGGER BONUS_INTEREST_LOG_BIU BEFORE INSERT OR UPDATE ON BONUS_INTEREST_LOG REFERENCING NEW AS NEW FOR EACH ROW BEGIN :NEW.sync_ts := SYSDATE; END;/
+
+  - changeSet:
+      id: 21
+      author: Senitha
+      changes:
+        - sql:
+            splitStatements: true
+            dbms: oracle
+            endDelimiter: \nGO
+            sql: CREATE OR REPLACE EDITIONABLE TRIGGER BONUS_INTEREST_ERROR_LOG_BIU BEFORE INSERT OR UPDATE ON BONUS_INTEREST_ERROR_LOG REFERENCING NEW AS NEW FOR EACH ROW BEGIN :NEW.sync_ts := SYSDATE; END;/
+
+  - changeSet:
+      id: 22
+      author: Senitha
+      changes:
+        - sql:
+            splitStatements: true
+            dbms: oracle
+            endDelimiter: \nGO
+            sql: CREATE OR REPLACE EDITIONABLE TRIGGER BATCH_BIU BEFORE INSERT OR UPDATE ON BATCH REFERENCING NEW AS NEW FOR EACH ROW BEGIN :NEW.sync_ts := SYSDATE; END;/
+
+  - changeSet:
+      id: 23
+      author: Rangana
+      changes:
+        - sql:
+            splitStatements: true
+            dbms: oracle
+            endDelimiter: \nGO
+            sql: CREATE OR REPLACE EDITIONABLE TRIGGER TRANSACTION_BIU BEFORE INSERT OR UPDATE ON transaction REFERENCING NEW AS NEW FOR EACH ROW BEGIN :NEW.sync_ts := SYSDATE; END;/
+
+  - changeSet:
+      id: 24
+      author: VenukiR
+      changes:
+        - sql:
+            splitStatements: true
+            dbms: oracle
+            endDelimiter: \nGO
+            sql: CREATE OR REPLACE EDITIONABLE TRIGGER STANDING_ORDER_CONSENT_BIU BEFORE INSERT OR UPDATE ON STANDING_ORDER_CONSENT REFERENCING NEW AS NEW FOR EACH ROW BEGIN :NEW.sync_ts := SYSDATE; END;/
+
+  - changeSet:
+      id: 25
+      author: VenukiR
+      changes:
+        - sql:
+            splitStatements: true
+            dbms: oracle
+            endDelimiter: \nGO
+            sql: CREATE OR REPLACE EDITIONABLE TRIGGER STANDING_ORDER_DETAIL_BIU BEFORE INSERT OR UPDATE ON STANDING_ORDER_DETAIL REFERENCING NEW AS NEW FOR EACH ROW BEGIN :NEW.sync_ts := SYSDATE; END;/
+
+  - changeSet:
+      id: 26
+      author: VenukiR
+      changes:
+        - sql:
+            splitStatements: true
+            dbms: oracle
+            endDelimiter: \nGO
+            sql: CREATE OR REPLACE EDITIONABLE TRIGGER STANDING_ORDER_CHARGES_BIU BEFORE INSERT OR UPDATE ON STANDING_ORDER_CHARGES REFERENCING NEW AS NEW FOR EACH ROW BEGIN :NEW.sync_ts := SYSDATE; END;/
+
+  - changeSet:
+      id: 27
+      author: Senitha
+      changes:
+        - sql:
+            splitStatements: true
+            dbms: oracle
+            endDelimiter: \nGO
+            sql: CREATE OR REPLACE EDITIONABLE TRIGGER ACCOUNT_BALANCE_BIU BEFORE INSERT OR UPDATE ON ACCOUNT_BALANCE REFERENCING NEW AS NEW FOR EACH ROW BEGIN :NEW.sync_ts := SYSDATE; END;/
+                                   
+                                                                                                                       

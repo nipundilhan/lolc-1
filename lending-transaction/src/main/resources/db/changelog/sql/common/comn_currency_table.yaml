@@ -1,0 +1,82 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: rangana
+      changes:
+        - createTable:
+            tableName: comn_currency_detail
+            columns:
+              - column:
+                  name: currency_id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: currency_code
+                  type: varchar(3)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: currency_name
+                  type: varchar(250)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: code_numeric
+                  type: varchar(3)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: exponent_conversions
+                  type: int(2)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: currency_status
+                  type: varchar(30)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: currency_created_user
+                  type: varchar(250)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: currency_created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: currency_modified_user
+                  type: varchar(250)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: currency_modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: currency_version
+                  type: bigint
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: 2
+      author: Rangana
+      changes:
+        - addColumn:
+            tableName: comn_currency_detail
+            columns:
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed: current_timestamp
+                  constraints:
+                    nullable: false

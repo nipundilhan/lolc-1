@@ -1,0 +1,273 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Dilki
+      changes:
+        - createTable:
+            tableName: tax_event
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: code
+                  type: varchar(4)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: name
+                  type: varchar(70)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: transaction_event_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_transaction_event_id_te
+                    references: transaction_event(id)
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue: 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed: current_timestamp
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: 2
+      author: Dilki
+      changes:
+        - createTable:
+            tableName: tax_event_details
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: tax_code
+                  type: varchar(4)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: tax_name
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: tax_code_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: varchar(200)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: tax_event_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_tax_event_id_ted
+                    references: tax_event(id)
+              - column:
+                  name: formula
+                  type: varchar(100)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: sequence
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: applicable_on
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: amount_type
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: application_frequency
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: is_fixed
+                  type: varchar(5)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(8)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(120)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed: current_timestamp
+                  
+  - changeSet:
+       id: 3
+       author: NipunDilhan
+       changes:
+       - dropColumn:
+           columns:
+              - column:
+                  name: tax_code_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: application_frequency
+                  type: varchar(50)
+                  constraints:
+                    nullable: false                     
+           tableName: tax_event_details    
+          
+  - changeSet:
+      id: 4
+      author: NipunDilhan
+      changes:
+      - addColumn:
+          columns:
+          - column:
+              name: tax_code_id
+              type: bigint
+              constraints:
+                  nullable: false 
+          - column:
+              name: application_frequency
+              type: bigint
+              constraints:
+                  nullable: false                                    
+          tableName: tax_event_details
+                  
+  - changeSet:
+       id: 5
+       author: dilki
+       changes:
+       - dropColumn:
+           columns:
+              - column:
+                  name: tax_name
+                  type: varchar(20)
+                  constraints:
+                    nullable: false               
+           tableName: tax_event_details    
+          
+  - changeSet:
+      id: 6
+      author: dilki
+      changes:
+      - addColumn:
+          columns:
+              - column:
+                  name: tax_name
+                  type: varchar(70)
+                  constraints:
+                    nullable: false                                
+          tableName: tax_event_details       
+                  
+  - changeSet:
+       id: 7
+       author: dilki
+       changes:
+       - dropColumn:
+           columns:
+              - column:
+                  name: applicable_on
+                  type: varchar(50)
+                  constraints:
+                    nullable: false               
+           tableName: tax_event_details    
+          
+  - changeSet:
+      id: 8
+      author: dilki
+      changes:
+      - addColumn:
+          columns:
+              - column:
+                  name: applicable_on
+                  type: varchar(50)
+                  constraints:
+                    nullable: true                                
+          tableName: tax_event_details          
+                        
