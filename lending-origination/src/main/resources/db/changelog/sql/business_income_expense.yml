@@ -1,0 +1,147 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Menuka
+      changes: 
+        - createTable:
+            tableName: gu_business_income_expense
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: guarantor_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_bie_guarantor_bus_income
+                    references: guarantor(id)
+              - column:
+                  name: customer_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_bie_customer_bus_income
+                    references: customer(id)                          
+              - column:
+                  name: business_type_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_bie_gua_income_bus_type
+                    references: business_type(id)  
+              - column:
+                  name: description
+                  type: varchar(350)
+                  constraints: 
+                    nullable: true              
+              - column:
+                  name: frequency_id
+                  type: bigint
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: total_gross_income
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: total_expences
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: profit_margin
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: total_net_income
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: false                            
+              - column:
+                  name: comment
+                  type: varchar(350)
+                  constraints: 
+                    nullable: true  
+              - column:
+                  name: status
+                  type: varchar(30)
+                  constraints:
+                    nullable: false      
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp
+                  constraints:
+                    nullable: false  
+                    
+  - changeSet:  
+      id:  2
+      author:  MenukaJ
+      changes:  
+      -  renameColumn:  
+          columnDataType: varchar(350)  
+          newColumnName:  comments
+          oldColumnName:  comment  
+          tableName:  gu_business_income_expense
+          
+          
+  - changeSet:
+      id: 3
+      author: MenukaJ
+      changes:
+      - addColumn:
+          columns:
+          - column:
+              name: frequency_code
+              type: varchar(30) 
+          - column:
+              name: frequency_name
+              type: varchar(350)   
+          tableName: gu_business_income_expense
+          
+  - changeSet:  
+      id:  4
+      author:  MenukaJ
+      changes:  
+      -  dropNotNullConstraint:  
+          columnDataType:  bigint  
+          columnName:  frequency_id  
+          tableName:  gu_business_income_expense                                          

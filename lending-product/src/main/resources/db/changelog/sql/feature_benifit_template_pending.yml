@@ -1,0 +1,101 @@
+databaseChangeLog: 
+  - changeSet:
+      id: 1
+      author: NipunDilhan
+      changes: 
+        - createTable:
+            tableName: feature_benifit_template_pend
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: 
+              - column:
+                  name: feature_benifit_template_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_1_feature_benifit_templ_1
+                    references: feature_benefit_template(id)
+              - column:
+                  name: lending_workflow_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_1_lending_workflow_2
+                    references: lending_workflow(id)  
+              - column:
+                  name: code
+                  type: varchar(4)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: name
+                  type: varchar(70)
+                  constraints:
+                    nullable: false                
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false               
+              - column:
+                  name: description
+                  type: varchar(350)
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: approve_status
+                  type: varchar(30)
+                  constraints:
+                    nullable: true  
+              - column:
+                  name: pen_approved_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: pen_approved_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: pen_rejected_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: pen_rejected_date
+                  type: timestamp
+                  constraints:
+                    nullable: true  
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp
+                  constraints:
+                    nullable: false   

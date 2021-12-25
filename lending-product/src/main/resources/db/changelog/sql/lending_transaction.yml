@@ -1,0 +1,113 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Thushan
+      changes:
+        - createTable:
+            tableName: lending_transaction
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: transaction_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: value_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: transaction_sub_code
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: posting_type
+                  type: varchar(10)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: amount
+                  type: decimal(38,2)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: currency_code
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: currency_code_numeric
+                  type: varchar(3)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: sequence_order
+                  type: bigint(4)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: reference_id
+                  type: bigint(4)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue: 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: currency_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: lending_account_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_len_tra_lending_account_detail
+                    references: lending_account_detail(id)

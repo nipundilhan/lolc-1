@@ -1,0 +1,170 @@
+databaseChangeLog: 
+  - changeSet:
+      id: 1
+      author: SewwandiH
+      changes: 
+        - createTable:
+            tableName: risk_grading
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: business_person_type_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: business_type_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_business_type_risk
+                    references: business_type(id)      
+              - column:
+                  name: industry_type_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: code
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: varchar(255)
+                  constraints:
+                    nullable: true                                                     
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false                                                  
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false
+  - changeSet: 
+      id: 2
+      author: SewwandiH
+      changes: 
+        - createTable:
+            tableName: risk_grading_detail
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: grading
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: short_code
+                  type: varchar(20)
+                  constraints:
+                    nullable: false     
+              - column:
+                  name: risk_grading_id
+                  type: bigint
+                  constraints:
+                    nullable: false   
+                    foreignKeyName: fk_risk_grading_detail
+                    references: risk_grading(id)           
+              - column:
+                  name: from_score
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: to_score
+                  type: bigint
+                  constraints:
+                    nullable: false                                                     
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false                                                  
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false

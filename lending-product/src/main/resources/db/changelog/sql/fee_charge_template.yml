@@ -1,0 +1,383 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Menuka
+      changes:
+        - createTable:
+            tableName: fee_charge
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: fee_charge_type_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_fee_charge_comn_list
+                    references: common_list_item(id)                                         
+              - column:
+                  name: code
+                  type: varchar(4)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: name
+                  type: varchar(70)
+                  constraints:
+                    nullable: false                 
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: approve_status
+                  type: varchar(30)
+                  constraints:
+                    nullable: true                      
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: pen_approved_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: pen_approved_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: pen_rejected_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: pen_rejected_date
+                  type: timestamp
+                  constraints:
+                    nullable: true                                        
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false   
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp          
+                  constraints:
+                    nullable: false
+                    
+                    
+  - changeSet:
+      id: 2
+      author: Menuka
+      changes:
+        - createTable:
+            tableName: fee_charge_history
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: fee_charge_id
+                  type: bigint
+                  constraints:
+                    nullable: false                                        
+              - column:
+                  name: code
+                  type: varchar(4)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: name
+                  type: varchar(70)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: fee_charge_type_id
+                  type: bigint
+                  constraints:
+                    nullable: false                   
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: approve_status
+                  type: varchar(30)
+                  constraints:
+                    nullable: true                     
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: pen_approved_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: pen_approved_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: pen_rejected_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: pen_rejected_date
+                  type: timestamp
+                  constraints:
+                    nullable: true                     
+              - column:
+                  name: history_created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: history_created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false                    
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false   
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp          
+                  constraints:
+                    nullable: false
+                    
+  - changeSet:
+      id: 3
+      author: Menuka
+      changes:
+        - createTable:
+            tableName: fee_charge_pending
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: fee_charge_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_fee_charge_pending
+                    references: fee_charge(id)                    
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false                    
+              - column:
+                  name: code
+                  type: varchar(4)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: name
+                  type: varchar(70)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: fee_charge_type_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_pen_fee_charge_comn_list
+                    references: common_list_item(id)                  
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: lending_workflow_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_lending_wf_fee_charge_pen
+                    references: lending_workflow(id)                     
+              - column:
+                  name: pcreated_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: pcreated_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false   
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp          
+                  constraints:
+                    nullable: false      
+                    
+  - changeSet:
+       id: 4
+       author: NipunDilhan
+       changes:                         
+       - dropColumn:
+           columns:
+              - column:
+                  name: approve_status
+                  type: varchar(30)  
+                  constraints:
+                      nullable: true
+              - column:
+                  name: pen_approved_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: pen_approved_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: pen_rejected_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: pen_rejected_date
+                  type: timestamp
+                  constraints:
+                    nullable: true                         
+           tableName: fee_charge  
+           
+       - dropColumn:
+           columns:
+              - column:
+                  name: pen_approved_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: pen_approved_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: pen_rejected_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: pen_rejected_date
+                  type: timestamp
+                  constraints:
+                    nullable: true                  
+           tableName: fee_charge_history
+           
+       - addColumn:
+            columns:
+              - column:
+                  name: approve_status
+                  type: varchar(30)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: pen_approved_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: pen_approved_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: pen_rejected_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: pen_rejected_date
+                  type: timestamp
+                  constraints:
+                    nullable: true  
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true                                          
+            tableName: fee_charge_pending                                      

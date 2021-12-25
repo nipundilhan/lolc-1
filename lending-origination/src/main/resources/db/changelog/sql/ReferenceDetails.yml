@@ -1,0 +1,257 @@
+databaseChangeLog:
+- changeSet:
+    id: 1
+    author: Dilki
+    changes:
+    - createTable:
+        tableName: reference_details
+        columns:
+        - column:
+            name: id
+            type: bigint
+            constraints:
+              primaryKey: true
+              nullable: false
+        - column:
+            name: tenant_id
+            type: varchar(10)
+            constraints:
+              nullable: false
+        - column:
+            name: version
+            type: bigint
+            defaultValue: 0
+            constraints:
+              nullable: false
+        - column:
+            name: sync_ts
+            type: timestamp
+            defaultValueComputed: current_timestamp
+            constraints:
+              nullable: false
+        - column:
+            name: name
+            type: varchar(70)
+            constraints:
+              nullable: true
+        - column:
+            name: professional_status
+            type: varchar(70)
+            constraints:
+              nullable: false
+        - column:
+            name: business_employer
+            type: varchar(70)
+            constraints:
+              nullable: false
+        - column:
+            name: current_address_line1
+            type: varchar(70)
+            constraints:
+              nullable: true
+        - column:
+            name: current_address_line2
+            type: varchar(70)
+            constraints:
+              nullable: true
+        - column:
+            name: current_address_line3
+            type: varchar(70)
+            constraints:
+              nullable: true
+        - column:
+            name: current_address_line4
+            type: varchar(70)
+            constraints:
+              nullable: true
+        - column:
+            name: permanent_address_line1
+            type: varchar(70)
+            constraints:
+              nullable: true
+        - column:
+            name: permanent_address_line2
+            type: varchar(70)
+            constraints:
+              nullable: true
+        - column:
+            name: permanent_address_line3
+            type: varchar(70)
+            constraints:
+              nullable: true
+        - column:
+            name: permanent_address_line4
+            type: varchar(70)
+            constraints:
+              nullable: true
+        - column:
+            name: status
+            type: varchar(20)
+            constraints:
+              nullable: false
+        - column:
+            name: created_user
+            type: varchar(255)
+            constraints:
+              nullable: false
+        - column:
+            name: created_date
+            type: timestamp
+            constraints:
+              nullable: false
+        - column:
+            name: modified_user
+            type: varchar(255)
+            constraints:
+              nullable: true
+        - column:
+            name: modified_date
+            type: timestamp
+            constraints:
+              nullable: true
+        - column:
+            name: lead_info_id
+            type: bigint
+            constraints:
+              nullable: true
+              foreignKeyName: fk_lead_info_rdid
+              references: lead_info(id)
+- changeSet:
+    id: 2
+    author: Dilki
+    changes:
+    - createTable:
+        tableName: reference_details_history
+        columns:
+        - column:
+            name: id
+            type: bigint
+            constraints:
+              primaryKey: true
+              nullable: false
+        - column:
+            name: tenant_id
+            type: varchar(10)
+            constraints:
+              nullable: false 
+        - column:
+            name: version
+            type: bigint
+            defaultValue: 0
+            constraints:
+              nullable: false
+        - column:
+            name: sync_ts
+            type: timestamp
+            defaultValueComputed: current_timestamp
+            constraints:
+              nullable: false
+        - column:
+            name: name
+            type: varchar(70)
+            constraints:
+              nullable: true
+        - column:
+            name: professional_status
+            type: varchar(70)
+            constraints:
+              nullable: false
+        - column:
+            name: business_employer
+            type: varchar(70)
+            constraints:
+              nullable: false
+        - column:
+            name: current_address_line1
+            type: varchar(70)
+            constraints:
+              nullable: true
+        - column:
+            name: current_address_line2
+            type: varchar(70)
+            constraints:
+              nullable: true
+        - column:
+            name: current_address_line3
+            type: varchar(70)
+            constraints:
+              nullable: true
+        - column:
+            name: current_address_line4
+            type: varchar(70)
+            constraints:
+              nullable: true
+        - column:
+            name: permanent_address_line1
+            type: varchar(70)
+            constraints:
+              nullable: true
+        - column:
+            name: permanent_address_line2
+            type: varchar(70)
+            constraints:
+              nullable: true
+        - column:
+            name: permanent_address_line3
+            type: varchar(70)
+            constraints:
+              nullable: true
+        - column:
+            name: permanent_address_line4
+            type: varchar(70)
+            constraints:
+              nullable: true
+        - column:
+            name: status
+            type: varchar(20)
+            constraints:
+              nullable: false
+        - column:
+            name: lead_info_id
+            type: bigint
+            constraints:
+              nullable: true
+              foreignKeyName: fk_lead_info_rdhid
+              references: lead_info(id)
+        - column:
+            name: created_user
+            type: varchar(255)
+            constraints:
+              nullable: false
+        - column:
+            name: created_date
+            type: timestamp
+            constraints:
+              nullable: false
+        - column:
+            name: modified_user
+            type: varchar(255)
+            constraints:
+              nullable: true
+        - column:
+            name: modified_date
+            type: timestamp
+            constraints:
+              nullable: true
+        - column:
+            name: history_created_user
+            type: varchar(255)
+            constraints:
+              nullable: false
+        - column:
+            name: history_created_date
+            type: timestamp
+            constraints:
+              nullable: false
+- changeSet:
+    id: 3
+    author: Dilki
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: reference_details_id
+            type: bigint
+            constraints:
+              nullable: false
+        tableName: reference_details_history

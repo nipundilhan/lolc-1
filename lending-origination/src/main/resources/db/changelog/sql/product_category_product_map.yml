@@ -1,0 +1,145 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Ravishika
+      changes:
+        - createTable:
+            tableName: product_category_product_map
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: product_category_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_product_cat_product
+                    references: product_category(id)
+              - column:
+                  name: status
+                  type: varchar(30)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp
+                  constraints:
+                    nullable: false  
+                    
+ 
+
+  - changeSet:
+      id: 2
+      author: Ravishika
+      changes:
+        - createTable:
+            tableName: product_cat_product_map_det
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: product_cat_product_map_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_product_product_category_map
+                    references: product_category_product_map(id)                    
+              - column:
+                  name: product_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: product_code
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: product_name
+                  type: varchar(70)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: status
+                  type: varchar(30)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp
+                  constraints:
+                    nullable: false  
+                    
+                                     

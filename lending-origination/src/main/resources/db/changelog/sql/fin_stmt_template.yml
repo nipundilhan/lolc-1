@@ -1,0 +1,556 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Dilki
+      changes:
+        - createTable:
+            tableName: fin_stmt_template
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false                    
+              - column:
+                  name: template_code
+                  type: varchar(4)
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: template_name
+                  type: varchar(70)
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: statement_type_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_fin_stmt_template_id_fsd
+                    references: fin_stmt_type(id)  
+              - column:
+                  name: statement_type_name
+                  type: varchar(70)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: varchar(300)
+                  constraints:
+                    nullable: true                    
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false   
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp          
+                  constraints:
+                    nullable: false
+                    
+                    
+  - changeSet:
+      id: 2
+      author: Dilki
+      changes:
+        - createTable:
+            tableName: fin_stmt_template_history
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: financial_statement_id
+                  type: bigint
+                  constraints:
+                    nullable: false                    
+              - column:
+                  name: template_code
+                  type: varchar(4)
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: template_name
+                  type: varchar(70)
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: statement_type_id
+                  type: bigint
+                  constraints: 
+                    nullable: false
+              - column:
+                  name: statement_type_name
+                  type: varchar(70)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: varchar(350)
+                  constraints:
+                    nullable: true                    
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: history_created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: history_created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false                    
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false   
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp          
+                  constraints:
+                    nullable: false      
+
+  - changeSet:
+      id: 3
+      author: Dilki
+      changes:
+        - createTable:
+            tableName: fin_stmt_template_details
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false   
+              - column:
+                  name: fin_stmt_template_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_fin_stmt_temp_id_fsd
+                    references: fin_stmt_template(id)     
+              - column:
+                  name: financial_statement_level_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_financial_statement_lvl_id_fsd
+                    references: financial_statement_level(id)                       
+              - column:
+                  name: parent_id
+                  type: bigint
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: field_name
+                  type: varchar(70)
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: total_value_required
+                  type: varchar(20)
+                  constraints: 
+                    nullable: false
+              - column:
+                  name: formula_enabled
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: formula
+                  type: varchar(300)
+                  constraints:
+                    nullable: true    
+              - column:
+                  name: additional_note_required
+                  type: varchar(20)
+                  constraints:
+                    nullable: false                
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false   
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp          
+                  constraints:
+                    nullable: false          
+                      
+  - changeSet:
+      id: 4
+      author: Dilki
+      changes:
+        - createTable:
+            tableName: fin_stmt_template_dtl_history
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: fin_stmt_template_details_id
+                  type: bigint
+                  constraints:
+                    nullable: false                    
+              - column:
+                  name: financial_statement_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_fin_stmt_temp_id_fsdh
+                    references: fin_stmt_template(id)     
+              - column:
+                  name: financial_statement_level_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_financial_statement_lvl_id_fsdh
+                    references: financial_statement_level(id)                       
+              - column:
+                  name: parent_id
+                  type: bigint
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: field_name
+                  type: varchar(70)
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: total_value_required
+                  type: varchar(20)
+                  constraints: 
+                    nullable: false
+              - column:
+                  name: formula_enabled
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: formula
+                  type: varchar(300)
+                  constraints:
+                    nullable: true    
+              - column:
+                  name: additional_note_required
+                  type: varchar(20)
+                  constraints:
+                    nullable: false                
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: history_created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: history_created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false                    
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false   
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp          
+                  constraints:
+                    nullable: false                      
+                         
+  - changeSet:
+      id: 5
+      author: Dilki
+      changes:
+      - addColumn:
+          columns: 
+            - column:
+                name: sequence
+                type: bigint
+                constraints:
+                  nullable: true
+          tableName: fin_stmt_template_details                      
+                         
+  - changeSet:
+      id: 6
+      author: Dilki
+      changes:
+      - addColumn:
+          columns: 
+            - column:
+                name: sequence
+                type: bigint
+                constraints:
+                  nullable: true
+          tableName: fin_stmt_template_dtl_history                           
+                         
+  - changeSet:
+      id: 7
+      author: Dilki
+      changes:
+      - addColumn:
+          columns: 
+            - column:
+                name: level_id
+                type: bigint
+                constraints:
+                  nullable: true
+          tableName: fin_stmt_template_details                      
+                         
+  - changeSet:
+      id: 8
+      author: Dilki
+      changes:
+      - addColumn:
+          columns: 
+            - column:
+                name: level_id
+                type: bigint
+                constraints:
+                  nullable: true
+          tableName: fin_stmt_template_dtl_history     
+          
+  - changeSet:  
+      id:  9 
+      author:  Dilki
+      changes:  
+      -  addForeignKeyConstraint:  
+          baseColumnNames:  level_id  
+          baseTableName:  fin_stmt_template_details  
+          constraintName:  fk_level_id_fstd
+          referencedColumnNames:  id  
+          referencedTableName:  financial_statement_level     
+          
+  - changeSet:  
+      id:  10 
+      author:  Dilki
+      changes:  
+      -  addForeignKeyConstraint:  
+          baseColumnNames:  level_id  
+          baseTableName:  fin_stmt_template_dtl_history  
+          constraintName:  fk_level_id_fstdh
+          referencedColumnNames:  id  
+          referencedTableName:  financial_statement_level  
+          
+  - changeSet:
+      id: 11
+      author: Dilki
+      changes:
+      - dropForeignKeyConstraint:
+          baseTableName: fin_stmt_template_details
+          constraintName: fk_level_id_fstd 
+          
+  - changeSet:
+      id: 12
+      author: Dilki
+      changes:
+      - dropForeignKeyConstraint:
+          baseTableName: fin_stmt_template_dtl_history
+          constraintName: fk_level_id_fstdh
+          
+  - changeSet:
+      id: 13
+      author: Dilki
+      changes:
+      - dropColumn:
+           columns:
+           - column:
+               name: level_id
+               type: bigint    
+           tableName: fin_stmt_template_details                            
+          
+  - changeSet:
+      id: 14
+      author: Dilki
+      changes:
+      - dropColumn:
+           columns:
+           - column:
+               name: level_id
+               type: bigint    
+           tableName: fin_stmt_template_dtl_history  
+          
+  - changeSet:
+      id: 15
+      author: Dilki
+      changes:
+      - dropColumn:
+           columns:
+           - column:
+               name: parent_id
+               type: bigint    
+           tableName: fin_stmt_template_details                            
+          
+  - changeSet:
+      id: 16
+      author: Dilki
+      changes:
+      - dropColumn:
+           columns:
+           - column:
+               name: parent_id
+               type: bigint    
+           tableName: fin_stmt_template_dtl_history                     
+                         
+  - changeSet:
+      id: 17
+      author: Dilki
+      changes:
+      - addColumn:
+          columns: 
+            - column:
+                name: parent_id
+                type: varchar(10)
+                constraints:
+                  nullable: true
+          tableName: fin_stmt_template_details                      
+                         
+  - changeSet:
+      id: 18
+      author: Dilki
+      changes:
+      - addColumn:
+          columns: 
+            - column:
+                name: parent_id
+                type: varchar(10)
+                constraints:
+                  nullable: true
+          tableName: fin_stmt_template_dtl_history  
+                        

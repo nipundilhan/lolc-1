@@ -1,0 +1,21 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: SenithaP
+      changes:
+        - createTable:
+            tableName: common_seq
+            columns:
+              - column:
+                  name: next_val
+                  type: bigint
+  - changeSet:
+      id: 2
+      author: SenithaP
+      changes:
+        - insert:
+            tableName: common_seq
+            columns:
+               - column:
+                  name: next_val
+                  value: 1

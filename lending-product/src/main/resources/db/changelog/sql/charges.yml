@@ -1,0 +1,103 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Thushan
+      changes:
+        - createTable:
+            tableName: charges
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: charge_Type_Id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: charge_category
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: period_number
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: charge_amount
+                  type: decimal(38,2)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: frequency_code
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: currency_code
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: currency_code_numeric
+                  type: varchar(3)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: application_frequency_code
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: lending_account_detail
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_lending_account_detail
+                    references: lending_account_detail(id)
+              - column:
+                  name: frequency_type_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: currency_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+

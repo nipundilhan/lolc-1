@@ -1,0 +1,149 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: RavishikaS
+      changes:
+        - createTable:
+            tableName: expense_type_expense_category
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: house_hold_expense_category_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_expense_category_expence_type
+                    references: house_hold_expense_category(id)                       
+              - column:
+                  name: status
+                  type: varchar(30)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp
+                  constraints:
+                    nullable: false  
+                    
+                    
+  - changeSet:
+      id: 2
+      author: RavishikaS
+      changes:
+        - createTable:
+            tableName: expense_type_exp_category_det
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: expense_type_exp_category_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_expense_type_household_exp_category_det
+                    references: expense_type_expense_category(id)
+              - column:
+                  name: expense_type_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_expense_type_household_exp_cat_det
+                    references: expense_type(id)                                
+              - column:
+                  name: status
+                  type: varchar(30)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp
+                  constraints:
+                    nullable: false
+                    
+  - changeSet:
+       id: 3
+       author: Dilhan
+       changes:
+       - addColumn:
+           columns:
+            - column:
+                  name: expense_type_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_expense_type_expense_category_exp_type
+                    references: expense_type(id)      
+           tableName: expense_type_expense_category                    

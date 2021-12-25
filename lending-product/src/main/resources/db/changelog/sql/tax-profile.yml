@@ -1,0 +1,333 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: KilasiG
+      changes:
+        - createTable:
+            tableName: tax_profile
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: effective_date
+                  type: date
+                  constraints:
+                    nullable: false
+              - column:
+                  name: tax_code_id
+                  type: bigint
+                  constraints:                    
+                    nullable: false
+              - column:
+                  name: tax_applicable_level
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: prod_cate_comn_li_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: prod_category_desc
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sub_product_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: app_acc_type_comn_li_id
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: applicable_acc_type_desc
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: applicable_prod_status
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: applicable_prod_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: applicable_prod_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: decl_type_comn_li_id
+                  type: varchar(70)
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: customer_category
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: cust_sub_type_ind_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: cust_sub_type_ind_desc
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: cust_sub_type_non_ind_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: cust_sub_type_non_ind_desc
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: customer_resident_type_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: customer_resident_type_desc
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: applicable_min_age
+                  type: int
+                  constraints:
+                    nullable: true
+              - column:
+                  name: applicable_max_age
+                  type: int
+                  constraints:
+                    nullable: true
+              - column:
+                  name: age_effective_date_type
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: tax_amount_type
+                  type: varchar(255)
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: tax_applicable_min_val
+                  type: double
+                  constraints:
+                    nullable: true
+              - column:
+                  name: tax_applicable_max_val
+                  type: double
+                  constraints:
+                    nullable: true
+              - column:
+                  name: cf_min_value
+                  type: double
+                  constraints:
+                    nullable: true
+              - column:
+                  name: cf_max_value
+                  type: double
+                  constraints:
+                    nullable: true
+              - column:
+                  name: other_interest_income
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: tax_profile_status
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    
+  - changeSet:
+      id: 2
+      author: Senitha
+      changes:
+      - addColumn:
+          columns:
+          - column:
+              name: customer_category_code
+              type: varchar(10)
+          tableName: tax_profile
+          
+  - changeSet:
+      id: 3
+      author: Senitha
+      changes:
+      - addColumn:
+          columns:
+          - column:
+              name: customer_category_id
+              type: bigint
+          tableName: tax_profile
+ 
+                    
+  - changeSet:
+      id: 4
+      author: Sahan
+      changes:
+      - addColumn:
+          columns:
+          - column:
+              name: deduct_indicator
+              type: varchar(4)
+          tableName: tax_profile
+                    
+  - changeSet:
+      id: 5
+      author: Sahan
+      changes:
+      - addColumn:
+          columns:
+          - column:
+              name: bared_by
+              type: varchar(20)
+          tableName: tax_profile 
+                    
+  - changeSet:
+       id: 6
+       author: Senitha
+       changes:
+       - addColumn:
+           columns:
+           - column:
+               name: sync_ts
+               type: timestamp
+               defaultValueComputed : current_timestamp          
+               constraints:
+                 nullable: false 
+           tableName: tax_profile
+           
+           
+  - changeSet:
+      id: 7
+      author: Dilki
+      changes:
+        - createTable:
+            tableName: tax_profile_details
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: tax_amount
+                  type: double
+                  constraints:
+                    nullable: true
+              - column:
+                  name: tax_rate
+                  type: float
+                  constraints:
+                    nullable: true
+              - column:
+                  name: tier_min_val
+                  type: double
+                  constraints:
+                    nullable: true
+              - column:
+                  name: tier_max_val
+                  type: double
+                  constraints:
+                    nullable: true     
+              - column:
+                  name: tax_profile_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_tax_profile_id_tpd
+                    references: tax_profile(id)
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false                                                        
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false

@@ -1,0 +1,111 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Dilki
+      changes:
+        - createTable:
+            tableName: other_income_expenses
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false        
+              - column:
+                  name: other_income_details_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_other_income_details_oie
+                    references: other_income_details(id)  
+              - column:
+                  name: expense_type_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_expense_type_id_oie
+                    references: other_income_expense_type(id)          
+              - column:
+                  name: income_type_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_income_type_id_oie
+                    references: income_type(id)
+              - column:
+                  name: frequency_id
+                  type: bigint
+                  constraints:
+                    nullable: false   
+              - column:
+                  name: frequency_code
+                  type: varchar(20)
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: amount
+                  type: decimal(38,2)
+                  constraints:
+                    nullable: false      
+              - column:
+                  name: currency_id
+                  type: bigint
+                  constraints:
+                    nullable: false   
+              - column:
+                  name: currency_code
+                  type: varchar(3)
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: currency_code_numeric
+                  type: varchar(3)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: varchar(300)
+                  constraints:
+                    nullable: false             
+              - column:
+                  name: status
+                  type: varchar(30)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false       

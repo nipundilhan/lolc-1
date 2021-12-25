@@ -1,0 +1,98 @@
+databaseChangeLog:
+- changeSet:
+      id: 1
+      author: Dilki
+      changes:
+        - createTable:
+            tableName: system_gen_doc_type
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false   
+              - column:
+                  name: code
+                  type: varchar(4)
+                  constraints:
+                    nullable: false     
+              - column:
+                  name: name
+                  type: varchar(70)
+                  constraints:
+                    nullable: false      
+              - column:
+                  name: product_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_product_id_sgdt
+                    references: product(id)     
+              - column:
+                  name: product_name
+                  type: varchar(350)
+                  constraints:
+                    nullable: false                               
+              - column:
+                  name: sub_product_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_sub_product_id_sgdt
+                    references: sub_product(id)     
+              - column:
+                  name: sub_product_name
+                  type: varchar(350)
+                  constraints:
+                    nullable: false                    
+              - column:
+                  name: applicable_level
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_applicable_level_id_sgdt
+                    references: common_list_item(id)                       
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false           
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false     
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp          
+                  constraints:
+                    nullable: false

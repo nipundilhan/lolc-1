@@ -1,0 +1,867 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Rangana
+      changes:
+        - createTable:
+            tableName: facility_parameter
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: product_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: product_code
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: product_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: sub_product_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: sub_product_code
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sub_product_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: calculation_method_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: calculation_method_code
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: calculation_method_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: payment_frequency_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: payment_frequency_code
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: payment_frequency_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: currency_code
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: loan_amount
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: term
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: rate
+                  type: float
+                  constraints:
+                    nullable: false
+              - column:
+                  name: approved_limit
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: initial_disbursement
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: due_date
+                  type: datetime
+                  constraints:
+                    nullable: true
+              - column:
+                  name: expiry_date
+                  type: datetime
+                  constraints:
+                    nullable: true
+              - column:
+                  name: penal_rate
+                  type: float
+                  constraints:
+                    nullable: true
+              - column:
+                  name: grace_period
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: int_repayment_method
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: repayment_criteria
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: no_of_pre_payment
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: amount_paid_in_advance
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: residual_value
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: rewards
+                  type: varchar(30)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: remaks
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: loan_amount_with_tax
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: amount_finance
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: total_receivable
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: pre_paid_installment
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: down_payment_amount
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: total_taxes
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: total_charges
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: lease_factor
+                  type: float
+                  constraints:
+                    nullable: true
+              - column:
+                  name: charges_factor
+                  type: float
+                  constraints:
+                    nullable: true
+              - column:
+                  name: total_factor
+                  type: float
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: branch_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: branch_code
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: tc_no
+                  type: varchar(40)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: quotation_no
+                  type: varchar(40)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: attribute1
+                  type: bigint
+                  constraints:
+                    nullable: true  
+              - column:
+                  name: attribute2
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: attribute3
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: attribute4
+                  type: bigint
+                  constraints:
+                    nullable: true  
+              - column:
+                  name: attribute5
+                  type: bigint
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: attribute6
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: attribute7
+                  type: varchar(255)
+                  constraints:
+                    nullable: true  
+              - column:
+                  name: attribute8
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: attribute9
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: attribute10
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: created_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true            
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp
+                  constraints:
+                    nullable: false      
+  - changeSet:
+      id: 2
+      author: Rangana
+      changes:
+        - createTable:
+            tableName: facility_detail
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sequence
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: period
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: installment
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: facility_parameter_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_fd_facility_parameter_id
+                    references: facility_parameter(id)
+              - column:
+                  name: status
+                  type: varchar(30)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: 3
+      author: Rangana
+      changes:
+        - createTable:
+            tableName: facility_structure
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sequence
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: period
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: rate
+                  type: float
+                  constraints:
+                    nullable: true
+              - column:
+                  name: installment
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: total_tax
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: total_charges
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: total_installment
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: facility_parameter_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_fs_facility_parameter_id
+                    references: facility_parameter(id)
+              - column:
+                  name: status
+                  type: varchar(30)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp
+                  constraints:
+                    nullable: false 
+  - changeSet:
+      id: 4
+      author: Rangana
+      changes:
+        - createTable:
+            tableName: facility_charges
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: charge_type_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: charge_type_code
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: charge_type_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: criteria_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: criteria_code
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: criteria_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: calculation_method_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: calculation_method_code
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: calculation_method_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: options
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: frequency_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: frequency_code
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: frequency_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: charge_rate
+                  type: float
+                  constraints:
+                    nullable: true
+              - column:
+                  name: charge_amount
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: total_charge_amount
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: charge_catogory
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: facility_parameter_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_fsc_facility_parameter_id
+                    references: facility_parameter(id)
+              - column:
+                  name: facility_structure_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_fsc_facility_structure_id
+                    references: facility_structure(id)
+              - column:
+                  name: status
+                  type: varchar(30)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: 5
+      author: Rangana
+      changes:
+        - createTable:
+            tableName: facility_tax
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: tax_type_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: tax_type_code
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: tax_type_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: tax_applicable_on_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: tax_applicable_on_code
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: tax_applicable_on_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: tax_rate
+                  type: float
+                  constraints:
+                    nullable: true
+              - column:
+                  name: tax_amount
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: total_tax_amount
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: facility_parameter_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_fst_facility_parameter_id
+                    references: facility_parameter(id)
+              - column:
+                  name: facility_structure_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_fst_facility_structure_id
+                    references: facility_structure(id)
+              - column:
+                  name: status
+                  type: varchar(30)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: 6
+      author: Rangana
+      changes:
+        - createTable:
+            tableName: facility_charges_detail
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: period_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: period_code
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: period_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: charge_amount
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: facility_charges_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_fscd_facility_charges_id
+                    references: facility_charges(id)
+              - column:
+                  name: status
+                  type: varchar(30)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: 7
+      author: Rangana
+      changes:
+          - addColumn:
+              tableName: facility_parameter
+              columns:
+                - column:
+                    name: tlead_info_id
+                    type: bigint
+                    constraints:
+                      nullable: false
+                      foreignKeyName: fk_lead_info_id
+                      references: lead_info(id)
+  - changeSet:  
+      id:  8 
+      author: Rangana  
+      changes:  
+      -  modifyDataType:   
+          columnName:  rate  
+          newDataType:  decimal(25,5)   
+          tableName:  facility_structure

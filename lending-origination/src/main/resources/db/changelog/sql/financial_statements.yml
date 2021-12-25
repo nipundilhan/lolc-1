@@ -1,0 +1,188 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: NipunDilhan
+      changes:
+        - createTable:
+            tableName: financial_statement
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false   
+              - column:
+                  name: customer_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_9161_customer_1
+                    references: customer(id)                       
+              - column:
+                  name: fin_stmt_template_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_9161_fstemp_2
+                    references: fin_stmt_template(id)   
+              - column:
+                  name: fin_stmt_type_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_9161_fsttype_3
+                    references: fin_stmt_type(id)                                                     
+              - column:
+                  name: audited_by_user_id
+                  type: varchar(100)
+                  constraints:
+                    nullable: true  
+              - column:
+                  name: audited_by
+                  type: varchar(350)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: from_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: to_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: no_of_reports
+                  type: bigint
+                  constraints:
+                    nullable: true                    
+              - column:
+                  name: note
+                  type: varchar(350)
+                  constraints:
+                    nullable: true                    
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false   
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp          
+                  constraints:
+                    nullable: false
+                    
+                    
+                    
+                    
+  - changeSet:
+      id: 2
+      author: NipunDilhan
+      changes:
+        - createTable:
+            tableName: financial_statement_document
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false     
+              - column:
+                  name: financial_statement_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_9162_fs_1
+                    references: financial_statement(id)                                                       
+              - column:
+                  name: document_id
+                  type: bigint
+                  constraints:
+                    nullable: false                    
+              - column:
+                  name: document_name
+                  type: varchar(350)
+                  constraints:
+                    nullable: false                    
+              - column:
+                  name: document_ref_id
+                  type: bigint
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false   
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp          
+                  constraints:
+                    nullable: false

@@ -1,0 +1,88 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Ravishika
+      changes:
+        - createTable:
+            tableName: micro_bpr_workflow
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: workflow_type
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: customer_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_customer_mbpr_workflow  
+                    references: customer(id)
+              - column:
+                  name: guarantor_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_guarantor_mbpr_workflow  
+                    references: guarantor(id)                    
+              - column:
+                  name: workflow_process_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: workflow_status
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false                    
+                       
+  - changeSet:
+      id: 2
+      author: RavishikaS
+      changes:
+        - addColumn:
+            tableName: micro_bpr_workflow
+            columns:
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true

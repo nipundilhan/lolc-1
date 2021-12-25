@@ -1,0 +1,373 @@
+databaseChangeLog: 
+  - changeSet:
+      id: 1
+      author: Dilhan
+      changes: 
+        - createTable:
+            tableName: fee_charge_cap
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: fee_charge_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_fee_charge_cap_1
+                    references: fee_charge(id)      
+              - column:
+                  name: fee_cap_period_id
+                  type: bigint
+                  constraints:
+                    nullable: false                                     
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: minimum_amount
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: false       
+              - column:
+                  name: min_max_type
+                  type: varchar(3)
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: fee_occurence
+                  type: bigint
+                  constraints:
+                    nullable: true         
+              - column:
+                  name: code
+                  type: varchar(4)
+                  constraints:
+                    nullable: true                
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: 2
+      author: Dilhan
+      changes: 
+        - createTable:
+            tableName: fee_charge_cap_history
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: fee_charge_cap_id
+                  type: bigint
+                  constraints:
+                    nullable: false      
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: fee_charge_id
+                  type: bigint
+                  constraints:
+                    nullable: false      
+              - column:
+                  name: fee_cap_period_id
+                  type: bigint
+                  constraints:
+                    nullable: false                                     
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: minimum_amount
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: false       
+              - column:
+                  name: min_max_type
+                  type: varchar(3)
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: fee_occurence
+                  type: bigint
+                  constraints:
+                    nullable: true         
+              - column:
+                  name: code
+                  type: varchar(4)
+                  constraints:
+                    nullable: true                                                      
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: his_created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: his_created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false                  
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false 
+  - changeSet:
+      id: 3
+      author: Dilhan
+      changes: 
+        - createTable:
+            tableName: fee_charge_cap_pending
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false       
+              - column:
+                  name: fee_charge_cap_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_fee_charge_cap
+                    references: fee_charge_cap(id)
+              - column:
+                  name: lending_workflow_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_lend_wf_fee_charge_cap_pen
+                    references: lending_workflow(id)      
+              - column:
+                  name: fee_charge_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_pen_fee_charge
+                    references: fee_charge(id)  
+              - column:
+                  name: fee_cap_period_id
+                  type: bigint
+                  constraints:
+                    nullable: false             
+              - column:
+                  name: minimum_amount
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: false       
+              - column:
+                  name: min_max_type
+                  type: varchar(3)
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: fee_occurence
+                  type: bigint
+                  constraints:
+                    nullable: true                                       
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false   
+              - column:
+                  name: approve_status
+                  type: varchar(30)
+                  constraints:
+                    nullable: true                                                                          
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false  
+              - column:
+                  name: pen_approved_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: pen_approved_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: pen_rejected_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: pen_rejected_date
+                  type: timestamp
+                  constraints:
+                    nullable: true                 
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false  
+                    
+  - changeSet:
+       id: 4
+       author: Dilhan
+       changes:
+       - addColumn:
+           columns:
+           - column:
+                name: period_code
+                type: varchar(4)
+                constraints:
+                    nullable: true
+           - column:
+               name: other_fee_type_id
+               type: bigint  
+               constraints:
+                   nullable: true
+                   foreignKeyName: fk_other_fee_type_fcc
+                   references: other_fee_type(id)  
+           tableName: fee_charge_cap              
+  - changeSet:
+       id: 5
+       author: Dilhan
+       changes:
+       - addColumn:
+           columns:
+           - column:
+                name: period_code
+                type: varchar(4)
+                constraints:
+                    nullable: true  
+           - column:
+               name: other_fee_type_id
+               type: bigint  
+               constraints:
+                   nullable: true
+           tableName: fee_charge_cap_history 
+  - changeSet:
+       id: 6
+       author: Dilhan
+       changes:
+       - addColumn:
+           columns:
+           - column:
+                name: period_code
+                type: varchar(4)
+                constraints:
+                    nullable: true
+           - column:
+               name: other_fee_type_id
+               type: bigint  
+               constraints:
+                   nullable: true
+                   foreignKeyName: fk_other_fee_type_fccp
+                   references: other_fee_type(id)  
+           tableName: fee_charge_cap_pending  
+           
+  - changeSet:
+       id: 7
+       author: Dilhan
+       changes:
+       - addColumn:
+           columns:
+            - column:
+               name: fee_charge_pending_id
+               type: bigint  
+               constraints:
+                   nullable: true
+                   foreignKeyName: fk_fee_charge_cap_pend_fcc
+                   references: fee_charge_pending(id)   
+           tableName: fee_charge_cap_pending 
+           
+           
+                                                

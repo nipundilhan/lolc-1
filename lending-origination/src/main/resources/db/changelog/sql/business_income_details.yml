@@ -1,0 +1,136 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: piyumi
+      changes:
+        - createTable:
+            tableName: business_income_details
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: income_source_details_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: Fk_income_source_busi
+                    references: income_source_details(id)
+              - column:
+                  name: busi_additional_dtl_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: Fk_bus_addi_dtl_busi
+                    references: business_additional_details(id)                      
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false       
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: 2
+      author: Piyumi
+      changes: 
+        - createTable:
+            tableName: business_income_documents
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: business_income_dtl_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_business_income_dtl_doc
+                    references: business_income_details(id)        
+              - column:
+                  name: document_id
+                  type: bigint
+                  constraints:
+                    nullable: false                
+              - column:
+                  name: status
+                  type: varchar(30)
+                  constraints:
+                    nullable: false        
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  constraints:
+                    nullable: false
+ 

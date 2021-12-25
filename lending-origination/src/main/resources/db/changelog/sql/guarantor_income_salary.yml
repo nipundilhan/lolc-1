@@ -1,0 +1,97 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Sanatha
+      changes: 
+        - createTable:
+            tableName: guarantor_income_salary
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: guarantor_details_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_guarantor_income_salary
+                    references: guarantor_detail(id)     
+              - column:
+                  name: employer_name
+                  type: varchar(350)
+                  constraints: 
+                    nullable: false     
+              - column:
+                  name: designation_id
+                  type: bigint
+                  constraints:
+                    nullable: false          
+              - column:
+                  name: frequency_id
+                  type: bigint
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: gross_salary
+                  type: double
+                  constraints:
+                    nullable: false
+              - column:
+                  name: deductions
+                  type: double
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: net_salary
+                  type: double
+                  constraints:
+                    nullable: false       
+              - column:
+                  name: comment
+                  type: varchar(350)
+                  constraints: 
+                    nullable: true  
+              - column:
+                  name: status
+                  type: varchar(30)
+                  constraints:
+                    nullable: false        
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  constraints:
+                    nullable: false

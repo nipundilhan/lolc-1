@@ -1,0 +1,88 @@
+databaseChangeLog: 
+  - changeSet:
+      id: 1
+      author: Nipun
+      changes: 
+        - createTable:
+            tableName: master_def_acc_rule_set_stand
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: 
+              - column:
+                  name: master_definition_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_1_master_definition
+                    references: master_definition(id)  
+              - column:
+                  name: master_def_account_rule_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_2_master_def_account_rule
+                    references: master_def_account_rule(id) 
+              - column:
+                  name: type_value
+                  type: varchar(70)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: common_list_item_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_3_common_list_item
+                    references: common_list_item(id) 
+              - column:
+                  name: common_list_item_name
+                  type: varchar(70)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: is_selected
+                  type: varchar(20)
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp
+                  constraints:
+                    nullable: false

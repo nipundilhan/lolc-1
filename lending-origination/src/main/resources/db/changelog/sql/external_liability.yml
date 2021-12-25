@@ -1,0 +1,189 @@
+databaseChangeLog: 
+  - changeSet:
+      id: 1
+      author: NipunDilhan
+      changes: 
+        - createTable:
+            tableName: external_liability
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: 
+              - column:
+                  name: customer_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_8031_customer_1
+                    references: customer(id) 
+              - column:
+                  name: category_code
+                  type: varchar(20)
+                  constraints:
+                    nullable: false  
+              - column:
+                  name: commitment_type_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_8032_common_list_item_2
+                    references: common_list_item(id) 
+              - column:
+                  name: facility_type_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_8033_common_list_item_3
+                    references: common_list_item(id) 
+              - column:
+                  name: bank_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: bank_code
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: bank_name
+                  type: varchar(250)
+                  constraints:
+                    nullable: true  
+              - column:
+                  name: branch_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: branch_code
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: branch_name
+                  type: varchar(250)
+                  constraints:
+                    nullable: true  
+              - column:
+                  name: repayment_frequency_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: repayment_frequency_code
+                  type: varchar(4)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: repayment_frequency_name
+                  type: varchar(70)
+                  constraints:
+                    nullable: false                   
+              - column:
+                  name: outstanding_amount
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: rental_amount
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: no_of_rental_paid
+                  type: bigint
+                  constraints:
+                    nullable: true  
+              - column:
+                  name: facility_disbursement_date
+                  type: timestamp
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: facility_amount
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: interest_rate
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: overdue_amount
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false    
+              - column:
+                  name: over_due_note
+                  type: varchar(350)
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: over_due_date
+                  type: timestamp
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: remark
+                  type: varchar(350)
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp
+                  constraints:
+                    nullable: false 
+                    
+  - changeSet:
+      id: 2
+      author: NipunDilhan
+      changes:
+      - dropColumn:
+           columns:
+           - column:
+               name: over_due_date
+               type: bigint    
+           tableName: external_liability    

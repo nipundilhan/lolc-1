@@ -1,0 +1,152 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Menuka
+      changes: 
+        - createTable:
+            tableName: customer_cultivation_income
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: customer_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_cci_customer_culti_income
+                    references: customer(id)                          
+              - column:
+                  name: cultivation_category_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_cci_culti_category
+                    references: cultivation_category(id)                     
+              - column:
+                  name: description
+                  type: varchar(350)
+                  constraints: 
+                    nullable: true
+              - column:
+                  name: ownership_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_cci_comn_list_ownership
+                    references: common_list_item(id)
+              - column:
+                  name: land_ownership_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_cci_comn_list_land_owne
+                    references: common_list_item(id)
+              - column:
+                  name: experience_id
+                  type: bigint
+                  constraints:
+                    nullable: false                                                                         
+              - column:
+                  name: occurrence_frequency_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: occurrence_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: calculation_frequency_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: no_of_unit_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_cci_comn_list_no_of_unit
+                    references: common_list_item(id)                    
+              - column:
+                  name: no_of_unit_value
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: currency_id
+                  type: bigint
+                  constraints:
+                    nullable: false                                                                                                       
+              - column:
+                  name: price_per_unit
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: total_gross_income
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: false                            
+              - column:
+                  name: comment
+                  type: varchar(350)
+                  constraints: 
+                    nullable: true  
+              - column:
+                  name: status
+                  type: varchar(30)
+                  constraints:
+                    nullable: false      
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp
+                  constraints:
+                    nullable: false
+                    
+  - changeSet:  
+      id:  2
+      author:  MenukaJ
+      changes:  
+      -  renameColumn:  
+          columnDataType: varchar(350)  
+          newColumnName:  comments
+          oldColumnName:  comment  
+          tableName:  customer_cultivation_income                      

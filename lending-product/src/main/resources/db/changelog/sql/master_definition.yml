@@ -1,0 +1,495 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Dilki
+      changes:
+        - createTable:
+            tableName: master_definition
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: code
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(350)
+                  constraints:
+                    nullable: false
+              - column:   
+                  name: description
+                  type: varchar(350)
+                  constraints:
+                    nullable: true
+              - column: 
+                  name: business_principle
+                  type: varchar(70)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: module
+                  type: varchar(70)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sub_module_code
+                  type: varchar(70)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sub_module_name
+                  type: varchar(70)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: approve_status
+                  type: varchar(20)
+                  constraints:
+                    nullable: true                    
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: pen_approved_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: pen_approved_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: pen_rejected_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: pen_rejected_date
+                  type: timestamp
+                  constraints:
+                    nullable: true         
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp          
+                  constraints:
+                    nullable: false 
+  - changeSet:
+      id: 2
+      author: Dilki
+      changes:
+        - createTable:
+            tableName: master_definition_history
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: master_definition_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: code
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(350)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column: 
+                  name: description
+                  type: varchar(350)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: business_principle
+                  type: varchar(70)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: module
+                  type: varchar(70)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sub_module_code
+                  type: varchar(70)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sub_module_name
+                  type: varchar(70)
+                  constraints:
+                    nullable: false    
+              - column:
+                  name: approve_status
+                  type: varchar(20)
+                  constraints:
+                    nullable: true                   
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: pen_approved_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: pen_approved_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: pen_rejected_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: pen_rejected_date
+                  type: timestamp
+                  constraints:
+                    nullable: true                    
+              - column:
+                  name: history_created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: history_created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp          
+                  constraints:
+                    nullable: false    
+                    
+  - changeSet:
+      id: 3
+      author: Dilki
+      changes:
+        - createTable:
+            tableName: master_definition_pending
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: master_definition_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_master_definition_pending
+                    references: master_definition(id)                    
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: code
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(350)
+                  constraints:
+                    nullable: false
+              - column: 
+                  name: description
+                  type: varchar(350)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: business_principle
+                  type: varchar(70)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: module
+                  type: varchar(70)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sub_module_code
+                  type: varchar(70)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sub_module_name
+                  type: varchar(70)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: approve_status
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: lending_workflow_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_it_len_workf_pendingm
+                    references: lending_workflow(id)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+              - column:
+                  name: pcreated_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: pcreated_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp          
+                  constraints:
+                    nullable: false  
+         
+  - changeSet:
+      id: 4
+      author: Dilki
+      changes:
+      - addColumn:
+          columns:
+          - column:
+              name: master_definition_category
+              type: varchar(30)
+              constraints:
+                   nullable: false 
+          tableName: master_definition_pending       
+  - changeSet:
+       id: 5
+       author: Dilhan
+       changes:
+       - addColumn:
+           columns:
+           - column:
+               name: max_interest_rate
+               type: decimal(25,5)
+           - column:
+               name: mini_interest_rate
+               type: decimal(25,5)
+           - column:
+               name: max_penal_interest_rate
+               type: decimal(25,5)
+           - column:
+               name: mini_penal_interest_rate
+               type: decimal(25,5)
+           - column:
+               name: penal_interest_id
+               type: bigint  
+               constraints:
+                   nullable: true
+                   foreignKeyName: fk_master_definition_penal_interest
+                   references: penal_interest(id)   
+           tableName: master_definition    
+  - changeSet:
+       id: 7
+       author: Dilhan
+       changes:
+       - addColumn:
+           columns:
+           - column:
+               name: max_interest_rate
+               type: decimal(25,5)
+           - column:
+               name: mini_interest_rate
+               type: decimal(25,5)
+           - column:
+               name: max_penal_interest_rate
+               type: decimal(25,5)
+           - column:
+               name: mini_penal_interest_rate
+               type: decimal(25,5)
+           - column:
+               name: penal_interest_id
+               type: bigint  
+               constraints:
+                   nullable: true
+                   foreignKeyName: fk_mastr_def_pend_penal_intrst
+                   references: penal_interest(id)   
+           tableName: master_definition_pending   
+  - changeSet:
+       id: 8
+       author: Dilhan
+       changes:
+       - addColumn:
+           columns:
+           - column:
+               name: max_interest_rate
+               type: decimal(25,5)
+           - column:
+               name: mini_interest_rate
+               type: decimal(25,5)
+           - column:
+               name: max_penal_interest_rate
+               type: decimal(25,5)
+           - column:
+               name: mini_penal_interest_rate
+               type: decimal(25,5)
+           - column:
+               name: penal_interest_id
+               type: bigint  
+               constraints:
+                   nullable: true
+           tableName: master_definition_history     
+  - changeSet:
+       id: 9
+       author: Piyumi
+       changes:
+       - addColumn:
+           columns:
+           - column:
+               name: due_date_template_remark
+               type: varchar(1000)
+           - column:
+               name: due_date_template_id
+               type: bigint  
+               constraints:
+                   nullable: true
+                   foreignKeyName: fk_master_def_due_date_templ
+                   references: due_date_templates(id)  
+           tableName: master_definition    
+  - changeSet:
+       id: 10
+       author: Piyumi
+       changes:
+       - addColumn:
+           columns:
+           - column:
+               name: due_date_template_remark
+               type: varchar(1000)
+           - column:
+               name: due_date_template_id
+               type: bigint  
+               constraints:
+                   nullable: true
+                   foreignKeyName: fk_mst_def_pen_due_date_templ
+                   references: due_date_templates(id)   
+           tableName: master_definition_pending   
+  - changeSet:
+       id: 11
+       author: Piyumi
+       changes:
+       - addColumn:
+           columns:
+           - column:
+               name: due_date_template_remark
+               type: varchar(1000)
+           - column:
+               name: due_date_template_id
+               type: bigint  
+               constraints:
+                   nullable: true
+           tableName: master_definition_history
+
+  - changeSet:
+      id: 12
+      author: Rohan
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: next_contract_number
+                  type: bigint
+            tableName: master_definition

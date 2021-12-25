@@ -1,0 +1,186 @@
+databaseChangeLog:
+- changeSet:
+    id: 1
+    author: Dilki
+    changes:
+    - createTable:
+        tableName: reference_details_contact_info
+        columns:
+        - column:
+            name: id
+            type: bigint
+            constraints:
+              primaryKey: true
+              nullable: false
+        - column:
+            name: tenant_id
+            type: varchar(10)
+            constraints:
+              nullable: false
+        - column:
+            name: version
+            type: bigint
+            defaultValue: 0
+            constraints:
+              nullable: false
+        - column:
+            name: sync_ts
+            type: timestamp
+            defaultValueComputed: current_timestamp
+            constraints:
+              nullable: false 
+        - column:
+            name: contact_type
+            type: varchar(70)
+            constraints:
+              nullable: true 
+        - column:
+            name: contact_no
+            type: varchar(70)
+            constraints:
+              nullable: false
+        - column:
+            name: status
+            type: varchar(20)
+            constraints:
+              nullable: false
+        - column:
+            name: created_user
+            type: varchar(255)
+            constraints:
+              nullable: false
+        - column:
+            name: created_date
+            type: timestamp
+            constraints:
+              nullable: false
+        - column:
+            name: modified_user
+            type: varchar(255)
+            constraints:
+              nullable: true
+        - column:
+            name: modified_date
+            type: timestamp
+            constraints:
+              nullable: true
+        - column:
+            name: reference_details_id
+            type: bigint
+            constraints:
+              nullable: true
+              foreignKeyName: fk_reference_details_cid
+              references: reference_details(id)
+- changeSet:
+    id: 2
+    author: Dilki
+    changes:
+    - createTable:
+        tableName: reference_details_contact_info_history
+        columns:
+        - column:
+            name: id
+            type: bigint
+            constraints:
+              primaryKey: true
+              nullable: false
+        - column:
+            name: reference_details_contact_info_id
+            type: bigint
+            constraints:
+              nullable: false
+        - column:
+            name: tenant_id
+            type: varchar(10)
+            constraints:
+              nullable: false
+        - column:
+            name: version
+            type: bigint
+            defaultValue: 0
+            constraints:
+              nullable: false
+        - column:
+            name: sync_ts
+            type: timestamp
+            defaultValueComputed: current_timestamp
+            constraints:
+              nullable: false 
+        - column:
+            name: contact_type
+            type: varchar(70)
+            constraints:
+              nullable: true 
+        - column:
+            name: contact_no
+            type: varchar(70)
+            constraints:
+              nullable: false
+        - column:
+            name: status
+            type: varchar(20)
+            constraints:
+              nullable: false
+        - column:
+            name: created_user
+            type: varchar(255)
+            constraints:
+              nullable: false
+        - column:
+            name: created_date
+            type: timestamp
+            constraints:
+              nullable: false
+        - column:
+            name: modified_user
+            type: varchar(255)
+            constraints:
+              nullable: true
+        - column:
+            name: modified_date
+            type: timestamp
+            constraints:
+              nullable: true
+        - column:
+            name: reference_details_id
+            type: bigint
+            constraints:
+              nullable: true
+              foreignKeyName: fk_reference_details_chid
+              references: reference_details(id)
+        - column:
+            name: history_created_user
+            type: varchar(255)
+            constraints:
+              nullable: false
+        - column:
+            name: history_created_date
+            type: timestamp
+            constraints:
+              nullable: false
+              
+- changeSet:
+       id: 3
+       author: dilki
+       changes:
+       - addColumn:
+          columns:
+              - column:
+                  name: contact_type_code
+                  type: varchar(4)
+                  constraints:
+                    nullable: true           
+          tableName: reference_details_contact_info    
+          
+- changeSet:
+      id: 4
+      author: dilki
+      changes:
+      - addColumn:
+          columns:
+              - column:
+                  name: contact_type_code
+                  type: varchar(4)
+                  constraints:
+                    nullable: true                                
+          tableName: reference_details_contact_info_history   

@@ -1,0 +1,112 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Dilhan
+      changes:
+        - createTable:
+            tableName: fee_charge_temp_notes
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: fee_charge_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_fee_charge_temp_notes
+                    references: fee_charge(id)
+              - column:
+                  name: notes
+                  type: varchar(2000)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp          
+                  constraints:
+                    nullable: false       
+  - changeSet:
+       id: 2
+       author: Dilhan
+       changes:
+       - dropForeignKeyConstraint :
+           constraintName: fk_fee_charge_temp_notes
+           baseTableName: fee_charge_temp_notes 
+  - changeSet:
+       id: 3
+       author: Dilhan
+       changes:
+       - dropColumn:
+           columns:
+           - column:
+               name: fee_charge_id
+               type: bigint  
+               constraints:
+                   nullable: false
+           tableName: fee_charge_temp_notes  
+  - changeSet:
+       id: 4
+       author: Dilhan
+       changes:
+       - addColumn:
+           columns:
+            - column:
+               name: fee_charge_details_id
+               type: bigint  
+               constraints:
+                   nullable: true
+                   foreignKeyName: fk_fee_charge_det_temp_notes
+                   references: fee_charge_details(id)   
+           tableName: fee_charge_temp_notes  
+           
+#  - changeSet:
+#       id: 5
+#       author: Dilhan
+#       - addNotNullConstraint :
+#           columnName: fee_charge_details_id
+#           columnDataType: bigint
+#           constraintName: fk_fee_charge_det_temp_notes
+#           tableName: fee_charge_temp_notes           
+           
+        

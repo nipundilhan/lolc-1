@@ -1,0 +1,435 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Dilki
+      changes:
+        - createTable:
+            tableName: eligibility_legal_structure
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false                                         
+              - column:
+                  name: code
+                  type: varchar(4)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: name
+                  type: varchar(70)
+                  constraints:
+                    nullable: false                 
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: approve_status
+                  type: varchar(30)
+                  constraints:
+                    nullable: true                      
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: pen_approved_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: pen_approved_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: pen_rejected_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: pen_rejected_date
+                  type: timestamp
+                  constraints:
+                    nullable: true                                        
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false   
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp          
+                  constraints:
+                    nullable: false
+                    
+                    
+  - changeSet:
+      id: 2
+      author: Dilki
+      changes:
+        - createTable:
+            tableName: eligibility_legal_struct_hist
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: eligibility_legal_structure_id
+                  type: bigint
+                  constraints:
+                    nullable: false                                        
+              - column:
+                  name: code
+                  type: varchar(4)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: name
+                  type: varchar(70)
+                  constraints:
+                    nullable: false                   
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: approve_status
+                  type: varchar(30)
+                  constraints:
+                    nullable: true                     
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: pen_approved_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: pen_approved_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: pen_rejected_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: pen_rejected_date
+                  type: timestamp
+                  constraints:
+                    nullable: true                     
+              - column:
+                  name: history_created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: history_created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false                    
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false   
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp          
+                  constraints:
+                    nullable: false
+                    
+  - changeSet:
+      id: 3
+      author: Dilki
+      changes:
+        - createTable:
+            tableName: eligibility_legal_struct_pend
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: eligibility_legal_structure_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_eligib_legal_structure_pend
+                    references: eligibility_legal_structure(id)                    
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false                    
+              - column:
+                  name: code
+                  type: varchar(4)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: name
+                  type: varchar(70)
+                  constraints:
+                    nullable: false                
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: lending_workflow_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_lending_wf_fee_charge_ls
+                    references: lending_workflow(id)                     
+              - column:
+                  name: pcreated_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: pcreated_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false   
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp          
+                  constraints:
+                    nullable: false      
+          
+  - changeSet:
+       id: 5
+       author: Dilki
+       changes:
+       - dropColumn:
+           columns:
+           - column:
+                  name: code
+                  type: varchar(4) 
+           - column:
+                  name: name
+                  type: varchar(70)     
+           tableName: eligibility_legal_structure      
+          
+  - changeSet:
+       id: 6
+       author: Dilki
+       changes:
+       - dropColumn:
+           columns:
+           - column:
+                  name: code
+                  type: varchar(4) 
+           - column:
+                  name: name
+                  type: varchar(70)     
+           tableName: eligibility_legal_struct_hist      
+          
+  - changeSet:
+       id: 7
+       author: Dilki
+       changes:
+       - dropColumn:
+           columns:
+           - column:
+                  name: code
+                  type: varchar(4) 
+           - column:
+                  name: name
+                  type: varchar(70)     
+           tableName: eligibility_legal_struct_pend         
+                         
+  - changeSet:
+      id: 11
+      author: Dilki
+      changes:
+      - addColumn:
+          columns:  
+            - column:
+                name: legal_structure_id
+                type: bigint
+                constraints:
+                  nullable: false
+          tableName: eligibility_legal_struct_hist        
+                         
+  - changeSet:
+      id: 12
+      author: Dilki
+      changes:
+      - addColumn:
+          columns:
+            - column:
+                name: legal_structure_id
+                type: bigint
+                constraints:
+                  nullable: false
+          tableName: eligibility_legal_struct_pend                       
+                         
+  - changeSet:
+      id: 10
+      author: Dilki
+      changes:
+      - addColumn:
+          columns: 
+            - column:
+                name: legal_structure_id
+                type: bigint
+                constraints:
+                  nullable: false
+          tableName: eligibility_legal_structure            
+           
+  - changeSet:
+       id: 13
+       author: Dilki
+       changes:
+       - addColumn:
+           columns:
+           - column:
+               name: legal_structure_name
+               type: varchar(70)
+               constraints:
+                 nullable: true
+           - column:
+               name: eligibility_name
+               type: varchar(70)
+               constraints:
+                 nullable: true
+           tableName: eligibility_legal_structure                   
+                         
+  - changeSet:
+      id: 14
+      author: Dilki
+      changes:
+      - addColumn:
+          columns:
+            - column:
+               name: legal_structure_name
+               type: varchar(70)
+               constraints:
+                 nullable: true
+            - column:
+               name: eligibility_name
+               type: varchar(70)
+               constraints:
+                 nullable: true
+          tableName: eligibility_legal_struct_hist        
+                         
+  - changeSet:
+      id: 15
+      author: Dilki
+      changes:
+      - addColumn:
+          columns:
+           - column:
+               name: legal_structure_name
+               type: varchar(70)
+               constraints:
+                 nullable: true
+           - column:
+               name: eligibility_name
+               type: varchar(70)
+               constraints:
+                 nullable: true
+          tableName: eligibility_legal_struct_pend
+
+#  - changeSet:
+#      id: 16
+#      author: Chinthaka
+#      changes:
+#        - dropColumn:
+#            columns:
+#              - column:
+#                  name: LEGALSTRUCTURE_ID
+#            tableName: eligibility_legal_structure
+
+#  - changeSet:
+#      id: 17
+#      author: Chinthaka
+#      changes:
+#        - dropColumn:
+#            columns:
+#              - column:
+#                  name: LEGALSTRUCTURE_ID
+#            tableName: eligibility_legal_struct_pend
+
+#  - changeSet:
+#      id: 18
+#      author: Chinthaka
+#      changes:
+#        - dropColumn:
+#            columns:
+#              - column:
+#                  name: LEGALSTRUCTURE_ID
+#            tableName: eligibility_legal_struct_hist
+      
+                                       

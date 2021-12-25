@@ -1,0 +1,396 @@
+databaseChangeLog:
+- changeSet:
+    id: 1
+    author: Dilki
+    changes:
+    - createTable:
+        tableName: bank_statement_details
+        columns:
+        - column:
+            name: id
+            type: bigint
+            constraints:
+              primaryKey: true
+              nullable: false
+        - column:
+            name: tenant_id
+            type: varchar(10)
+            constraints:
+              nullable: false
+        - column:
+            name: version
+            type: bigint
+            defaultValue: 0
+            constraints:
+              nullable: false
+        - column:
+            name: sync_ts
+            type: timestamp
+            defaultValueComputed: current_timestamp
+            constraints:
+              nullable: false
+        - column:
+            name: bank_id
+            type: bigint
+            constraints: 
+              nullable: false
+        - column:
+            name: bank_name
+            type: varchar(70)
+            constraints:
+              nullable: true
+        - column:
+            name: account_type_id
+            type: bigint
+            constraints: 
+              nullable: false
+        - column:
+            name: account_type_name
+            type: varchar(70)
+            constraints:
+              nullable: false
+        - column:
+            name: account_number
+            type: bigint
+            constraints: 
+              nullable: false
+        - column:
+            name: period_from
+            type: timestamp
+            constraints:
+              nullable: true
+        - column:
+            name: period_to
+            type: timestamp
+            constraints:
+              nullable: true
+        - column:
+            name: currency_id
+            type: bigint
+            constraints: 
+              nullable: false
+        - column:
+            name: currency_code
+            type: varchar(4)
+            constraints:
+              nullable: false
+        - column:
+            name: opening_balance
+            type: double
+            constraints:
+              nullable: true
+        - column:
+            name: close_balance
+            type: double
+            constraints:
+              nullable: true
+        - column:
+            name: money_in
+            type: double
+            constraints:
+              nullable: true
+        - column:
+            name: money_out
+            type: double
+            constraints:
+              nullable: true
+        - column:
+            name: status
+            type: varchar(20)
+            constraints:
+              nullable: false
+        - column:
+            name: created_user
+            type: varchar(255)
+            constraints:
+              nullable: false
+        - column:
+            name: created_date
+            type: timestamp
+            constraints:
+              nullable: false
+        - column:
+            name: modified_user
+            type: varchar(255)
+            constraints:
+              nullable: true
+        - column:
+            name: modified_date
+            type: timestamp
+            constraints:
+              nullable: true
+        - column:
+            name: customer_id
+            type: bigint
+            constraints:
+              nullable: true
+              foreignKeyName: fk_customer_bsd
+              references: customer(id)
+- changeSet:
+    id: 2
+    author: Dilki
+    changes:
+    - createTable:
+        tableName: bank_statement_details_history
+        columns:
+        - column:
+            name: id
+            type: bigint
+            constraints:
+              primaryKey: true
+              nullable: false
+        - column:
+            name: bank_statement_details_id
+            type: bigint
+            constraints:
+              nullable: false
+        - column:
+            name: tenant_id
+            type: varchar(10)
+            constraints:
+              nullable: false
+        - column:
+            name: version
+            type: bigint
+            defaultValue: 0
+            constraints:
+              nullable: false
+        - column:
+            name: sync_ts
+            type: timestamp
+            defaultValueComputed: current_timestamp
+            constraints:
+              nullable: false
+        - column:
+            name: bank_id
+            type: bigint
+            constraints: 
+              nullable: false
+        - column:
+            name: bank_name
+            type: varchar(70)
+            constraints:
+              nullable: true
+        - column:
+            name: account_type_id
+            type: bigint
+            constraints: 
+              nullable: false
+        - column:
+            name: account_type_name
+            type: varchar(70)
+            constraints:
+              nullable: false
+        - column:
+            name: account_number
+            type: bigint
+            constraints: 
+              nullable: false
+        - column:
+            name: period_from
+            type: timestamp
+            constraints:
+              nullable: true
+        - column:
+            name: period_to
+            type: timestamp
+            constraints:
+              nullable: true
+        - column:
+            name: currency_id
+            type: bigint
+            constraints: 
+              nullable: false
+        - column:
+            name: currency_code
+            type: varchar(4)
+            constraints:
+              nullable: false
+        - column:
+            name: opening_balance
+            type: double
+            constraints:
+              nullable: true
+        - column:
+            name: close_balance
+            type: double
+            constraints:
+              nullable: true
+        - column:
+            name: money_in
+            type: double
+            constraints:
+              nullable: true
+        - column:
+            name: money_out
+            type: double
+            constraints:
+              nullable: true
+        - column:
+            name: status
+            type: varchar(20)
+            constraints:
+              nullable: false
+        - column:
+            name: created_user
+            type: varchar(255)
+            constraints:
+              nullable: false
+        - column:
+            name: created_date
+            type: timestamp
+            constraints:
+              nullable: false
+        - column:
+            name: modified_user
+            type: varchar(255)
+            constraints:
+              nullable: true
+        - column:
+            name: modified_date
+            type: timestamp
+            constraints:
+              nullable: true
+        - column:
+            name: customer_id
+            type: bigint
+            constraints:
+              nullable: true
+              foreignKeyName: fk_customer_bds
+              references: customer(id)
+        - column:
+            name: history_created_user
+            type: varchar(255)
+            constraints:
+              nullable: false
+        - column:
+            name: history_created_date
+            type: timestamp
+            constraints:
+              nullable: false
+- changeSet:
+    id: 3
+    author: Dilki
+    changes:
+    - createTable:
+        tableName: bank_statement_details_documents
+        columns:
+        - column:
+            name: id
+            type: bigint
+            constraints:
+              primaryKey: true
+              nullable: false
+        - column:
+            name: tenant_id
+            type: varchar(10)
+            constraints:
+              nullable: false
+        - column:
+            name: bank_statement_details_id
+            type: bigint
+            constraints:
+              nullable: false
+              foreignKeyName: fk_document_bank_statement_details
+              references: bank_statement_details(id)
+        - column:
+            name: document_id
+            type: bigint
+            constraints:
+              nullable: false
+        - column:
+            name: documet_name
+            type: varchar(70)
+            constraints:
+              nullable: true
+        - column:
+            name: status
+            type: varchar(30)
+            constraints:
+              nullable: false
+        - column:
+            name: document_ref_id
+            type: bigint
+            constraints:
+              nullable: true
+        - column:
+            name: created_user
+            type: varchar(20)
+            constraints:
+              nullable: false
+        - column:
+            name: created_date
+            type: timestamp
+            constraints:
+              nullable: false
+        - column:
+            name: modified_user
+            type: varchar(20)
+            constraints:
+              nullable: true
+        - column:
+            name: modified_date
+            type: timestamp
+            constraints:
+              nullable: true
+        - column:
+            name: version
+            type: bigint
+            defaultValue: 0
+            constraints:
+              nullable: false
+        - column:
+            name: sync_ts
+            type: timestamp
+            defaultValueComputed: current_timestamp
+            constraints:
+              nullable: false 
+                                      
+#- changeSet:
+#       id: 4
+#       author: Dilki
+#       changes:
+#       - dropColumn:
+#           columns:
+#           - column:
+#               name: currency_code
+#               type: varchar(4)
+#           tableName: bank_statement_details 
+#                                      
+#- changeSet:
+#       id: 5
+#       author: Dilki
+#       changes:
+#       - dropColumn:
+#           columns:
+#           - column:
+#               name: currency_code
+#               type: varchar(4)
+#           tableName: bank_statement_details_history 
+           
+- changeSet:
+       id: 6
+       author: Dilki
+       changes:
+       - addColumn:
+           columns:
+           - column:
+               name: currency_name
+               type: varchar(70)
+           constraints:
+              nullable: true
+           tableName: bank_statement_details 
+           
+- changeSet:
+       id: 7
+       author: Dilki
+       changes:
+       - addColumn:
+           columns:
+           - column:
+               name: currency_name
+               type: varchar(70)
+           constraints:
+              nullable: true
+           tableName: bank_statement_details_history 
+    

@@ -1,0 +1,180 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: MenukaJ
+      changes:
+        - createTable:
+            tableName: facility_contracts_det
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: lead_info_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_lead_info_facility_cont
+                    references: lead_info(id)                     
+              - column:
+                  name: contract_no
+                  type: varchar(100)
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: contract_status
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: contract_status_des
+                  type: varchar(100)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: lese_code
+                  type: varchar(100)
+                  constraints:
+                    nullable: true                                                                                                                                                                                                                                                              
+              - column:
+                  name: status
+                  type: varchar(30)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp
+                  constraints:
+                    nullable: false 
+                    
+                    
+  - changeSet:
+      id: 2
+      author: MenukaJ
+      changes:
+        - createTable:
+            tableName: facility_contracts_det_his
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: facility_contracts_det_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: lead_info_id
+                  type: bigint
+                  constraints:
+                    nullable: false                                         
+              - column:
+                  name: contract_no
+                  type: varchar(100)
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: contract_status
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: contract_status_des
+                  type: varchar(100)
+                  constraints:
+                    nullable: true                                                                             
+              - column:
+                  name: lese_code
+                  type: varchar(100)
+                  constraints:
+                    nullable: true                                                                                                                                                                                                                                              
+              - column:
+                  name: status
+                  type: varchar(30)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: hcreated_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: hcreated_date
+                  type: timestamp
+                  constraints:
+                    nullable: false                    
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp
+                  constraints:
+                    nullable: false                                     

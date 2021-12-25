@@ -1,0 +1,136 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Sanatha
+      changes: 
+        - createTable:
+            tableName: gu_cultivation_income
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: guarantor_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_guarantor_income_cultivation
+                    references: guarantor(id)     
+              - column:
+                  name: cultivation_category_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_gua_income_cultivation_category
+                    references: cultivation_category(id)  
+              - column:
+                  name: description
+                  type: varchar(350)
+                  constraints: 
+                    nullable: true              
+              - column:
+                  name: frequency_id
+                  type: bigint
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: gross_income
+                  type: double
+                  constraints:
+                    nullable: false
+              - column:
+                  name: expences
+                  type: double
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: net_income
+                  type: double
+                  constraints:
+                    nullable: false       
+              - column:
+                  name: comment
+                  type: varchar(350)
+                  constraints: 
+                    nullable: true  
+              - column:
+                  name: status
+                  type: varchar(30)
+                  constraints:
+                    nullable: false      
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: 2
+      author: Sanatha
+      changes:
+        - setTableRemarks:
+            remarks: Added by Sanatha  to maintain cultivation income details for Guarantor on 04-MAY-2021.
+            tableName: gu_cultivation_income   
+  - changeSet:  
+      id:  3
+      author:  Sanatha
+      changes:  
+      -  renameColumn:  
+          columnDataType: varchar(350)  
+          newColumnName:  comments
+          oldColumnName:  comment  
+          tableName:  gu_cultivation_income
+  - changeSet:  
+      id:  4
+      author:  Sanatha
+      changes:  
+      -  dropNotNullConstraint:  
+          columnDataType:  bigint  
+          columnName:  frequency_id  
+          tableName:  gu_cultivation_income              
+  - changeSet:
+      id: 5
+      author: Sanatha
+      changes:
+      - addColumn:
+          columns:
+          - column:
+              name: frequency_code
+              type: varchar(30) 
+          - column:
+              name: frequency_name
+              type: varchar(350)         
+          tableName: gu_cultivation_income                                         

@@ -1,0 +1,230 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Piyumi
+      changes:
+        - createTable:
+            tableName: tc_structured_detail
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false    
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false       
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: 2
+      author: Piyumi
+      changes:
+        - createTable:
+            tableName: tc_structured_payment
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: tc_structured_dtl_id
+                  type: bigint
+                  constraints:
+                    nullable: false 
+                    foreignKeyName: fk_tc_structured_dtl_pay
+                    references: tc_structured_detail(id)     
+              - column:
+                  name: sequence
+                  type: bigint
+                  constraints:
+                    nullable: false  
+              - column:
+                  name: no_of_period
+                  type: bigint
+                  constraints:
+                    nullable: false          
+              - column:
+                  name: amount
+                  type: decimal(38,2)
+                  constraints:
+                    nullable: true                            
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true             
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false   
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp          
+                  constraints:
+                    nullable: false 
+                    
+  - changeSet:
+      id: 3
+      author: Piyumi
+      changes:
+        - createTable:
+            tableName: tc_structured_repayment_schedule
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: tc_structured_dtl_id
+                  type: bigint
+                  constraints:
+                    nullable: false 
+                    foreignKeyName: fk_tc_structured_dtl_pay_schdl
+                    references: tc_structured_detail(id)     
+              - column:
+                  name: sequence
+                  type: bigint
+                  constraints:
+                    nullable: false      
+              - column:
+                  name: due_date
+                  type: timestamp
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: transaction_type_code
+                  type: varchar(50)
+                  constraints:
+                    nullable: false  
+              - column:
+                  name: amount
+                  type: decimal(38,2)
+                  constraints:
+                    nullable: false                           
+              - column:
+                  name: description
+                  type: varchar(500)
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: attribute1
+                  type: varchar(100)
+                  constraints:
+                    nullable: true  
+              - column:
+                  name: attribute2
+                  type: varchar(100)
+                  constraints:
+                    nullable: true                                  
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true             
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false   
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp          
+                  constraints:
+                    nullable: false                      

@@ -1,0 +1,148 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Pasindu
+      changes:
+        - createTable:
+            tableName: credit_appraisal_disbursement_details
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: loan_amount
+                  type: double
+                  constraints:
+                    nullable: false                   
+              - column:
+                  name: deductions
+                  type: double
+                  constraints:
+                    nullable: false                                        
+              - column:
+                  name: balance_disbursement_amount
+                  type: double
+                  constraints:
+                    nullable: true                                   
+              - column:
+                  name: schedule_number
+                  type: varchar(30)
+                  constraints:
+                    nullable: false      
+              - column:
+                  name: payee_type_id
+                  type: bigint
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: payee_type
+                  type: varchar(30)
+                  constraints:
+                    nullable: true     
+              - column:
+                  name: payee_name
+                  type: varchar(30)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: amount
+                  type: double
+                  constraints:
+                    nullable: true    
+              - column:
+                  name: pay_method_id
+                  type: bigint
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: pay_method
+                  type: varchar(30)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false         
+              - column:
+                  name: disbursement_condition_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: disbursement_condition
+                  type: varchar(50)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: bank_id
+                  type: bigint
+                  constraints:
+                    nullable: true    
+              - column:
+                  name: bank
+                  type: varchar(40)
+                  constraints:
+                    nullable: true     
+              - column:
+                  name: branch_id
+                  type: bigint
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: branch
+                  type: varchar(40)
+                  constraints:
+                    nullable: true   
+              - column:
+                  name: account_no
+                  type: varchar(100)
+                  constraints:
+                    nullable: true  
+              - column:
+                  name: comment
+                  type: varchar(100)
+                  constraints:
+                    nullable: true                 
+              - column:
+                  name: created_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp          
+                  constraints:
+                    nullable: false                    
+                      
+        

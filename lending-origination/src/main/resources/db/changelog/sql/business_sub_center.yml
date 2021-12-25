@@ -1,0 +1,274 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: NipunDilhan
+      changes:
+        - createTable:
+            tableName: business_sub_center
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: code
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(250)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: business_center_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_8261_business_center_1
+                    references: business_center(id)
+              - column:
+                  name: emp_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: emp_no
+                  type: varchar(100)
+                  constraints:
+                    nullable: true                                                                             
+              - column:
+                  name: max_client_per_sub_center
+                  type: bigint
+                  constraints:
+                    nullable: true                                       
+              - column:
+                  name: max_sub_center_limit
+                  type: bigint
+                  constraints:
+                    nullable: true                                
+              - column:
+                  name: status
+                  type: varchar(30)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false   
+                    
+  - changeSet:
+      id: 2
+      author: NipunDilhan
+      changes:
+        - createTable:
+            tableName: business_sub_center_product_map
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: business_sub_center_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_8301_business_center_1
+                    references: business_sub_center(id)                    
+              - column:
+                  name: product_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: product_code
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: product_name
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: status
+                  type: varchar(30)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp
+                  constraints:
+                    nullable: false  
+                    
+ 
+ 
+  - changeSet:
+      id: 3
+      author: NipunDilhan
+      changes:
+        - createTable:
+            tableName: business_sub_center_emp_map
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: business_sub_center_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_9011_business_sub_center_1
+                    references: business_sub_center(id)                    
+              - column:
+                  name: emp_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: emp_no
+                  type: varchar(100)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: emp_code
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: emp_name
+                  type: varchar(350)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: status
+                  type: varchar(30)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp
+                  constraints:
+                    nullable: false        
+                    
+                    
+  - changeSet:
+      id: 4
+      author: NipunDilhan
+      changes:
+      - addColumn:
+          columns:
+          - column:
+              name: user_id
+              type: varchar(100)
+              constraints:
+                    nullable: true
+          - column:
+              name: user_name
+              type: varchar(350)
+              constraints:
+                    nullable: true                    
+          tableName: business_sub_center             

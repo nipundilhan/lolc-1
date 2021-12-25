@@ -1,0 +1,17 @@
+package com.fusionx.lending.origination.enums;
+
+public enum CommonListReferenceCodes {
+	
+	TAX_APP_ON,
+	OWNERSHIP_TYP,
+	LAND_OWNERSHIP_TYP,
+	TYP_OF_COMMITEMENT,
+	TYP_OF_FACILITY,
+	UNIT_OF_MEASSURE,
+	LOAN_PURPOSE,
+	PAY_METHODS,
+	TYP_OF_COMMITMENT,
+	LAND_OWNERSHIP,
+	PLANT_OWNERSHIP
+	
+}

@@ -1,0 +1,173 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: VenukiR
+      changes:
+        - createTable:
+            tableName: credit_app_collateral_det
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: customer_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_cacd_customer_id
+                    references: customer(id) 
+              - column:
+                  name: collateral_type
+                  type: varchar(30)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: asset_type_id
+                  type: bigint
+                  constraints:
+                    nullable: false                     
+              - column:
+                  name: asset_sub_type_id
+                  type: bigint
+                  constraints:
+                    nullable: false  
+              - column:
+                  name: asset_part_id
+                  type: bigint
+                  constraints:
+                    nullable: true                      
+              - column:
+                  name: sub_type_id
+                  type: bigint
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: ownership_type_id
+                  type: bigint
+                  constraints:
+                    nullable: true                     
+              - column:
+                  name: invoice_no
+                  type: varchar(250)
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: supplier_id 
+                  type: bigint
+                  constraints:
+                    nullable: true                                     
+              - column:
+                  name: name
+                  type: varchar(70)
+                  constraints:
+                    nullable: false                                           
+              - column:
+                  name: description
+                  type: varchar(2500)
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: registration_auth_id
+                  type: bigint
+                  constraints:
+                    nullable: true                                   
+              - column:
+                  name: status
+                  type: varchar(30)
+                  constraints:
+                    nullable: false      
+              - column:
+                  name: collateral_ref_id
+                  type: bigint
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: created_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp          
+                  constraints:
+                    nullable: false   
+  - changeSet:
+      id: 2
+      author: Venuki
+      changes:
+      - addColumn:
+          columns:
+          - column:
+              name: final_valuation_id
+              type: bigint             
+          tableName: credit_app_collateral_det 
+                                      
+  - changeSet:
+       id: 3
+       author: Venuki
+       changes:
+       - dropColumn:
+           columns:
+           - column:
+               name: collateral_ref_id
+               type: bigint
+           tableName: credit_app_collateral_det 
+           
+  - changeSet:
+       id: 4
+       author: Venuki
+       changes:
+       - addColumn:
+           columns:
+           - column:
+               name: asset_entity_id
+               type: bigint
+           constraints:
+              nullable: true
+           tableName: credit_app_collateral_det 
+
+                                                                                        
+#  - changeSet:
+#      id: 3
+#      author: Venuki
+#      changes:
+#      - dropColumn:
+#          columns:
+#          - column:
+#              name: final_valuation_id
+#              type: bigint             
+#          tableName: credit_app_collateral_det    
+ 
+           
+       
+               

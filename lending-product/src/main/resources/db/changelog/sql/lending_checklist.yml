@@ -1,0 +1,155 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Rohan
+      changes:
+        - createTable:
+            tableName: lending_checklist
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: check_mark
+                  type: varchar(4)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: remarks
+                  type: varchar(1000)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue: 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed: current_timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: lending_account_detail_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_checklist_lending_account_detail_1
+                    references: lending_account_detail(id)
+              - column:
+                  name: checklist_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: 2
+      author: Rohan
+      changes:
+        - createTable:
+            tableName: lending_checklist
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: check_mark
+                  type: varchar(4)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: remarks
+                  type: varchar(1000)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue: 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed: current_timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: lending_account_detail_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_checklist_lending_account_detail
+                    references: lending_account_detail(id)
+              - column:
+                  name: checklist_id
+                  type: bigint
+                  constraints:
+                    nullable: false

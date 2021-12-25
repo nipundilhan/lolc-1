@@ -1,0 +1,314 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Venuki
+      changes:
+        - createTable:
+            tableName: interest_template
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: code
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(350)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: approve_status
+                  type: varchar(20)
+                  constraints:
+                    nullable: true                    
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: pen_approved_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: pen_approved_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: pen_rejected_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: pen_rejected_date
+                  type: timestamp
+                  constraints:
+                    nullable: true         
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp          
+                  constraints:
+                    nullable: false 
+  - changeSet:
+      id: 2
+      author: Venuki
+      changes:
+        - createTable:
+            tableName: interest_template_his
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: interest_template_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: code
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(350)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: approve_status
+                  type: varchar(20)
+                  constraints:
+                    nullable: true                   
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: pen_approved_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: pen_approved_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: pen_rejected_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: pen_rejected_date
+                  type: timestamp
+                  constraints:
+                    nullable: true                    
+              - column:
+                  name: history_created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: history_created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp          
+                  constraints:
+                    nullable: false    
+                    
+  - changeSet:
+      id: 3
+      author: Venuki
+      changes:
+        - createTable:
+            tableName: interest_template_pending
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: interest_template_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_pen_interest_template
+                    references: interest_template(id)                    
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: code
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(350)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: approve_status
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: lending_workflow_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_it_len_workf_pending
+                    references: lending_workflow(id)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+              - column:
+                  name: pcreated_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: pcreated_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+#              - column:
+#                  name: pmodified_user
+#                  type: varchar(255)
+#                  constraints:
+#                    nullable: true
+#              - column:
+#                  name: pmodified_date
+#                  type: timestamp
+#                  constraints:
+#                    nullable: true
+#              - column:
+#                  name: papproved_user
+#                  type: varchar(255)
+#                  constraints:
+#                    nullable: true
+#              - column:
+#                  name: papproved_date
+#                  type: timestamp
+#                  constraints:
+#                    nullable: true
+#              - column:
+#                  name: prejected_user
+#                  type: varchar(255)
+#                  constraints:
+#                    nullable: true
+#              - column:
+#                  name: prejected_date
+#                  type: timestamp
+#                  constraints:
+#                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp          
+                  constraints:
+                    nullable: false                   
+  - changeSet:
+        id: 6
+        author: piyumi
+        changes:
+        - addColumn:
+            columns:
+             - column:
+                  name: updated
+                  type: tinyint
+                  defaultValue : 1
+                  constraints:
+                    nullable: false      
+            tableName: interest_template_pending                   

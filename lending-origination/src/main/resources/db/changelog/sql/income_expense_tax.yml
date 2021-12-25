@@ -1,0 +1,129 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Menuka
+      changes: 
+        - createTable:
+            tableName: income_expense_tax
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: business_income_expense_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_bus_income_expense_tax
+                    references: gu_business_income_expense(id)
+              - column:
+                  name: tax_type_id
+                  type: bigint
+                  constraints: 
+                    nullable: false
+              - column:
+                  name: tax_type_code
+                  type: varchar(70)
+                  constraints: 
+                    nullable: false                     
+              - column:
+                  name: tax_type_name
+                  type: varchar(100)
+                  constraints: 
+                    nullable: false                    
+              - column:
+                  name: applicable_on_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_comn_list_income_ex
+                    references: common_list_item(id)             
+              - column:
+                  name: frequency_id
+                  type: bigint
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: tax_rate
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: tax_amount
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: amount
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: false                      
+              - column:
+                  name: status
+                  type: varchar(30)
+                  constraints:
+                    nullable: false      
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp
+                  constraints:
+                    nullable: false 
+                    
+  - changeSet:
+      id: 3
+      author: MenukaJ
+      changes:
+      - addColumn:
+          columns:
+          - column:
+              name: frequency_code
+              type: varchar(30) 
+          - column:
+              name: frequency_name
+              type: varchar(350)   
+          tableName: income_expense_tax 
+          
+  - changeSet:  
+      id:  4
+      author:  MenukaJ
+      changes:  
+      -  dropNotNullConstraint:  
+          columnDataType:  bigint  
+          columnName:  frequency_id  
+          tableName:  income_expense_tax                              

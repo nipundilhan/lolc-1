@@ -1,0 +1,596 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: ThamokshiD
+      changes:
+        - createTable:
+            tableName: customer
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: lead_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: Fk_customer_lead_id
+                    references: lead_info(id)                    
+              - column:
+                  name: customer_type
+                  type: varchar(70)
+                  constraints:
+                    nullable: true       
+              - column:
+                  name: customer_id
+                  type: bigint
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: customer_reference
+                  type: bigint
+                  constraints:
+                    nullable: true  
+              - column:
+                  name: first_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: middle_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: last_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: full_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: initials
+                  type: varchar(255)
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: date_of_birth
+                  type: datetime
+                  constraints:
+                    nullable: true
+              - column:
+                  name: cus_reference_code
+                  type: varchar(60)
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: ref_01
+                  type: varchar(255)
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: ref_02
+                  type: varchar(255)
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: ref_03
+                  type: varchar(255)
+                  constraints:
+                    nullable: true  
+              - column:
+                  name: br_number
+                  type: varchar(255)
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: reference_no
+                  type: varchar(255)
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: tax_no
+                  type: varchar(255)
+                  constraints:
+                    nullable: true   
+              - column:
+                  name: company_name
+                  type: varchar(2000)
+                  constraints:
+                    nullable: true                                                                                                                                                                                                                          
+              - column:
+                  name: status
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: datetime
+                  constraints:
+                    nullable: false
+              - column:
+                  name: version
+                  type: bigint
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: 3
+      author: Thamokshi
+      changes:
+        - createTable:
+            tableName: contact_detail
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: customer_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: Fk_cc_customer_id
+                    references: customer(id)
+              - column:
+                  name: contact_type_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: contact_type
+                  type: bigint
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: contact_no
+                  type: varchar(255)
+                  constraints:
+                    nullable: true                                        
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  constraints:
+                    nullable: false 
+  - changeSet:
+      id: 4
+      author: Thamokshi
+      changes:
+        - createTable:
+            tableName: address_detail
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: customer_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: Fk_ca_customer_id
+                    references: customer(id)
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: add_type_comn_li_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: address1
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: address2
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: address3
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: address4
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: geo_level_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: country_geo_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: postal_code
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  constraints:
+                    nullable: false 
+
+  - changeSet:
+      id: 5
+      author: thamokshi
+      changes:
+      - addColumn:
+          columns:
+          - column:
+              name: sync_ts
+              type: timestamp
+          tableName: customer       
+          
+  - changeSet:
+      id: 7
+      author: thamokshi
+      changes:
+      - addColumn:
+          columns:
+          - column:
+              name: sync_ts
+              type: timestamp
+          tableName: contact_detail    
+          
+  - changeSet:
+      id: 8
+      author: thamokshi
+      changes:
+      - addColumn:
+          columns:
+          - column:
+              name: sync_ts
+              type: timestamp
+          tableName: address_detail 
+          
+  - changeSet:  
+      id:  9 
+      author:  Thamokshi  
+      changes:  
+      -  modifyDataType:  
+          columnName:  contact_type  
+          newDataType:  varchar(200)  
+          tableName:  contact_detail    
+  - changeSet:  
+      id:  10 
+      author:  Thamokshi  
+      changes:  
+      -  modifyDataType:  
+          columnName:  customer_reference  
+          newDataType:  varchar(200)  
+          tableName:  customer  
+          
+  - changeSet:
+      id: 12
+      author: thamokshi
+      changes:
+      - addColumn:
+          columns:
+          - column:
+              name: guarantor_id
+              type: bigint
+          tableName: address_detail   
+  - changeSet:
+      id: 13
+      author: thamokshi
+      changes:
+      - addColumn:
+          columns:
+          - column:
+              name: guarantor_id
+              type: bigint
+          tableName: contact_detail 
+
+          
+  - changeSet:
+      id: 15
+      author: thamokshi
+      changes:
+      - addColumn:
+          columns:
+          - column:
+              name: linked_person_id
+              type: bigint
+          tableName: address_detail   
+  - changeSet:
+      id: 16
+      author: thamokshi
+      changes:
+      - addColumn:
+          columns:
+          - column:
+              name: linked_person_id
+              type: bigint
+          tableName: contact_detail
+  - changeSet:  
+      id:  18 
+      author: thamokshi
+      changes:
+      - addColumn:
+          columns:
+          - column:
+              name: pending_customer_id  
+              type: bigint
+          tableName: customer                              
+
+  - changeSet:
+      id: 20
+      author: thamokshi
+      changes:
+      - addColumn:
+          columns:
+          - column:
+              name: padd_id
+              type: bigint
+          - column:
+              name: ppadd_id
+              type: bigint              
+          tableName: address_detail   
+
+  - changeSet:
+      id: 21
+      author: thamokshi
+      changes:
+      - addColumn:
+          columns:
+          - column:
+              name: pcon_id
+              type: bigint
+          - column:
+              name: ppcon_id
+              type: bigint              
+          tableName: contact_detail  
+          
+  - changeSet:  
+      id:  22 
+      author: thamokshi
+      changes:
+      - addColumn:
+          columns:
+          - column:
+              name: pen_per_id  
+              type: bigint
+          - column:
+              name: per_id  
+              type: bigint
+          - column:
+              name: per_code  
+              type: varchar(200)                                                      
+          tableName: customer                    
+                       
+  - changeSet:
+      id: 23
+      author: RavishikaS
+      changes:
+        - addColumn:
+            tableName: customer
+            columns:
+              - column:
+                  name: blacklst_approve_reject_remark
+                  type: varchar(350)
+                  constraints:
+                    nullable: true  
+  - changeSet:  
+      id:  24 
+      author: thamokshi
+      changes:
+      - addColumn:
+          columns:
+          - column:
+              name: title 
+              type: varchar(350)
+          - column:
+              name: gender  
+              type: varchar(350)
+          - column:
+              name: customer_type_id  
+              type: bigint                                                     
+          tableName: customer 
+          
+  - changeSet:  
+      id:  26
+      author:  thamokshi
+      changes:  
+      -  dropNotNullConstraint:  
+          columnDataType:  bigint  
+          columnName:  contact_type_id  
+          tableName:  contact_detail    
+
+  - changeSet:  
+      id:  27
+      author:  thamokshi
+      changes:  
+      -  dropNotNullConstraint:  
+          columnDataType:  varchar(255)   
+          columnName:  address1  
+          tableName:   address_detail    
+          
+  - changeSet:  
+      id:  28 
+      author: thamokshi
+      changes:
+      - addColumn:
+          columns:
+          - column:
+              name: customer_main_type  
+              type: varchar(350)
+          tableName: customer 
+ 
+  - changeSet:  
+      id:  29 
+      author: thamokshi
+      changes:
+      - addColumn:
+          columns:
+          - column:
+              name: contact_person  
+              type: varchar(350)
+          tableName: customer 
+  - changeSet:  
+      id:  30 
+      author: thamokshi
+      changes:
+      - addColumn:
+          columns:
+          - column:
+              name: title_id 
+              type: bigint
+          - column:
+              name: gender_id  
+              type: bigint
+          tableName: customer 
+          
+  - changeSet:  
+      id:  31 
+      author: venuki
+      changes:
+      - addColumn:
+          columns:
+          - column:
+              name: internal_crib_status_id 
+              type: bigint
+          - column:
+              name: external_crib_status_id 
+              type: bigint          
+          tableName: customer 
+                 
+  - changeSet:  
+      id:  32
+      author: nisala
+      changes:
+      - addColumn:
+          columns:
+          - column:      
+              name: corporate_category_id 
+              type: bigint
+              constraints:
+                    nullable: true
+          - column:
+              name: corporate_category  
+              type: varchar(350)
+              constraints:
+                    nullable: true
+          tableName: customer 
+  - changeSet:  
+      id:  33 
+      author: thamokshi
+      changes:
+      - addColumn:
+          columns:
+          - column:
+              name: modified_user 
+              type: varchar(255)
+          - column:
+              name: modified_date  
+              type: timestamp
+          tableName: customer     
+  - changeSet:  
+      id:  34
+      author: piyumi
+      changes:
+      - addColumn:
+          columns:
+          - column:      
+              name: pref_lang_id 
+              type: bigint
+              constraints:
+                    nullable: true
+          - column:      
+              name: nearest_branch_id 
+              type: bigint
+              constraints:
+                    nullable: true
+          - column:      
+              name: within_branch_area 
+              type: varchar(30)
+              constraints:
+                    nullable: true
+          tableName: customer        

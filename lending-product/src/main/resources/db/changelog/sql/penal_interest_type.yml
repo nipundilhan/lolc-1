@@ -1,0 +1,179 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Dilhan
+      changes:
+        - createTable:
+            tableName: penal_interest_type
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: code
+                  type: varchar(4)
+                  constraints:
+                    nullable: true                      
+              - column:
+                  name: name
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(10)
+                  constraints:
+                    nullable: false       
+              - column:
+                  name: calculation_frequency_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_calculation_frequency_penal
+                    references: calculation_frequency(id)      
+              - column:
+                  name: applicaction_frequency_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_application_frequency_penal
+                    references: applicaction_frequency(id)   
+              - column:
+                  name: trans_sub_code_id
+                  type: bigint
+                  constraints:
+                    nullable: false   
+              - column:
+                  name: trans_sub_code
+                  type: varchar(4)
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: trans_sub_code_description
+                  type: varchar(255)
+                  constraints:
+                    nullable: true                             
+              - column:
+                  name: description
+                  type: varchar(2500)
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: datetime
+                  constraints:
+                    nullable: false
+              - column:
+                  name: version
+                  type: bigint
+                  constraints:
+                    nullable: false  
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true                
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp          
+                  constraints:
+                    nullable: false 
+  
+  - changeSet:
+      id: 2
+      author: Dilhan
+      changes:
+        - createTable:
+            tableName: penal_interest_type_details
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: penal_interest_type_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_penal_interest_type
+                    references: penal_interest_type(id)
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sub_trans_type_id
+                  type: bigint
+                  constraints:
+                    nullable: false  
+              - column:
+                  name: sub_trans_type_code
+                  type: varchar(4)
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: sub_trans_type_description
+                  type: varchar(255)
+                  constraints:
+                    nullable: true                                        
+              - column:
+                  name: created_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp
+                  constraints:
+                    nullable: false                       
+ 

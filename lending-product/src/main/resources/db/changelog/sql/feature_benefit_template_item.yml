@@ -1,0 +1,144 @@
+databaseChangeLog: 
+  - changeSet:
+      id: 1
+      author: NipunDilhan
+      changes: 
+        - createTable:
+            tableName: feature_benefit_template_item
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: 
+              - column:
+                  name: feature_benefit_template_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_7221_feature_benef_temp_1
+                    references: feature_benefit_template(id)
+              - column:
+                  name: feature_benefit_item_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_7222_feature_benifit_item_2
+                    references: feature_benefit_item(id)   
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false    
+              - column:
+                  name: description
+                  type: varchar(350)
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true  
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp
+                  constraints:
+                    nullable: false   
+
+  - changeSet:
+      id: 2
+      author: NipunDilhan
+      changes: 
+        - createTable:
+            tableName: feature_benefit_temp_item_hist
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable:
+              - column:
+                  name: feature_benef_template_item_id
+                  type: bigint
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: featur_benef_temp_item_pend_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: feature_benefit_item_id
+                  type: bigint
+                  constraints:
+                    nullable: false   
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false    
+              - column:
+                  name: description
+                  type: varchar(350)
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp
+                  constraints:
+                    nullable: false
+ 

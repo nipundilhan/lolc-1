@@ -1,0 +1,110 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: NipunDilhan
+      changes:
+        - createTable:
+            tableName: tc_tax_detail
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: rate_amount
+                  type: decimal(38,2)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: calculation_method
+                  type: varchar(50)
+                  constraints:
+                    nullable: false       
+              - column:
+                  name: total_charge_amount
+                  type: decimal(38,2)
+                  constraints:
+                    nullable: false      
+              - column:
+                  name: applicaction_frequency_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_1026_af_11
+                    references: applicaction_frequency(id)     
+#              - column:
+#                  name: fee_charge_id
+#                  type: bigint
+#                  constraints:
+#                    nullable: false 
+#                    foreignKeyName: fk_1026_fc_12
+#                    references: fee_charge(id) 
+              - column:
+                  name: tc_header_id
+                  type: bigint
+                  constraints:
+                    nullable: false 
+                    foreignKeyName: fk_1026_th_13
+                    references: tc_header(id)       
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false       
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false
+                    
+  - changeSet:
+      id: 3
+      author: NipunDilhah
+      changes:
+        - addColumn:
+            tableName: tc_tax_detail
+            columns:
+              - column:
+                  name: tax_code_id
+                  type: bigint
+                  defaultValue: 0
+                  constraints:
+                    nullable: true                   
+              - column:
+                  name: tax_code
+                  type: varchar(70)
+                  constraints:
+                    nullable: true   

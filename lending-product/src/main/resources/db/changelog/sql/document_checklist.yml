@@ -1,0 +1,177 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Dilhan
+      changes:
+        - createTable:
+            tableName: document_checklist
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false   
+              - column:
+                  name: code
+                  type: varchar(4)
+                  constraints:
+                    nullable: false     
+              - column:
+                  name: name
+                  type: varchar(70)
+                  constraints:
+                    nullable: false      
+              - column:
+                  name: product_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_document_checklist_product_1
+                    references: product(id)   
+              - column:
+                  name: product_name
+                  type: varchar(350)
+                  constraints:
+                    nullable: false                       
+              - column:
+                  name: sub_product_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_document_checklist_sb_pdt_2
+                    references: sub_product(id)
+              - column:
+                  name: sub_product_name
+                  type: varchar(350)
+                  constraints:
+                    nullable: false             
+              - column:
+                  name: applicable_level
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_applicable_level_cmn_lst_3
+                    references: common_list_item(id)                       
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false           
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false     
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp          
+                  constraints:
+                    nullable: false
+                    
+                    
+  - changeSet:
+      id: 2
+      author: Dilhan
+      changes:
+        - createTable:
+            tableName: document_checklist_details
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: document_checklist_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_document_checklist_details
+                    references: document_checklist(id)
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: document_type_id
+                  type: bigint
+                  constraints:
+                    nullable: false                           
+              - column:
+                  name: document_type_name
+                  type: varchar(70)
+                  constraints:
+                    nullable: false  
+              - column:
+                  name: is_mandatory
+                  type: varchar(20)
+                  constraints:
+                    nullable: false      
+              - column:
+                  name: created_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp
+                  constraints:
+                    nullable: false     

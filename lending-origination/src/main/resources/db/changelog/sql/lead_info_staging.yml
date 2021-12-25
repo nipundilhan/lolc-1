@@ -1,0 +1,79 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Sanatha
+      changes: 
+        - createTable:
+            tableName: lead_info_staging
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: lead_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_lead_info_staging
+                    references: lead_info(id)        
+              - column:
+                  name: staging_status
+                  type: varchar(350)
+                  constraints: 
+                    nullable: false     
+              - column:
+                  name: comments
+                  type: varchar(350)
+                  constraints: 
+                    nullable: true  
+              - column:
+                  name: status
+                  type: varchar(30)
+                  constraints:
+                    nullable: false        
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: 2
+      author: Sanatha
+      changes:
+        - setTableRemarks:
+            remarks: Added by Sanatha to maintain staging status of Lead Info on 04-MAY-2021.
+            tableName: lead_info_staging                                    

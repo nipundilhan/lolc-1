@@ -1,0 +1,126 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Thamolshi
+      changes:
+        - createTable:
+            tableName: approval_details
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: da_group_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_ald_da_group_id
+                    references: delegation_authority_group(id)
+              - column:
+                  name: approval_level_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_ald_app_lvl_id
+                    references: approval_level(id)
+              - column:
+                  name: lead_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_ald_lead_id
+                    references: lead_info(id)
+              - column:
+                  name: approval_category_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_ald_approval_cate_id
+                    references: approval_category(id)  
+              - column:
+                  name: comment_group_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_ald_common_list_id
+                    references: common_list(id)                                      
+              - column:
+                  name: group_credit_exposure
+                  type: bigint(25,5)
+                  constraints:
+                    nullable: true   
+              - column:
+                  name: individual_credit_exposure
+                  type: bigint(25,5)
+                  constraints:
+                    nullable: true   
+              - column:
+                  name: dscr
+                  type: bigint(25,5)
+                  constraints:
+                    nullable: true   
+              - column:
+                  name: overall_credit_risk
+                  type: bigint(25,5)
+                  constraints:
+                    nullable: true   
+              - column:
+                  name: approval_category_id
+                  type: bigint(25,5)
+                  constraints:
+                    nullable: true                                                                                             
+              - column:
+                  name: status
+                  type: varchar(30)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: notes
+                  type: varchar(2000)
+                  constraints:
+                    nullable: true   
+              - column:
+                  name: approval_comment
+                  type: varchar(2000)
+                  constraints:
+                    nullable: true                                       
+              - column:
+                  name: created_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp          
+                  constraints:
+                    nullable: false 

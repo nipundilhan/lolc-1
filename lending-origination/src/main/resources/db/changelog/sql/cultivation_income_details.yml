@@ -1,0 +1,174 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Dilhan
+      changes:
+        - createTable:
+            tableName: cultivation_income_details
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: income_source_details_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: Fk_income_source_cultivation
+                    references: income_source_details(id)  
+              - column:
+                  name: cultivation_category_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: Fk_cultivation_category_fk
+                    references: cultivation_category(id)          
+              - column:
+                  name: land_ownership_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: Fk_common_list_item_fk1
+                    references: common_list_item(id)      
+              - column:
+                  name: plant_ownership_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: Fk_common_list_item_fk2
+                    references: common_list_item(id) 
+              - column:
+                  name: land_size
+                  type: varchar(300)
+                  constraints:
+                    nullable: false  
+              - column:
+                  name: description
+                  type: varchar(300)
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: no_of_employees
+                  type: int
+                  constraints:
+                    nullable: true               
+              - column:
+                  name: no_of_years
+                  type: int
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: cultivation_source_type
+                  type: varchar(20)
+                  constraints:
+                    nullable: false     
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false       
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false                  
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: 2
+      author: Dilhan
+      changes: 
+        - createTable:
+            tableName: cultivation_income_documents
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: cultivation_income_details_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_cultivation_income_details_document
+                    references: cultivation_income_details(id)        
+              - column:
+                  name: document_id
+                  type: bigint
+                  constraints:
+                    nullable: false                
+              - column:
+                  name: status
+                  type: varchar(30)
+                  constraints:
+                    nullable: false        
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  constraints:
+                    nullable: false

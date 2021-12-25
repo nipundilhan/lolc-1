@@ -1,0 +1,599 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Piyumi
+      changes: 
+        - createTable:
+            tableName: business_additional_details
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: business_type_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_bus_addi_busi_type
+                    references: business_type(id)
+              - column:
+                  name: business_sub_type_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_bus_addi_busi_sub_type
+                    references: business_sub_type(id)   
+              - column:
+                  name: ownership_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_common_list_ownership
+                    references: common_list_item(id)   
+              - column:
+                  name: business_name
+                  type: varchar(300)
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: business_size_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_common_list_bus_size
+                    references: common_list_item(id)   
+              - column:
+                  name: no_of_years_in_business
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: busi_opertaion_start_date
+                  type: timestamp
+                  constraints:
+                    nullable: false  
+              - column:
+                  name: business_regi_no
+                  type: varchar(50)
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: business_regi_date
+                  type: timestamp
+                  constraints:
+                    nullable: true  
+              - column:
+                  name: description
+                  type: varchar(1500)
+                  constraints:
+                    nullable: true    
+              - column:
+                  name: profit_margin
+                  type: double
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: comment
+                  type: varchar(1500)
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: source_type
+                  type: varchar(20)
+                  constraints:
+                    nullable: true    
+              - column:
+                  name: no_of_branches
+                  type: bigint
+                  constraints:
+                    nullable: true    
+              - column:
+                  name: skills_of_key_person
+                  type: varchar(3000)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: previous_busi_history
+                  type: varchar(3000)
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: busi_continuity_plan
+                  type: varchar(3000)
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: lead_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: Fk_busi_addi_lead_info
+                    references: lead_info(id)    
+              - column:
+                  name: customer_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: Fk_busi_addi_customer
+                    references: customer(id)  
+              - column:
+                  name: linked_person_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: Fk_busi_addi_linked_psn
+                    references: linked_person(id)               
+              - column:
+                  name: status
+                  type: varchar(30)
+                  constraints:
+                    nullable: false        
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: 2
+      author: Piyumi
+      changes: 
+        - createTable:
+            tableName: business_risk_details
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: business_additional_dtl_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_business_add_dtl_risk
+                    references: business_additional_details(id)        
+              - column:
+                  name: risk_type_id
+                  type: bigint
+                  constraints:
+                    nullable: false    
+                    foreignKeyName: fk_business_risk_type_risk
+                    references: business_risk_type(id)
+              - column:
+                  name: risk_grading_id
+                  type: bigint
+                  constraints:
+                    nullable: false 
+                    foreignKeyName: fk_risk_grading_bus_risk
+                    references: risk_grading(id)    
+              - column:
+                  name: risk_level_id
+                  type: bigint
+                  constraints:
+                    nullable: true  
+                    foreignKeyName: fk_rating_levels_bus_risk
+                    references: risk_rating_levels(id) 
+              - column:
+                  name: calculated_date
+                  type: timestamp
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: certificated_details
+                  type: varchar(255)
+                  constraints:
+                    nullable: true  
+              - column:
+                  name: risk_authority_id
+                  type: bigint
+                  constraints:
+                    nullable: true   
+                    foreignKeyName: fk_risk_auth_bus_risk
+                    references: risk_authorities(id) 
+              - column:
+                  name: document_id
+                  type: bigint
+                  constraints:
+                    nullable: false                    
+              - column:
+                  name: status
+                  type: varchar(30)
+                  constraints:
+                    nullable: false        
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: 3
+      author: Piyumi
+      changes: 
+        - createTable:
+            tableName: business_asset_details
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: business_additional_dtl_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_business_add_dtl_asset
+                    references: business_additional_details(id)        
+              - column:
+                  name: asset_type_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_common_list_asset_type
+                    references: common_list_item(id)     
+              - column:
+                  name: ownership_id
+                  type: bigint
+                  constraints:
+                    nullable: false  
+                    foreignKeyName: fk_common_list_asset_own
+                    references: common_list_item(id)   
+              - column:
+                  name: location
+                  type: varchar(255)
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: description
+                  type: varchar(255)
+                  constraints:
+                    nullable: false    
+              - column:
+                  name: no_of_assets
+                  type: bigint
+                  constraints:
+                    nullable: false                       
+              - column:
+                  name: status
+                  type: varchar(30)
+                  constraints:
+                    nullable: false        
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: 4
+      author: Piyumi
+      changes: 
+        - createTable:
+            tableName: business_employment_details
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: business_additional_dtl_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_business_add_dtl_emply
+                    references: business_additional_details(id)        
+              - column:
+                  name: employment_type_id
+                  type: bigint
+                  constraints:
+                    nullable: false    
+              - column:
+                  name: no_of_employees
+                  type: bigint
+                  constraints:
+                    nullable: false                    
+              - column:
+                  name: status
+                  type: varchar(30)
+                  constraints:
+                    nullable: false        
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: 5
+      author: Piyumi
+      changes: 
+        - createTable:
+            tableName: business_clearance_details
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: business_additional_dtl_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_business_add_dtl_clear
+                    references: business_additional_details(id)        
+              - column:
+                  name: clearance_type_id
+                  type: bigint
+                  constraints:
+                    nullable: false 
+                    foreignKeyName: fk_common_list_clear_type
+                    references: common_list_item(id)     
+              - column:
+                  name: memo
+                  type: varchar(300)
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: obtain_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: expire_date
+                  type: timestamp
+                  constraints:
+                    nullable: true   
+              - column:
+                  name: authority_id
+                  type: bigint
+                  constraints:
+                    nullable: false  
+                    foreignKeyName: fk_common_list_clear_auth
+                    references: common_list_item(id)             
+              - column:
+                  name: status
+                  type: varchar(30)
+                  constraints:
+                    nullable: false        
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: 6
+      author: Piyumi
+      changes: 
+        - createTable:
+            tableName: business_document_details
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: business_additional_dtl_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_business_add_dtl_doc
+                    references: business_additional_details(id)         
+              - column:
+                  name: document_id
+                  type: bigint
+                  constraints:
+                    nullable: false                
+              - column:
+                  name: status
+                  type: varchar(30)
+                  constraints:
+                    nullable: false        
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  constraints:
+                    nullable: false
+  - changeSet:  
+      id:  7
+      author:  Piyumi
+      changes:  
+      -  renameColumn:  
+          columnDataType: varchar(1500)  
+          newColumnName:  comments
+          oldColumnName:  comment  
+          tableName:  business_additional_details  

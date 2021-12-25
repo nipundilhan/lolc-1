@@ -1,0 +1,507 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Dilhan
+      changes:
+        - createTable:
+            tableName: core_product
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: code
+                  type: varchar(4)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: varchar(500)
+                  constraints:
+                    nullable: true            
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: tcs_cs_url
+                  type: varchar(500)
+                  constraints:
+                    nullable: true          
+              - column:
+                  name: currency_id
+                  type: bigint
+                  constraints:
+                    nullable: false   
+              - column:
+                  name: currency_code
+                  type: varchar(3)
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: currency_code_numeric
+                  type: varchar(3)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sales_access_channel_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_sales_access_channel_cp_1
+                    references: sales_access_channel(id)           
+              - column:
+                  name: service_access_channel_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_service_access_channel_cp_2
+                    references: service_access_channel(id) 
+              - column:
+                  name: other_fee_type_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_other_fee_type_cp_3
+                    references: other_fee_type(id) 
+              - column:
+                  name: early_payment_applicable
+                  type: varchar(20)
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: over_payment_applicable
+                  type: varchar(20)
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: over_payment_allow
+                  type: varchar(20)
+                  defaultValue : NO
+                  constraints:
+                    nullable: true                             
+              - column:
+                  name: full_partial_repayment_allow
+                  type: varchar(20)
+                  defaultValue : NO
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: comment
+                  type: varchar(300)
+                  constraints:
+                    nullable: true            
+              - column:
+                  name: attribute1
+                  type: varchar(100)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: attribute2
+                  type: varchar(100)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: attribute3
+                  type: varchar(100)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: attribute4
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: attribute5
+                  type: bigint
+                  constraints:
+                    nullable: true       
+              - column:
+                  name: created_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: 2
+      author: Dilhan
+      changes:
+        - createTable:
+            tableName: core_product_pending
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: code
+                  type: varchar(4)
+                  constraints:
+                    nullable: false  
+              - column:
+                  name: description
+                  type: varchar(500)
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: tcs_cs_url
+                  type: varchar(500)
+                  constraints:
+                    nullable: true                                    
+              - column:
+                  name: core_product_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_core_product_cpp
+                    references: core_product(id)      
+              - column:
+                  name: currency_id
+                  type: bigint
+                  constraints:
+                    nullable: false   
+              - column:
+                  name: currency_code
+                  type: varchar(3)
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: currency_code_numeric
+                  type: varchar(3)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sales_access_channel_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_sales_access_channel_cpp_1
+                    references: sales_access_channel(id)           
+              - column:
+                  name: service_access_channel_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_service_access_channel_cpp_2
+                    references: service_access_channel(id) 
+              - column:
+                  name: other_fee_type_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_other_fee_type_cpp_3
+                    references: other_fee_type(id)         
+              - column:
+                  name: early_payment_applicable
+                  type: varchar(20)
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: over_payment_applicable
+                  type: varchar(20)
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: over_payment_allow
+                  type: varchar(20)
+                  constraints:
+                    nullable: true                             
+              - column:
+                  name: full_partial_repayment_allow
+                  type: varchar(20)
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: comment
+                  type: varchar(300)
+                  constraints:
+                    nullable: true           
+              - column:
+                  name: attribute1
+                  type: varchar(100)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: attribute2
+                  type: varchar(100)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: attribute3
+                  type: varchar(100)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: attribute4
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: attribute5
+                  type: bigint
+                  constraints:
+                    nullable: true                                                 
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: approve_status
+                  type: varchar(30)
+                  constraints:
+                    nullable: true                                                                          
+              - column:
+                  name: approved_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: approved_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: lending_workflow_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_lend_wf_core_product
+                    references: lending_workflow(id)
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false           
+                         
+  - changeSet:
+      id: 3
+      author: Dilhan
+      changes:
+        - createTable:
+            tableName: core_product_history
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: code
+                  type: varchar(4)
+                  constraints:
+                    nullable: false        
+              - column:
+                  name: core_product_id
+                  type: bigint
+                  constraints:
+                    nullable: false          
+              - column:
+                  name: description
+                  type: varchar(500)
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: tcs_cs_url
+                  type: varchar(500)
+                  constraints:
+                    nullable: true                         
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: currency_id
+                  type: bigint
+                  constraints:
+                    nullable: false   
+              - column:
+                  name: currency_code
+                  type: varchar(3)
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: currency_code_numeric
+                  type: varchar(3)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sales_access_channel_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: service_access_channel_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: other_fee_type_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: early_payment_applicable
+                  type: varchar(20)
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: over_payment_applicable
+                  type: varchar(20)
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: over_payment_allow
+                  type: varchar(20)
+                  constraints:
+                    nullable: true                             
+              - column:
+                  name: full_partial_repayment_allow
+                  type: varchar(20)
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: comment
+                  type: varchar(300)
+                  constraints:
+                    nullable: true            
+              - column:
+                  name: attribute1
+                  type: varchar(100)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: attribute2
+                  type: varchar(100)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: attribute3
+                  type: varchar(100)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: attribute4
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: attribute5
+                  type: bigint
+                  constraints:
+                    nullable: true                                          
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: approved_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: approved_date
+                  type: timestamp
+                  constraints:
+                    nullable: true                   
+              - column:
+                  name: history_created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: history_created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false

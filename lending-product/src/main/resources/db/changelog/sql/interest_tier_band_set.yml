@@ -1,0 +1,330 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Piyumi
+      changes:
+        - createTable:
+            tableName: interest_tier_band_set
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: tier_band_method_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: code
+                  type: varchar(4)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: calculation_method_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: interest_template_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_tier_band_set_interst_templ
+                    references: interest_template(id)       
+              - column:
+                  name: note
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false                 
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: approved_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: approved_date
+                  type: timestamp
+                  constraints:
+                    nullable: true      
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp          
+                  constraints:
+                    nullable: false 
+  - changeSet:
+      id: 2
+      author: Piyumi
+      changes:
+        - createTable:
+            tableName: interest_tier_band_set_history
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: interest_tier_band_set_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: tier_band_method_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: code
+                  type: varchar(4)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: calculation_method_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: interest_template_id
+                  type: bigint
+                  constraints:
+                    nullable: false     
+              - column:
+                  name: note
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false                 
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: approved_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: approved_date
+                  type: timestamp
+                  constraints:
+                    nullable: true                   
+              - column:
+                  name: history_created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: history_created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp          
+                  constraints:
+                    nullable: false    
+  - changeSet:
+      id: 3
+      author: Piyumi
+      changes:
+        - createTable:
+            tableName: interest_tier_band_set_pending
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: interest_tier_band_set_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_tier_band_set_pending
+                    references: interest_tier_band_set(id) 
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: tier_band_method_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: code
+                  type: varchar(4)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: calculation_method_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: interest_template_id
+                  type: bigint
+                  constraints:
+                    nullable: false  
+                    foreignKeyName: fk_tier_bset_pend_intrst_templ
+                    references: interest_template(id)
+              - column:
+                  name: interest_template_pending_id
+                  type: bigint
+                  constraints:
+                    nullable: false  
+                    foreignKeyName: fk_tier_bset_intrest_temp_pend
+                    references: interest_template_pending(id)   
+              - column:
+                  name: note
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false  
+              - column:
+                  name: updated
+                  type: tinyint
+                  defaultValue : 1
+                  constraints:
+                    nullable: false                     
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: approve_status
+                  type: varchar(30)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: approved_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true  
+              - column:
+                  name: approved_date
+                  type: timestamp
+                  constraints:
+                    nullable: true                   
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp          
+                  constraints:
+                    nullable: false                   
+  - changeSet:
+        id: 4
+        author: piyumi
+        changes:
+        - addColumn:
+            columns:
+             - column:
+                  name: lending_workflow_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_intrst_tier_bset_pend_workf
+                    references: lending_workflow(id)        
+            tableName: interest_tier_band_set_pending        
+  - changeSet:
+        id: 5
+        author: piyumi
+        changes:
+        - dropColumn:
+            columns:
+             - column:
+                  name: code    
+                  type: varchar(4) 
+            tableName: interest_tier_band_set_pending   
+                    

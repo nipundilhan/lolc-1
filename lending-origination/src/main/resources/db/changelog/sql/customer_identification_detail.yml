@@ -1,0 +1,159 @@
+databaseChangeLog: 
+  - changeSet:
+      id: 1
+      author: Thamokshi
+      changes:
+        - createTable:
+            tableName: identification_detail
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: customer_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: Fk_ci_customer_id
+                    references: customer(id)
+              - column:
+                  name: identification_type_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: identification_type
+                  type: bigint
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: identification_no
+                  type: varchar(255)
+                  constraints:
+                    nullable: true                                        
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  constraints:
+                    nullable: false
+          
+  - changeSet:
+      id: 6
+      author: thamokshi
+      changes:
+      - addColumn:
+          columns:
+          - column:
+              name: sync_ts
+              type: timestamp
+          tableName: identification_detail 
+  - changeSet:  
+      id:  11 
+      author:  Thamokshi  
+      changes:  
+      -  modifyDataType:  
+          columnName:  identification_type  
+          newDataType:  varchar(200)  
+          tableName:  identification_detail 
+  - changeSet:
+      id: 14
+      author: thamokshi
+      changes:
+      - addColumn:
+          columns:
+          - column:
+              name: guarantor_id
+              type: bigint
+          tableName: identification_detail 
+  - changeSet:
+      id: 17
+      author: thamokshi
+      changes:
+      - addColumn:
+          columns:
+          - column:
+              name: linked_person_id
+              type: bigint
+          tableName: identification_detail 
+          
+  - changeSet:
+      id: 19
+      author: thamokshi
+      changes:
+      - addColumn:
+          columns:
+          - column:
+              name: pidt_id
+              type: bigint
+          - column:
+              name: ppidt_id
+              type: bigint              
+          tableName: identification_detail
+  - changeSet:
+      id: 25
+      author: thamokshi
+      changes:
+      - addColumn:
+          columns:
+          - column:
+              name: issue_date
+              type: timestamp
+          - column:
+              name: expiry_date
+              type: timestamp              
+          tableName: identification_detail
+  - changeSet:  
+      id:  34
+      author:  Thamokshi
+      changes:  
+      -  addForeignKeyConstraint:  
+          baseColumnNames:  linked_person_id  
+          baseTableName:  identification_detail  
+          constraintName:  fk_idt_linked_person_id  
+          referencedColumnNames:  id  
+          referencedTableName:  linked_person  
+
+  - changeSet:  
+      id:  35
+      author:  Thamokshi
+      changes:  
+      -  addForeignKeyConstraint:  
+          baseColumnNames:  guarantor_id  
+          baseTableName:  identification_detail  
+          constraintName:  fk_idt_guarantor_id  
+          referencedColumnNames:  id  
+          referencedTableName:  guarantor

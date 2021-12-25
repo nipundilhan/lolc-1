@@ -1,0 +1,208 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Dilhan
+      changes:
+        - createTable:
+            tableName: loan_applicable_range
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: code
+                  type: varchar(4)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(70)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: minimum_amount
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: maximum_amount
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: minimum_rate
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: maximum_rate
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: default_rate
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: false  
+              - column:
+                  name: default_amount
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: false  
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp          
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: created_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false            
+                    
+  - changeSet:
+      id: 2
+      author: Dilhan
+      changes:
+        - createTable:
+            tableName: loan_applicable_range_history
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false                   
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: loan_applicable_range_id
+                  type: bigint
+                  constraints:
+                    nullable: false   
+              - column:
+                  name: code
+                  type: varchar(4)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(70)
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: minimum_amount
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: maximum_amount
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: minimum_rate
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: maximum_rate
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: default_rate
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: false  
+              - column:
+                  name: default_amount
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: false  
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: history_created_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: history_created_date
+                  type: timestamp
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp          
+                  constraints:
+                    nullable: false
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false    
+          

@@ -1,0 +1,326 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Piyumi
+      changes:
+        - createTable:
+            tableName: analyst_details
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: analyst_type
+                  type: varchar(60)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: analyst_user_id
+                  type: varchar(60)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: observation
+                  type: varchar(1500)
+                  constraints:
+                    nullable: false  
+              - column:
+                  name: lead_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: Fk_lead_info_analyst_details
+                    references: lead_info(id)   
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false                  
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false                 
+              - column:
+                  name: created_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: 2
+      author: Piyumi
+      changes:
+        - createTable:
+            tableName: analyst_exception_details
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: analyst_detail_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: Fk_analyst_details_exception
+                    references: analyst_details(id)   
+              - column:
+                  name: exception_type_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: Fk_analyst_exc_exception_type
+                    references: exception_type(id)
+              - column:
+                  name: exception_authority_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: exception_details
+                  type: varchar(1500)
+                  constraints:
+                    nullable: false  
+              - column:
+                  name: approval_status
+                  type: varchar(20)
+                  constraints:
+                    nullable: true   
+              - column:
+                  name: approval_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: approval_date
+                  type: timestamp
+                  constraints:
+                    nullable: true               
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false                 
+              - column:
+                  name: created_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: 3
+      author: Piyumi
+      changes: 
+        - createTable:
+            tableName: analyst_exception_documents
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: analyst_exception_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_analyst_exc_document
+                    references: analyst_exception_details(id)        
+              - column:
+                  name: document_id
+                  type: bigint
+                  constraints:
+                    nullable: false                
+              - column:
+                  name: document_ref_id
+                  type: bigint
+                  constraints: 
+                    nullable: true 
+              - column:
+                  name: status
+                  type: varchar(30)
+                  constraints:
+                    nullable: false        
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: 4
+      author: Piyumi
+      changes: 
+        - createTable:
+            tableName: analyst_exception_workflow
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: analyst_exception_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_analyst_exc_workflow
+                    references: analyst_exception_details(id)  
+              - column:
+                  name: workflow_process_id
+                  type: bigint
+                  constraints:
+                    nullable: false      
+              - column:
+                  name: workflow_type
+                  type: varchar(70)
+                  constraints:
+                    nullable: false                
+              - column:
+                  name: workflow_status
+                  type: varchar(30)
+                  constraints:
+                    nullable: false        
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: 5
+      author: Piyumi
+      changes:
+      - addColumn:
+          columns:
+          - column:
+                  name: status
+                  type: varchar(30)
+                  constraints:
+                    nullable: false      
+          tableName: analyst_exception_details   
+  - changeSet:
+      id: 6
+      author: Piyumi
+      changes:
+      - addColumn:
+          columns:
+          - column:
+                 name: version
+                 type: bigint
+                 constraints:
+                    nullable: false     
+          tableName: analyst_exception_workflow          

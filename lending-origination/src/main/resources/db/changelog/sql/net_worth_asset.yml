@@ -1,0 +1,87 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Senitha
+      changes: 
+        - createTable:
+            tableName: gu_net_worth_asset
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: guarantor_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_assets_guarantor
+                    references: guarantor(id)     
+              - column:
+                  name: type_of_asset_id
+                  type: bigint
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: description
+                  type: varchar(350)
+                  constraints: 
+                    nullable: true  
+              - column:
+                  name: ownership_id
+                  type: bigint
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: value
+                  type: double
+                  constraints:
+                    nullable: true
+              - column:
+                  name: note
+                  type: varchar(350)
+                  constraints: 
+                    nullable: true                                                                                                                                                                                                                          
+              - column:
+                  name: status
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  constraints:
+                    nullable: false

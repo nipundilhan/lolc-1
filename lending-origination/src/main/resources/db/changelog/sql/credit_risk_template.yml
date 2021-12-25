@@ -1,0 +1,157 @@
+databaseChangeLog: 
+  - changeSet:
+      id: 1
+      author: SewwandiH
+      changes: 
+        - createTable:
+            tableName: risk_template_detail
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false              
+              - column:
+                  name: weightage_percentage
+                  type: decimal(25,2)
+                  constraints:
+                    nullable: false                   
+              - column:
+                  name: indicator
+                  type: varchar(60)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: risk_parameter_template_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_risk_para_template_id_cr
+                    references: risk_parameter_template(id)    
+              - column:
+                  name: risk_template_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_risk_template_id_cr
+                    references: risk_template(id)                     
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false                                                  
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false
+  - changeSet: 
+      id: 2
+      author: SewwandiH
+      changes: 
+        - createTable:
+            tableName: risk_template_detail_variance
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: from_value
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: to_value
+                  type: bigint
+                  constraints:
+                    nullable: false                   
+              - column:
+                  name: score
+                  type: bigint
+                  constraints:
+                    nullable: false   
+              - column:
+                  name: risk_template_detail_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_risk_detail_id_cr
+                    references: risk_template_detail(id)                    
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false                                                  
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false                    

@@ -1,0 +1,117 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Piyumi
+      changes:
+        - createTable:
+            tableName: business_tax_details
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false        
+              - column:
+                  name: business_income_details_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_bus_income_dtl_tax
+                    references: business_income_details(id)  
+              - column:
+                  name: tax_type_id
+                  type: bigint
+                  constraints:
+                    nullable: false  
+              - column:
+                  name: tax_type_code
+                  type: varchar(70)
+                  constraints: 
+                    nullable: false                     
+              - column:
+                  name: tax_type_name
+                  type: varchar(100)
+                  constraints: 
+                    nullable: false             
+              - column:
+                  name: frequency_id
+                  type: bigint
+                  constraints:
+                    nullable: false   
+              - column:
+                  name: frequency_code
+                  type: varchar(20)
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: rate
+                  type: decimal(4,2)
+                  constraints:
+                    nullable: false      
+              - column:
+                  name: amount
+                  type: decimal(38,2)
+                  constraints:
+                    nullable: false      
+              - column:
+                  name: currency_id
+                  type: bigint
+                  constraints:
+                    nullable: false   
+              - column:
+                  name: currency_code
+                  type: varchar(3)
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: currency_code_numeric
+                  type: varchar(3)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: applicable_on
+                  type: varchar(300)
+                  constraints:
+                    nullable: false             
+              - column:
+                  name: status
+                  type: varchar(30)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false       

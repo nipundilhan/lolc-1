@@ -1,0 +1,105 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Thushan
+      changes:
+        - createTable:
+            tableName: guarantor
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: sequence
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: guarantee_percentage
+                  type: decimal(4,2)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: value
+                  type: decimal
+                  constraints:
+                    nullable: true
+              - column:
+                  name: bond_number
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue: 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: lending_account_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_guarantor_lending_account_detail
+                    references: lending_account_detail(id)
+
+
+  - changeSet:
+      id: 2
+      author: Thushan
+      changes:
+        - addColumn:
+            tableName: guarantor
+            columns:
+              - column:
+                  name: status
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: 3
+      author: Thushan
+      changes:
+        - addColumn:
+            tableName: guarantor
+            columns:
+              - column:
+                  name: customer_id
+                  type: bigint
+                  constraints:
+                    nullable: false

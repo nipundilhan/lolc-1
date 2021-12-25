@@ -1,0 +1,200 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: NipunDilhan
+      changes:
+        - createTable:
+            tableName: tc_amortization_detail
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false      
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false    
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp          
+                  constraints:
+                    nullable: false      
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true     
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+                    
+                    
+                    
+                    
+  - changeSet:
+      id: 2
+      author: NipunDilhan
+      changes:
+        - createTable:
+            tableName: tc_amortization_pay_schedule
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                 name: tc_amortization_detail_id
+                 type: bigint  
+                 constraints:
+                      nullable: false
+                      foreignKeyName: fk_10021_tcad_1
+                      references: tc_amortization_detail(id)                     
+              - column:
+                  name: sequence
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: transaction_type_code
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: due_date
+                  type: timestamp
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: amount
+                  type: decimal(38,5)
+                  constraints:
+                    nullable: false  
+              - column:
+                  name: description
+                  type: varchar(350)
+                  constraints:
+                    nullable: true                                                        
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: attribute1
+                  type: varchar(100)
+                  constraints:
+                    nullable: true  
+              - column:
+                  name: attribute2
+                  type: varchar(100)
+                  constraints:
+                    nullable: true  
+              - column:
+                  name: attribute3
+                  type: varchar(100)
+                  constraints:
+                    nullable: true  
+              - column:
+                  name: attribute4
+                  type: bigint
+                  constraints:
+                    nullable: true  
+              - column:
+                  name: attribute5
+                  type: decimal(38,5)
+                  constraints:
+                    nullable: true  
+              - column:
+                  name: attribute6
+                  type: decimal(38,5)
+                  constraints:
+                    nullable: true                      
+              - column:
+                  name: attribute7
+                  type: decimal(38,5)
+                  constraints:
+                    nullable: true  
+              - column:
+                  name: attribute8
+                  type: decimal(38,5)
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: attribute9
+                  type: bigint
+                  constraints:
+                    nullable: true  
+              - column:
+                  name: attribute10
+                  type: bigint
+                  constraints:
+                    nullable: true                                                                                   
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp          
+                  constraints:
+                    nullable: false                    
+                    
+                    
+                    

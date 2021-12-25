@@ -1,0 +1,153 @@
+databaseChangeLog: 
+  - changeSet:
+      id: 1
+      author: NipunDilhan
+      changes: 
+        - createTable:
+            tableName: risk_calculation
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: lead_info_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_11301_lead_info_1
+                    references: lead_info(id)
+              - column:
+                  name: total_score
+                  type: decimal(38,5)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: risk_grading_detail_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_11301_risk_grading_detail_2
+                    references: risk_grading_detail(id)  
+              - column:
+                  name: risk_template_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_11301_risk_template_3
+                    references: risk_template(id) 
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false
+                    
+  - changeSet:
+      id: 2
+      author: NipunDilhan
+      changes: 
+        - createTable:
+            tableName: risk_calculation_detail
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: score
+                  type: decimal(38,5)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: risk_calculation_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_11301_risk_calculation_1
+                    references: risk_calculation(id)  
+              - column:
+                  name: risk_template_detail_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_11301_risk_template_detail_2
+                    references: risk_template_detail(id) 
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false                 
+

@@ -1,0 +1,87 @@
+databaseChangeLog:
+- changeSet:
+    id: 1
+    author: Dilki
+    changes:
+    - createTable:
+        tableName: approval_group_pre_conditions
+        columns:
+        - column:
+            name: id
+            type: bigint
+            constraints:
+              primaryKey: true
+              nullable: false
+        - column:
+            name: tenant_id
+            type: varchar(10)
+            constraints:
+              nullable: false
+        - column:
+            name: approval_category_id
+            type: bigint
+            constraints:
+              nullable: true
+              foreignKeyName: fk_app_category_id_agpc
+              references: approval_category_details(id)
+        - column:
+            name: approval_level_id
+            type: bigint
+            constraints:
+              nullable: true
+              foreignKeyName: fk_app_level_id_agpc
+              references: approval_category_levels(id)
+        - column:
+            name: pre_approval_group_id
+            type: bigint
+            constraints:
+              nullable: true
+              foreignKeyName: fk_pre_app_group_id_agpc
+              references: approval_group(id)
+        - column:
+            name: is_mandatory
+            type: varchar(20)
+            constraints:
+              nullable: false
+        - column:
+            name: sequence
+            type: bigint
+            constraints:
+              nullable: false
+        - column:
+            name: status
+            type: varchar(30)
+            constraints:
+              nullable: false
+        - column:
+            name: created_user
+            type: varchar(20)
+            constraints:
+              nullable: false
+        - column:
+            name: created_date
+            type: timestamp
+            constraints:
+              nullable: false
+        - column:
+            name: modified_user
+            type: varchar(20)
+            constraints:
+              nullable: true
+        - column:
+            name: modified_date
+            type: timestamp
+            constraints:
+              nullable: true
+        - column:
+            name: version
+            type: bigint
+            defaultValue: 0
+            constraints:
+              nullable: false
+        - column:
+            name: sync_ts
+            type: timestamp
+            defaultValueComputed: current_timestamp
+            constraints:
+              nullable: false

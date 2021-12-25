@@ -1,0 +1,176 @@
+databaseChangeLog: 
+  - changeSet:
+      id: 1
+      author: Dilki
+      changes: 
+        - createTable:
+            tableName: other_income_details
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: other_income_type_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_other_income_category_oid
+                    references: other_income_category(id) 
+              - column:
+                  name: income_source_details_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_income_source_details_oid
+                    references: income_source_details(id) 
+              - column:
+                  name: description
+                  type: varchar(300)
+                  constraints:
+                    nullable: false                
+              - column:
+                  name: no_of_years_earned
+                  type: bigint
+                  constraints:
+                    nullable: true                    
+              - column:
+                  name: no_of_months_earned
+                  type: bigint
+                  constraints:
+                    nullable: true                  
+              - column:
+                  name: income_level_id
+                  type: bigint
+                  constraints:
+                    nullable: true             
+              - column:
+                  name: income_level_code
+                  type: varchar(20)
+                  constraints: 
+                    nullable: true  
+              - column:
+                  name: behaviour_id
+                  type: bigint
+                  constraints:
+                    nullable: true                
+              - column:
+                  name: behaviour_code
+                  type: varchar(20)
+                  constraints: 
+                    nullable: true                     
+              - column:
+                  name: source_type
+                  type: varchar(20)
+                  constraints: 
+                    nullable: true                                      
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false                                                  
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: 2
+      author: Dilki
+      changes: 
+        - createTable:
+            tableName: other_income_detail_documents
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: other_income_details_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_other_income_details_oidd
+                    references: other_income_details(id)        
+              - column:
+                  name: document_id
+                  type: bigint
+                  constraints:
+                    nullable: false                
+              - column:
+                  name: status
+                  type: varchar(30)
+                  constraints:
+                    nullable: false        
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  constraints:
+                    nullable: false                       

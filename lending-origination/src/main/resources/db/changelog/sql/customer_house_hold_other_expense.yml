@@ -1,0 +1,117 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Sanatha
+      changes: 
+        - createTable:
+            tableName: customer_house_hold_expense
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: customer_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_customer_house_hold
+                    references: customer(id)        
+              - column:
+                  name: expense_typ_exp_category_det_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_house_exp_typ_id
+                    references: expense_type_exp_category_det(id)        
+              - column:
+                  name: occurance_frequency_id
+                  type: bigint
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: occurance_frequency_code
+                  type: varchar(30) 
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: occurance_frequency_name
+                  type: varchar(350)  
+                  constraints:
+                    nullable: true        
+              - column:
+                  name: cost
+                  type: double
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: calcu_frequency_id
+                  type: bigint
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: calcu_frequency_code
+                  type: varchar(30) 
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: calcu_frequency_name
+                  type: varchar(350)  
+                  constraints:
+                    nullable: true                   
+              - column:
+                  name: final_cost
+                  type: double
+                  constraints:
+                    nullable: true
+              - column:
+                  name: status
+                  type: varchar(30)
+                  constraints:
+                    nullable: false        
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: 2
+      author: Sanatha
+      changes:
+        - setTableRemarks:
+            remarks: Added by Sanatha to maintain house hold other expense details for Customer on 04-MAY-2021.
+            tableName: customer_house_hold_expense   
+                           

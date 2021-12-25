@@ -1,0 +1,333 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Piyumi
+      changes:
+        - createTable:
+            tableName: due_date_templates
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false                    
+              - column:
+                  name: code
+                  type: varchar(4)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: name
+                  type: varchar(70)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: effective_date
+                  type: timestamp
+                  constraints:
+                    nullable: false  
+              - column:
+                  name: due_date_type
+                  type: varchar(50)
+                  constraints:
+                    nullable: false                  
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false   
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp          
+                  constraints:
+                    nullable: false
+                    
+                    
+  - changeSet:
+      id: 2
+      author: Piyumi
+      changes:
+        - createTable:
+            tableName: due_date_templates_history
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: due_date_template_id
+                  type: bigint
+                  constraints:
+                    nullable: false                                        
+              - column:
+                  name: code
+                  type: varchar(4)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: name
+                  type: varchar(70)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: effective_date
+                  type: timestamp
+                  constraints:
+                    nullable: false  
+              - column:
+                  name: due_date_type
+                  type: varchar(50)
+                  constraints:
+                    nullable: false                    
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: history_created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: history_created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false                    
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false   
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp          
+                  constraints:
+                    nullable: false   
+  - changeSet:
+      id: 3
+      author: Piyumi
+      changes:
+        - createTable:
+            tableName: due_date_details
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: due_date_template_id
+                  type: bigint
+                  constraints:
+                    nullable: false 
+                    foreignKeyName: fk_due_date_template_dtl
+                    references: due_date_templates(id)                                        
+              - column:
+                  name: sequence
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: due_date
+                  type: timestamp
+                  constraints:
+                    nullable: false                  
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true             
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false   
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp          
+                  constraints:
+                    nullable: false 
+  - changeSet:
+      id: 43
+      author: Piyumi
+      changes:
+        - createTable:
+            tableName: due_date_details_history
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: due_date_template_id
+                  type: bigint
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: due_date_detail_id
+                  type: bigint
+                  constraints:
+                    nullable: false                                        
+              - column:
+                  name: sequence
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: due_date
+                  type: timestamp
+                  constraints:
+                    nullable: false                  
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true    
+              - column:
+                  name: history_created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: history_created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false           
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false   
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp          
+                  constraints:
+                    nullable: false     
+  - changeSet:  
+      id:  5
+      author:  Piyumi
+      changes:  
+      -  addNotNullConstraint:  
+          columnDataType:  varchar(4)  
+          columnName:  code  
+          tableName:  due_date_templates                        

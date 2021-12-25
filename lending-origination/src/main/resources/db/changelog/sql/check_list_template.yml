@@ -1,0 +1,635 @@
+databaseChangeLog:
+- changeSet:
+    id: 1
+    author: Dilki
+    changes:
+    - createTable:
+        tableName: check_list_template
+        columns:
+        - column:
+            name: id
+            type: bigint
+            constraints:
+              primaryKey: true
+              nullable: false
+        - column:
+            name: tenant_id
+            type: varchar(10)
+            constraints:
+              nullable: false
+        - column:
+            name: code
+            type: varchar(4)
+            constraints:
+              nullable: true
+        - column:
+            name: main_product
+            type: varchar(70)
+            constraints:
+              nullable: false
+        - column:
+            name: sub_product
+            type: varchar(70)
+            constraints:
+              nullable: false
+        - column:
+            name: applicable_level
+            type: varchar(70)
+            constraints:
+              nullable: false
+        - column:
+            name: name
+            type: varchar(70)
+            constraints:
+              nullable: false
+        - column:
+            name: comment
+            type: varchar(350)
+            constraints:
+              nullable: true
+        - column:
+            name: status
+            type: varchar(20)
+            constraints:
+              nullable: false
+        - column:
+            name: approve_status
+            type: varchar(30)
+            constraints:
+              nullable: true
+        - column:
+            name: created_user
+            type: varchar(255)
+            constraints:
+              nullable: false
+        - column:
+            name: created_date
+            type: timestamp
+            constraints:
+              nullable: false
+        - column:
+            name: modified_user
+            type: varchar(255)
+            constraints:
+              nullable: true
+        - column:
+            name: modified_date
+            type: timestamp
+            constraints:
+              nullable: true
+        - column:
+            name: version
+            type: bigint
+            defaultValue: 0
+            constraints:
+              nullable: false
+        - column:
+            name: sync_ts
+            type: timestamp
+            defaultValueComputed: current_timestamp
+            constraints:
+              nullable: false
+- changeSet:
+    id: 2
+    author: Dilki
+    changes:
+    - createTable:
+        tableName: check_list_template_history
+        columns:
+        - column:
+            name: id
+            type: bigint
+            constraints:
+              primaryKey: true
+              nullable: false
+        - column:
+            name: tenant_id
+            type: varchar(10)
+            constraints:
+              nullable: false
+        - column:
+            name: check_list_template_id
+            type: bigint
+            constraints:
+              nullable: false 
+        - column:
+            name: code
+            type: varchar(4)
+            constraints:
+              nullable: true
+        - column:
+            name: main_product
+            type: varchar(70)
+            constraints:
+              nullable: false
+        - column:
+            name: sub_product
+            type: varchar(70)
+            constraints:
+              nullable: false
+        - column:
+            name: applicable_level
+            type: varchar(70)
+            constraints:
+              nullable: false
+        - column:
+            name: name
+            type: varchar(70)
+            constraints:
+              nullable: false
+        - column:
+            name: comment
+            type: varchar(350)
+            constraints:
+              nullable: true
+        - column:
+            name: status
+            type: varchar(20)
+            constraints:
+              nullable: false
+        - column:
+            name: approve_status
+            type: varchar(30)
+            constraints:
+              nullable: true
+        - column:
+            name: created_user
+            type: varchar(255)
+            constraints:
+              nullable: false
+        - column:
+            name: created_date
+            type: timestamp
+            constraints:
+              nullable: false
+        - column:
+            name: modified_user
+            type: varchar(255)
+            constraints:
+              nullable: true
+        - column:
+            name: modified_date
+            type: timestamp
+            constraints:
+              nullable: true
+        - column:
+            name: history_created_user
+            type: varchar(255)
+            constraints:
+              nullable: false
+        - column:
+            name: history_created_date
+            type: timestamp
+            constraints:
+              nullable: false
+        - column:
+            name: version
+            type: bigint
+            defaultValue: 0
+            constraints:
+              nullable: false
+        - column:
+            name: sync_ts
+            type: timestamp
+            defaultValueComputed: current_timestamp
+            constraints:
+              nullable: false
+- changeSet:
+    id: 3
+    author: Dilki
+    changes:
+    - createTable:
+        tableName: check_list_template_pending
+        columns:
+        - column:
+            name: id
+            type: bigint
+            constraints:
+              primaryKey: true
+              nullable: false
+        - column:
+            name: tenant_id
+            type: varchar(10)
+            constraints:
+              nullable: false
+        - column:
+            name: check_list_template_id
+            type: bigint
+            constraints:
+              nullable: false
+              foreignKeyName: fk_check_list_template_pending
+              references: check_list_template(id)
+        - column:
+            name: code
+            type: varchar(4)
+            constraints:
+              nullable: true
+        - column:
+            name: main_product
+            type: varchar(70)
+            constraints:
+              nullable: false
+        - column:
+            name: sub_product
+            type: varchar(70)
+            constraints:
+              nullable: false
+        - column:
+            name: applicable_level
+            type: varchar(70)
+            constraints:
+              nullable: false
+        - column:
+            name: name
+            type: varchar(70)
+            constraints:
+              nullable: false
+        - column:
+            name: comment
+            type: varchar(350)
+            constraints:
+              nullable: true
+        - column:
+            name: status
+            type: varchar(20)
+            constraints:
+              nullable: false
+        - column:
+            name: approve_status
+            type: varchar(30)
+            constraints:
+              nullable: true
+        - column:
+            name: created_user
+            type: varchar(255)
+            constraints:
+              nullable: false
+        - column:
+            name: created_date
+            type: timestamp
+            constraints:
+              nullable: false
+        - column:
+            name: modified_user
+            type: varchar(255)
+            constraints:
+              nullable: true
+        - column:
+            name: modified_date
+            type: timestamp
+            constraints:
+              nullable: true
+        - column:
+            name: microbpr_workflow_id
+            type: bigint
+            constraints:
+              nullable: true
+              foreignKeyName: fk_micro_bpr_workflow_cit
+              references: micro_bpr_workflow(id)
+        - column:
+            name: pen_created_user
+            type: varchar(255)
+            constraints:
+              nullable: false
+        - column:
+            name: pen_created_date
+            type: timestamp
+            constraints:
+              nullable: false
+        - column:
+            name: pen_approved_user
+            type: varchar(255)
+            constraints:
+              nullable: true
+        - column:
+            name: pen_approved_date
+            type: timestamp
+            constraints:
+              nullable: true
+        - column:
+            name: pen_rejected_user
+            type: varchar(255)
+            constraints:
+              nullable: true
+        - column:
+            name: pen_rejected_date
+            type: timestamp
+            constraints:
+              nullable: true
+        - column:
+            name: version
+            type: bigint
+            defaultValue: 0
+            constraints:
+              nullable: false
+        - column:
+            name: sync_ts
+            type: timestamp
+            defaultValueComputed: current_timestamp
+            constraints:
+              nullable: false
+ 
+- changeSet:  
+      id:  4
+      author:  Dilki
+      changes:  
+      -  renameColumn:  
+          columnDataType: varchar(350)  
+          newColumnName:  app_rej_comment
+          oldColumnName:  comment  
+          tableName:  check_list_template
+ 
+- changeSet:
+      id: 5
+      author: Dilki
+      changes:
+      - renameColumn:
+          columnDataType: varchar(350)  
+          newColumnName: app_rej_comment
+          oldColumnName: comment
+          tableName: check_list_template_history
+ 
+- changeSet:
+      id: 6
+      author: Dilki
+      changes:
+      - renameColumn:
+          columnDataType: varchar(350)  
+          newColumnName: app_rej_comment
+          oldColumnName: comment
+          tableName: check_list_template_pending
+   
+- changeSet:
+    id: 7
+    author: Dilki
+    changes:
+    - createTable:
+        tableName: check_list_template_details
+        columns:
+        - column:
+            name: id
+            type: bigint
+            constraints:
+              primaryKey: true
+              nullable: false
+        - column:
+            name: tenant_id
+            type: varchar(10)
+            constraints:
+              nullable: false 
+        - column:
+            name: check_list_template_id
+            type: bigint
+            constraints:
+              nullable: false
+              foreignKeyName: fk_check_list_template_id_ctd
+              references: check_list_template(id) 
+        - column:
+            name: check_list_item_id
+            type: bigint
+            constraints:
+              nullable: false
+              foreignKeyName: fk_check_list_item_id_ctd
+              references: check_list_item(id)
+        - column:
+            name: check_list_template_name
+            type: varchar(70)
+            constraints:
+              nullable: true
+        - column:
+            name: mandatory
+            type: varchar(3)
+            constraints:
+              nullable: false
+        - column:
+            name: checked
+            type: varchar(3)
+            constraints:
+              nullable: false
+        - column:
+            name: status
+            type: varchar(20)
+            constraints:
+              nullable: false 
+        - column:
+            name: created_user
+            type: varchar(255)
+            constraints:
+              nullable: false
+        - column:
+            name: created_date
+            type: timestamp
+            constraints:
+              nullable: false
+        - column:
+            name: modified_user
+            type: varchar(255)
+            constraints:
+              nullable: true
+        - column:
+            name: modified_date
+            type: timestamp
+            constraints:
+              nullable: true
+        - column:
+            name: version
+            type: bigint
+            defaultValue: 0
+            constraints:
+              nullable: false
+        - column:
+            name: sync_ts
+            type: timestamp
+            defaultValueComputed: current_timestamp
+            constraints:
+              nullable: false
+              
+- changeSet:
+    id: 8
+    author: Dilki
+    changes:
+    - createTable:
+        tableName: check_list_temp_details_his
+        columns:
+        - column:
+            name: id
+            type: bigint
+            constraints:
+              primaryKey: true
+              nullable: false
+        - column:
+            name: tenant_id
+            type: varchar(10)
+            constraints:
+              nullable: false 
+        - column:
+            name: check_list_template_id
+            type: bigint
+            constraints:
+              nullable: false
+              foreignKeyName: fk_check_list_temp_id_ctdh
+              references: check_list_template(id) 
+        - column:
+            name: check_list_item_id
+            type: bigint
+            constraints:
+              nullable: false
+              foreignKeyName: fk_check_list_item_id_ctdh
+              references: check_list_item(id)
+        - column:
+            name: check_list_template_name
+            type: varchar(70)
+            constraints:
+              nullable: true
+        - column:
+            name: mandatory
+            type: varchar(3)
+            constraints:
+              nullable: false
+        - column:
+            name: checked
+            type: varchar(3)
+            constraints:
+              nullable: false
+        - column:
+            name: status
+            type: varchar(20)
+            constraints:
+              nullable: false 
+        - column:
+            name: created_user
+            type: varchar(255)
+            constraints:
+              nullable: false
+        - column:
+            name: created_date
+            type: timestamp
+            constraints:
+              nullable: false
+        - column:
+            name: modified_user
+            type: varchar(255)
+            constraints:
+              nullable: true
+        - column:
+            name: modified_date
+            type: timestamp
+            constraints:
+              nullable: true
+        - column:
+            name: history_created_user
+            type: varchar(255)
+            constraints:
+              nullable: false
+        - column:
+            name: history_created_date
+            type: timestamp
+            constraints:
+              nullable: false
+        - column:
+            name: version
+            type: bigint
+            defaultValue: 0
+            constraints:
+              nullable: false
+        - column:
+            name: sync_ts
+            type: timestamp
+            defaultValueComputed: current_timestamp
+            constraints:
+              nullable: false
+              
+- changeSet:
+    id: 9
+    author: Dilki
+    changes:
+    - createTable:
+        tableName: check_list_temp_details_pend
+        columns:
+        - column:
+            name: id
+            type: bigint
+            constraints:
+              primaryKey: true
+              nullable: false
+        - column:
+            name: tenant_id
+            type: varchar(10)
+            constraints:
+              nullable: false 
+        - column:
+            name: check_list_template_id
+            type: bigint
+            constraints:
+              nullable: false
+              foreignKeyName: fk_check_list_temp_id_ctdp
+              references: check_list_template(id) 
+        - column:
+            name: check_list_item_id
+            type: bigint
+            constraints:
+              nullable: false
+              foreignKeyName: fk_check_list_item_id_ctdp
+              references: check_list_item(id)
+        - column:
+            name: check_list_template_name
+            type: varchar(70)
+            constraints:
+              nullable: true
+        - column:
+            name: mandatory
+            type: varchar(3)
+            constraints:
+              nullable: false
+        - column:
+            name: checked
+            type: varchar(3)
+            constraints:
+              nullable: false
+        - column:
+            name: status
+            type: varchar(20)
+            constraints:
+              nullable: false 
+        - column:
+            name: created_user
+            type: varchar(255)
+            constraints:
+              nullable: false
+        - column:
+            name: created_date
+            type: timestamp
+            constraints:
+              nullable: false
+        - column:
+            name: modified_user
+            type: varchar(255)
+            constraints:
+              nullable: true
+        - column:
+            name: modified_date
+            type: timestamp
+            constraints:
+              nullable: true
+        - column:
+            name: pen_created_user
+            type: varchar(255)
+            constraints:
+              nullable: false
+        - column:
+            name: pen_created_date
+            type: timestamp
+            constraints:
+              nullable: false
+        - column:
+            name: version
+            type: bigint
+            defaultValue: 0
+            constraints:
+              nullable: false
+        - column:
+            name: sync_ts
+            type: timestamp
+            defaultValueComputed: current_timestamp
+            constraints:
+              nullable: false                            

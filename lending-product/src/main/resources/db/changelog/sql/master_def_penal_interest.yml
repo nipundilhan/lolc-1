@@ -1,0 +1,405 @@
+databaseChangeLog: 
+  - changeSet:
+      id: 1
+      author: dilhan
+      changes: 
+        - createTable:
+            tableName: master_penal_interest
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: master_definition_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_master_def_penal_interest
+                    references: master_definition(id)      
+              - column:
+                  name: currency_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: currency_name
+                  type: varchar(250)
+                  constraints:
+                    nullable: false    
+              - column:
+                  name: num_decimal_places
+                  type: bigint
+                  constraints:
+                    nullable: false                                        
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false  
+              - column:
+                  name: approve_status
+                  type: varchar(30)
+                  constraints:
+                    nullable: true                                                          
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true  
+              - column:
+                    name: pen_approved_user
+                    type: varchar(255)
+                    constraints:
+                      nullable: true
+              - column:
+                    name: pen_approved_date
+                    type: timestamp
+                    constraints:
+                      nullable: true
+              - column:
+                    name: pen_rejected_user
+                    type: varchar(255)
+                    constraints:
+                      nullable: true
+              - column:
+                    name: pen_rejected_date
+                    type: timestamp
+                    constraints:
+                      nullable: true           
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: 2
+      author: Piyumi
+      changes: 
+        - createTable:
+            tableName: master_currency_history
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: master_currency_id
+                  type: bigint
+                  constraints:
+                    nullable: false      
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: master_definition_id
+                  type: bigint
+                  constraints:
+                    nullable: false    
+              - column:
+                  name: currency_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: currency_name
+                  type: varchar(250)
+                  constraints:
+                    nullable: false     
+              - column:
+                  name: num_decimal_places
+                  type: bigint
+                  constraints:
+                    nullable: false                                                  
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: approve_status
+                  type: varchar(30)
+                  constraints:
+                    nullable: true                                                              
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: pen_approved_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: pen_approved_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: pen_rejected_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: pen_rejected_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: his_created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: his_created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false                  
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false              
+  - changeSet:
+      id: 3
+      author: Piyumi
+      changes: 
+        - createTable:
+            tableName: master_penal_interest_pending
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: master_currency_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_mas_curr_pending
+                    references: master_currency(id)
+              - column:
+                  name: lending_workflow_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_mas_cur_pen_workflow
+                    references: lending_workflow(id)            
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: master_definition_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_mas_def_cur_pend
+                    references: master_definition(id) 
+              - column:
+                  name: master_definition_pending_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_mas_def_pen_cur_pend
+                    references: master_definition_pending(id)        
+              - column:
+                  name: currency_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: currency_name
+                  type: varchar(250)
+                  constraints:
+                    nullable: false   
+              - column:
+                  name: num_decimal_places
+                  type: bigint
+                  constraints:
+                    nullable: false                                  
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false                                                              
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false            
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false   
+  - changeSet:
+        id: 4
+        author: piyumi
+        changes:
+        - addColumn:
+            columns:
+             - column:
+                  name: approve_status
+                  type: varchar(30)
+                  constraints:
+                    nullable: true      
+             - column:
+                  name: pen_approved_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+             - column:
+                  name: pen_approved_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+             - column:
+                  name: pen_rejected_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+             - column:
+                  name: pen_rejected_date
+                  type: timestamp
+                  constraints:
+                    nullable: true        
+            tableName: master_currency_pending     
+            
+  - changeSet:
+        id: 5
+        author: piyumi
+        changes:
+        - dropColumn:
+            columns:
+             - column:
+                  name: approve_status
+                  type: varchar(30)
+                  constraints:
+                    nullable: true      
+             - column:
+                    name: pen_approved_user
+                    type: varchar(255)
+                    constraints:
+                      nullable: true
+             - column:
+                    name: pen_approved_date
+                    type: timestamp
+                    constraints:
+                      nullable: true
+             - column:
+                    name: pen_rejected_user
+                    type: varchar(255)
+                    constraints:
+                      nullable: true
+             - column:
+                    name: pen_rejected_date
+                    type: timestamp
+                    constraints:
+                      nullable: true        
+            tableName: master_currency  
+            
+  - changeSet:
+        id: 6
+        author: piyumi
+        changes:
+        - dropColumn:
+            columns:
+             - column:
+                  name: approve_status
+                  type: varchar(30)
+                  constraints:
+                    nullable: true      
+             - column:
+                    name: pen_approved_user
+                    type: varchar(255)
+                    constraints:
+                      nullable: true
+             - column:
+                    name: pen_approved_date
+                    type: timestamp
+                    constraints:
+                      nullable: true
+             - column:
+                    name: pen_rejected_user
+                    type: varchar(255)
+                    constraints:
+                      nullable: true
+             - column:
+                    name: pen_rejected_date
+                    type: timestamp
+                    constraints:
+                      nullable: true        
+            tableName: master_currency_history          
+             

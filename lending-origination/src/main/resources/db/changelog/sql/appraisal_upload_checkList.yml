@@ -1,0 +1,88 @@
+databaseChangeLog: 
+  - changeSet:
+      id: 1
+      author: SewwandiH
+      changes: 
+        - createTable:
+            tableName: appraisal_upload_check_list
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: checklist_template_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_chklist_tmpl_id
+                    references: check_list_template(id)      
+              - column:
+                  name: document_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: mandatory
+                  type: varchar(3)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: completed
+                  type: varchar(3)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: varchar(255)
+                  constraints:
+                    nullable: true    
+              - column:
+                  name: completed_date
+                  type: datetime
+                  constraints:
+                    nullable: true                                                               
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false                                                  
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false

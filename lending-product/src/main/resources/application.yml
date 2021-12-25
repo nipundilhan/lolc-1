@@ -1,0 +1,14 @@
+service:
+  url:
+    lending-product: "http://132.145.228.83/lending-product"
+    comn-person: "http://132.145.228.83/lending-product"
+    comn-customer: "http://132.145.228.83/comn-customer"
+    comn-common: "http://132.145.228.83/comn-common"
+    lending-origination: "http://132.145.228.83/lending-origination"
+    comn-supplies-entities: "http://132.145.228.83/lending-product"
+    col-collateral: "http://132.145.228.83/lending-product"
+    casa-account: "http://132.145.228.83/casa-account"
+
+#create a format using ContractNumberGenerateEnum values
+format:
+  contract-number: COMPANY_CODE,MODULE,PRODUCT_CODE,LOAN_ACCOUNT,VERSION

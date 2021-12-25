@@ -1,0 +1,184 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: ThamokshiD
+      changes:
+        - createTable:
+            tableName: linked_person
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: linked_person_type
+                  type: varchar(20)
+                  constraints:
+                    nullable: false                    
+              - column:
+                  name: customer_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: Fk_lp_customer_id
+                    references: customer(id)                                        
+              - column:
+                  name: status
+                  type: varchar(30)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp
+                  constraints:
+                    nullable: false
+  - changeSet:  
+      id:  2 
+      author: thamokshi
+      changes:
+      - addColumn:
+          columns:
+          - column:
+              name: name  
+              type: varchar(200)
+          tableName: linked_person   
+          
+  - changeSet:  
+      id:  3 
+      author: thamokshi
+      changes:
+      - addColumn:
+          columns:
+          - column:
+              name: culp_id  
+              type: bigint
+          - column:
+              name: pculp_id  
+              type: bigint 
+          - column:
+              name: pen_per_id  
+              type: bigint
+          - column:
+              name: per_id  
+              type: bigint
+          - column:
+              name: per_code  
+              type: varchar(200)                                                      
+          tableName: linked_person      
+          
+          
+  - changeSet:  
+      id:  4
+      author: nisala
+      changes:
+      - addColumn:
+          columns:
+          - column:
+              name: com_cus_link_person_id
+              type: bigint
+              constraints:
+                  nullable: true
+          tableName: linked_person     
+          
+  - changeSet:  
+      id:  5
+      author: venuki
+      changes:
+      - addColumn:
+          columns:
+              - column:
+                  name: first_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: middle_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: last_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: cmlist_gender_id
+                  type: bigint
+                  constraints:
+                    nullable: true                    
+              - column:
+                  name: gender
+                  type: varchar(350)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: cmlist_title_id
+                  type: bigint
+                  constraints:
+                    nullable: true                    
+              - column:
+                  name: title
+                  type: varchar(350)
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: cmlist_relation_Id
+                  type: bigint
+                  constraints:
+                    nullable: true                    
+              - column:
+                  name: relationship_type
+                  type: varchar(350)
+                  constraints:
+                    nullable: true                                                       
+          tableName: linked_person         
+          
+  - changeSet:  
+      id:  6 
+      author: venuki
+      changes:
+      - addColumn:
+          columns:
+          - column:
+              name: internal_crib_status_id 
+              type: bigint
+          - column:
+              name: external_crib_status_id 
+              type: bigint                 
+          tableName: linked_person           
+          
+              

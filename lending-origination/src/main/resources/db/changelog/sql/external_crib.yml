@@ -1,0 +1,217 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Venuki
+      changes:
+        - createTable:
+            tableName: external_crib_det
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false                 
+              - column:
+                  name: customer_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_ecbd_ld_cust_id
+                    references: customer(id)
+              - column:
+                  name: linked_person_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_ecbd_ky_per_id
+                    references: linked_person(id) 
+              - column:
+                  name: guarantor_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_ecbd_gurantt_id
+                    references: guarantor(id)
+              - column:
+                  name: identification_type
+                  type: varchar(50)
+                  constraints:
+                    nullable: true         
+              - column:
+                  name: identification_number
+                  type: varchar(50)
+                  constraints:
+                    nullable: false     
+              - column:
+                  name: requested_date
+                  type: timestamp
+                  constraints:
+                    nullable: false  
+              - column:
+                  name: requested_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: false  
+              - column:
+                  name: crib_report_id
+                  type: varchar(75)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: crib_request_id
+                  type: bigint
+                  constraints:
+                    nullable: true                                                                       
+              - column:
+                  name: crib_report_status
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: hit_flag
+                  type: varchar(10)
+                  constraints:
+                    nullable: true                   
+              - column:
+                  name: no_hit_flag
+                  type: varchar(10)
+                  constraints:
+                    nullable: true                      
+              - column:
+                  name: multi_hit_flag
+                  type: varchar(10)
+                  constraints:
+                    nullable: true                                                                                    
+              - column:
+                  name: status
+                  type: varchar(30)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp          
+                  constraints:
+                    nullable: false     
+    
+  - changeSet:
+      id: 2
+      author: Venuki
+      changes:
+      - addColumn:
+          columns:
+              - column:
+                  name: gender
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: brw_type_comlist_id
+                  type: bigint
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: crib_facility_comlist_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: comlist_reason_id
+                  type: bigint
+                  constraints:
+                    nullable: false                    
+              - column:
+                  name: facility_amount
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: false                                                              
+          tableName: external_crib_det     
+          
+  - changeSet:
+      id: 3
+      author: Venuki
+      changes:
+      - addColumn:
+          columns:
+              - column:
+                  name: identification_type_id
+                  type: bigint
+                  constraints:
+                    nullable: true                                                    
+          tableName: external_crib_det 
+
+  - changeSet:
+       id: 4
+       author: Venuki
+       changes:
+       - dropColumn:
+           columns:
+           - column:
+               name: identification_type_id
+               type: bigint
+           - column:
+               name: gender
+               type: varchar(10)                   
+           tableName: external_crib_det
+                    
+  - changeSet:
+      id: 5
+      author: Venuki
+      changes:
+      - addColumn:
+          columns:
+              - column:
+                  name: borrower_type
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: crib_facility_type
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: reason
+                  type: varchar(1500)
+                  constraints:
+                    nullable: true                                                             
+          tableName: external_crib_det 
+  - changeSet:
+      id: 6
+      author: Piyumi
+      changes:
+      - dropTable:                                                          
+          tableName: external_crib_det        
+          

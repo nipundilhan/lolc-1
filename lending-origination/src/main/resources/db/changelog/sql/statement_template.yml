@@ -1,0 +1,85 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Sanatha
+      changes:
+        - createTable:
+            tableName: statement_template
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: statement_type_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_statement_type_template
+                    references: statement_type(id)      
+              - column:
+                  name: code
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(250)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: varchar(2500)
+                  constraints:
+                    nullable: true             
+              - column:
+                  name: status
+                  type: varchar(30)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp   
+                  constraints:
+                    nullable: false      
+  - changeSet:
+      id: 2
+      author: Sanatha
+      changes:
+        - setTableRemarks:
+            remarks: Added by Sanatha to maintain statement templates on 10-AUG-2021.
+            tableName: statement_template           

@@ -1,0 +1,273 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Dilhan
+      changes:
+        - createTable:
+            tableName: penal_interest
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: template_code
+                  type: varchar(4)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: template_name
+                  type: varchar(70)
+                  constraints:
+                    nullable: false            
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: 2
+      author: Dilhan
+      changes:
+        - createTable:
+            tableName: penal_tier_band_set
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false   
+              - column:
+                  name: code
+                  type: varchar(4)
+                  constraints:
+                    nullable: false             
+              - column:
+                  name: penal_interest_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_pnl_tier_band_set
+                    references: penal_interest(id)
+              - column:
+                  name: penal_interest_type_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_pnl_tier_band_set_pnl_type
+                    references: penal_interest_type(id)       
+              - column:
+                  name: tier_band_method
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: rate_calculation_method
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: interest_calculation_method
+                  type: varchar(20)
+                  constraints:
+                    nullable: false      
+              - column:
+                  name: grace_period_length
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: notes
+                  type: varchar(2000)
+                  constraints:
+                    nullable: true        
+              - column:
+                  name: created_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false  
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false                      
+                         
+  - changeSet:
+      id: 3
+      author: Dilhan
+      changes:
+        - createTable:
+            tableName: penal_tier_band
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false       
+              - column:
+                  name: code
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: penal_tier_band_set_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_penal_tier_band
+                    references: penal_tier_band_set(id)
+              - column:
+                  name: effective_date
+                  type: date
+                  constraints:
+                    nullable: false
+              - column:
+                  name: tier_value_minimum
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: tier_value_maximum
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: fixed_vari_int_rate_type
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: aer
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: loan_provider_int_rate
+                  type: varchar(10)
+                  constraints:
+                    nullable: true      
+              - column:
+                  name: loan_provider_interest_type_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_penal_tierb_cal_intrst_type
+                    references: interest_rate_type(id)       
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: notes
+                  type: varchar(2000)
+                  constraints:
+                    nullable: false       
+              - column:
+                  name: created_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false               
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false
+  

@@ -1,0 +1,235 @@
+databaseChangeLog: 
+  - changeSet:
+      id: 1
+      author: NipunDilhan
+      changes: 
+        - createTable:
+            tableName: fee_charge_det_optional_option
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: fee_charge_detail_optional_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_8161_fee_charge_det_opt_1
+                    references: fee_charge_detail_optional(id)   
+              - column:
+                  name: option_value
+                  type: bigint
+                  constraints:
+                    nullable: false   
+              - column:
+                  name: amount
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: rate
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: true                        
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false   
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false
+                    
+                    
+  - changeSet:
+      id: 2
+      author: NipunDilhan
+      changes: 
+        - createTable:
+            tableName: fee_charge_det_option_opt_pend
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: fee_charge_det_opt_pend_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_8162_fee_cha_det_opt_pend_1
+                    references: fee_charge_det_optional_pend(id)
+              - column:
+                  name: fee_charge_det_opt_option_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_8162_fee_chrge_det_option_2
+                    references: fee_charge_det_optional_option(id)
+              - column:
+                  name: option_value
+                  type: bigint
+                  constraints:
+                    nullable: false   
+              - column:
+                  name: amount
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: rate
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: true                        
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false   
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false
+                                        
+  - changeSet:
+      id: 3
+      author: NipunDilhan
+      changes: 
+        - createTable:
+            tableName: fee_charge_det_opt_option_hist
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: fee_charge_det_opt_option_id
+                  type: bigint
+                  constraints:
+                    nullable: false                  
+              - column:
+                  name: fee_charge_det_opt_opt_pend_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: option_value
+                  type: bigint
+                  constraints:
+                    nullable: false   
+              - column:
+                  name: amount
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: rate
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: true                        
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false   
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false

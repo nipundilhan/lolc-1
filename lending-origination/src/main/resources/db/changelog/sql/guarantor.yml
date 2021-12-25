@@ -1,0 +1,171 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Dilhan
+      changes:
+        - createTable:
+            tableName: guarantor
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: lead_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: Fk_guarantor_lead_id
+                    references: lead_info(id)                    
+              - column:
+                  name: guarantor_id
+                  type: bigint
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: first_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: middle_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: last_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: full_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: initials
+                  type: varchar(255)
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: date_of_birth
+                  type: datetime
+                  constraints:
+                    nullable: true
+              - column:
+                  name: relationship_to_cus
+                  type: varchar(60)
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: marital_status
+                  type: varchar(60)
+                  constraints:
+                    nullable: true  
+              - column:
+                  name: reference_no
+                  type: varchar(255)
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: status
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: datetime
+                  constraints:
+                    nullable: false
+              - column:
+                  name: version
+                  type: bigint
+                  constraints:
+                    nullable: false  
+              - column:
+                  name: based_on_net_income
+                  type: varchar(10)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: based_on_net_worth
+                  type: varchar(10)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: as_an_additional_security
+                  type: varchar(10)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: total_asset_value
+                  type: double
+                  constraints:
+                    nullable: true
+              - column:
+                  name: total_liability_value
+                  type: double
+                  constraints:
+                    nullable: true
+              - column:
+                  name: networth
+                  type: double
+                  constraints:
+                    nullable: true     
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true                
+              - column:
+                  name: pending_guarantor_id  
+                  type: bigint          
+              - column:
+                  name: pen_per_id  
+                  type: bigint
+              - column:
+                  name: per_id  
+                  type: bigint
+              - column:
+                  name: per_code  
+                  type: varchar(200)     
+              - column:
+                  name: title 
+                  type: varchar(350)
+              - column:
+                  name: gender  
+                  type: varchar(350) 
+              - column:
+                  name: sup_reference_code 
+                  type: varchar(60)
+                  constraints:
+                    nullable: true     
+              - column:
+                  name: title_id 
+                  type: bigint
+              - column:
+                  name: gender_id  
+                  type: bigint 
+              - column:
+                  name: sync_ts
+                  type: timestamp         
+                    
+ 

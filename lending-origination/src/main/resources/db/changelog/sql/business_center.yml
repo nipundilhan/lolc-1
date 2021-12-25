@@ -1,0 +1,309 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Thamokshi
+      changes:
+        - createTable:
+            tableName: business_center
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: code
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(250)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: center_head
+                  type: varchar(2500)
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: collection_frequency_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: collection_frequency
+                  type: varchar(100)
+                  constraints:
+                    nullable: true  
+              - column:
+                  name: emp_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: emp_no
+                  type: varchar(100)
+                  constraints:
+                    nullable: true   
+              - column:
+                  name: branch_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: branch_code
+                  type: varchar(100)
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: contact_no
+                  type: varchar(100)
+                  constraints:
+                    nullable: true   
+              - column:
+                  name: max_no_of_sub_center
+                  type: bigint
+                  constraints:
+                    nullable: true                                                                            
+              - column:
+                  name: max_client_per_sub_center
+                  type: bigint
+                  constraints:
+                    nullable: true                                       
+              - column:
+                  name: center_limit
+                  type: bigint
+                  constraints:
+                    nullable: true                                  
+              - column:
+                  name: status
+                  type: varchar(30)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false      
+  - changeSet:
+      id: 2
+      author: Thamokshi
+      changes:
+        - createTable:
+            tableName: business_center_product_map
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: business_center_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_bcpm_business_center_id
+                    references: business_center(id)                    
+              - column:
+                  name: product_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: product_code
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: status
+                  type: varchar(30)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp
+                  constraints:
+                    nullable: false  
+                    
+
+  - changeSet:
+      id: 3
+      author: Thamokshi
+      changes:
+        - createTable:
+            tableName: business_center_emp_map
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: business_center_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_bcem_business_center_id
+                    references: business_center(id)                    
+              - column:
+                  name: emp_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: emp_code
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: status
+                  type: varchar(30)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp
+                  constraints:
+                    nullable: false  
+                    
+                    
+  - changeSet:
+      id: 4
+      author: Thamokshi
+      changes:
+      - addColumn:
+          columns:
+          - column:
+              name: emp_user_id
+              type: varchar(100)
+              constraints:
+                    nullable: true                   
+          tableName: business_center
+          
+  - changeSet:
+      id: 5
+      author: Thamokshi
+      changes:
+      - addColumn:
+          columns:
+          - column:
+              name: emp_user_id
+              type: varchar(100)
+              constraints:
+                    nullable: true 
+          - column:
+              name: emp_no
+              type: varchar(100)
+              constraints:
+                    nullable: true                                      
+          tableName: business_center_emp_map
+          
+  - changeSet:
+       id: 6
+       author: Thamokshi
+       changes:
+       - dropColumn:
+           columns:
+           - column:
+               name: emp_code
+               type: varchar(20)    
+           tableName: business_center_emp_map                                                           

@@ -1,0 +1,403 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Dilhan
+      changes:
+        - createTable:
+            tableName: tc_fixed_charges
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: rate_or_amount
+                  type: varchar(50)
+                  constraints:
+                    nullable: false       
+              - column:
+                  name: rate_amount
+                  type: decimal(38,2)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: total_charge_amount
+                  type: decimal(38,2)
+                  constraints:
+                    nullable: false      
+              - column:
+                  name: applicaction_frequency_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_applicaction_frequency_tcc
+                    references: applicaction_frequency(id)
+              - column:
+                  name: fee_charge_id
+                  type: bigint
+                  constraints:
+                    nullable: false 
+                    foreignKeyName: fk_fee_charge_tcc
+                    references: fee_charge(id)       
+              - column:
+                  name: tc_header_id
+                  type: bigint
+                  constraints:
+                    nullable: false 
+                    foreignKeyName: fk_tc_header_tcc
+                    references: tc_header(id)       
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false       
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: 2
+      author: Dilhan
+      changes:
+        - createTable:
+            tableName: tc_options_charges
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: rate_or_amount
+                  type: varchar(50)
+                  constraints:
+                    nullable: false       
+              - column:
+                  name: rate_amount
+                  type: decimal(38,2)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: total_charge_amount
+                  type: decimal(38,2)
+                  constraints:
+                    nullable: false          
+              - column:
+                  name: fee_charge_id
+                  type: bigint
+                  constraints:
+                    nullable: false 
+                    foreignKeyName: fk_fee_charge_tcoc
+                    references: fee_charge(id)  
+              - column:
+                  name: applicaction_frequency_id
+                  type: bigint
+                  constraints:
+                    nullable: false 
+                    foreignKeyName: fk_applicaction_frequency_tcoc
+                    references: applicaction_frequency(id)                              
+              - column:
+                  name: tc_header_id
+                  type: bigint
+                  constraints:
+                    nullable: false 
+                    foreignKeyName: fk_tc_header_tcoc
+                    references: tc_header(id)  
+              - column:
+                  name: selected_option
+                  type: varchar(50)
+                  constraints:
+                    nullable: false         
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true             
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false   
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp          
+                  constraints:
+                    nullable: false 
+                    
+  - changeSet:
+      id: 3
+      author: Dilhan
+      changes:
+        - createTable:
+            tableName: tc_adhoc_charges
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: rate_or_amount
+                  type: varchar(50)
+                  constraints:
+                    nullable: false       
+              - column:
+                  name: rate_amount
+                  type: decimal(38,2)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: total_charge_amount
+                  type: decimal(38,2)
+                  constraints:
+                    nullable: false  
+              - column:
+                  name: period
+                  type: varchar(50)
+                  constraints:
+                    nullable: false                            
+              - column:
+                  name: fee_charge_id
+                  type: bigint
+                  constraints:
+                    nullable: false 
+                    foreignKeyName: fk_fee_charge_adc
+                    references: fee_charge(id)  
+              - column:
+                  name: applicaction_frequency_id
+                  type: bigint
+                  constraints:
+                    nullable: false 
+                    foreignKeyName: fk_applicaction_frequency_adc
+                    references: applicaction_frequency(id)                              
+              - column:
+                  name: tc_header_id
+                  type: bigint
+                  constraints:
+                    nullable: false 
+                    foreignKeyName: fk_tc_header_adc
+                    references: tc_header(id)  
+              - column:
+                  name: frequency_id
+                  type: bigint
+                  constraints:
+                    nullable: false  
+              - column:
+                  name: frequency_code
+                  type: varchar(10)
+                  constraints:
+                    nullable: false                                  
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true             
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false   
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp          
+                  constraints:
+                    nullable: false     
+
+
+  - changeSet:
+       id: 4
+       author: NipunDilhan
+       changes:     
+       
+       - dropForeignKeyConstraint :
+           constraintName: fk_fee_charge_tcc
+           baseTableName: tc_fixed_charges  
+            
+       - dropForeignKeyConstraint :
+           constraintName: fk_fee_charge_tcoc
+           baseTableName: tc_options_charges 
+           
+       - dropForeignKeyConstraint :
+           constraintName: fk_fee_charge_adc
+           baseTableName: tc_adhoc_charges 
+
+       - dropColumn:
+           columns:
+           - column:
+               name: fee_charge_id
+               type: bigint  
+               constraints:
+                   nullable: false
+           tableName: tc_fixed_charges  
+                                        
+       - dropColumn:
+           columns:
+           - column:
+               name: fee_charge_id
+               type: bigint  
+               constraints:
+                   nullable: false
+           tableName: tc_options_charges 
+           
+       - dropColumn:
+           columns:
+           - column:
+               name: fee_charge_id
+               type: bigint  
+               constraints:
+                   nullable: false
+           tableName: tc_adhoc_charges         
+           
+       - addColumn:
+            columns:
+             - column:
+                  name: charge_type_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_fee_charge_detail_tcfc
+                    references: fee_charge_details(id)        
+            tableName: tc_fixed_charges
+            
+       - addColumn:
+            columns:
+             - column:
+                  name: charge_type_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_fee_charge_detail_tcoc
+                    references: fee_charge_details(id)        
+            tableName: tc_options_charges
+            
+       - addColumn:
+            columns:
+             - column:
+                  name: charge_type_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_fee_charge_detail_tcac
+                    references: fee_charge_details(id)        
+            tableName: tc_adhoc_charges           
+
+  - changeSet:
+       id: 5
+       author: NipunDilhan
+       changes:     
+       
+            
+       - addColumn:
+            columns:
+             - column:
+                  name: optional_charge_type_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_1221_fcdo_toc_1
+                    references: fee_charge_detail_optional(id)        
+            tableName: tc_options_charges
+            
+       - addColumn:
+            columns:
+             - column:
+                  name: adhoc_charge_type_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_1221_fcda_toc_2
+                    references: fee_charge_detail_adhoc(id)        
+            tableName: tc_adhoc_charges           
+
+ 
+ 

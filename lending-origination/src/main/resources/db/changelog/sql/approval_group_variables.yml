@@ -1,0 +1,93 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Dilki
+      changes:
+        - createTable:
+            tableName: approval_group_variables
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: code
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: value
+                  type: varchar(70)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: from_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: to_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: to_amount
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: false      
+              - column:
+                  name: from_amount
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: false      
+              - column:
+                  name: eqaul_string
+                  type: varchar(255)
+                  constraints:
+                    nullable: true             
+              - column:
+                  name: status
+                  type: varchar(30)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp          
+                  constraints:
+                    nullable: false                    
+                       
+        

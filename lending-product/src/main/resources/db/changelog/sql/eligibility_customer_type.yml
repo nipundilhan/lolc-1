@@ -1,0 +1,262 @@
+databaseChangeLog: 
+  - changeSet:
+      id: 1
+      author: Piyumi
+      changes: 
+        - createTable:
+            tableName: eligibility_customer_type
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: eligibility_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_eli_customer_type
+                    references: eligibility(id)      
+              - column:
+                  name: customer_type_id
+                  type: bigint
+                  constraints:
+                    nullable: false                                  
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false                                                             
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: approved_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: approved_date
+                  type: timestamp
+                  constraints:
+                    nullable: true     
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: 2
+      author: Piyumi
+      changes: 
+        - createTable:
+            tableName: eligibility_customer_type_hist
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: eligibility_customer_type_id
+                  type: bigint
+                  constraints:
+                    nullable: false      
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: eligibility_id
+                  type: bigint
+                  constraints:
+                    nullable: false      
+              - column:
+                  name: customer_type_id
+                  type: bigint
+                  constraints:
+                    nullable: false                                      
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false                                                  
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: approved_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: approved_date
+                  type: timestamp
+                  constraints:
+                    nullable: true                
+              - column:
+                  name: his_created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: his_created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false                  
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false   
+  - changeSet:
+      id: 3
+      author: Piyumi
+      changes: 
+        - createTable:
+            tableName: eligib_customer_type_pending
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: eligibility_customer_type_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_eligib_customer_type_pend
+                    references: eligibility_customer_type(id)
+              - column:
+                  name: lending_workflow_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_eli_cus_type_len_workf_pend
+                    references: lending_workflow(id)            
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: eligibility_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_customer_type_pend
+                    references: eligibility(id)     
+              - column:
+                  name: eligibility_pending_id
+                  type: bigint
+                  constraints:
+                    nullable: false  
+                    foreignKeyName: fk_eli_pend_eli_cus_type_pend
+                    references: eligibility_pending(id)    
+              - column:
+                  name: customer_type_id
+                  type: bigint
+                  constraints:
+                    nullable: false                                  
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false                                                              
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false   
+              - column:
+                  name: approve_status
+                  type: varchar(30)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: approved_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true  
+              - column:
+                  name: approved_date
+                  type: timestamp
+                  constraints:
+                    nullable: true              
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false 
+                

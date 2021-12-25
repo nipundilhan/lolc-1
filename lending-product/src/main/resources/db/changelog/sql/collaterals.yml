@@ -1,0 +1,89 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Thushan
+      changes:
+        - createTable:
+            tableName: collaterals
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: sequence
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: lending_account_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_col_lending_account_detail
+                    references: lending_account_detail(id)
+
+  - changeSet:
+      id: 2
+      author: Thushan
+      changes:
+        - addColumn:
+            tableName: collaterals
+            columns:
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed: current_timestamp
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: 3
+      author: Thushan
+      changes:
+        - addColumn:
+            tableName: collaterals
+            columns:
+              - column:
+                  name: collateral_id
+                  type: bigint
+                  constraints:
+                    nullable: false

@@ -1,0 +1,355 @@
+databaseChangeLog: 
+  - changeSet:
+      id: 1
+      author: NipunDilhan
+      changes: 
+        - createTable:
+            tableName: fee_charge_detail_optional
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: fee_charge_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_8121_fee_charge_1
+                    references: fee_charge(id)
+              - column:
+                  name: effective_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: fee_category_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_8121_fee_category_2
+                    references: common_list_item(id)  
+              - column:
+                  name: fee_type_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_8121_other_fee_type_3
+                    references: other_fee_type(id) 
+              - column:
+                  name: calculation_frequency_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_8121_calculation_freq_4
+                    references: calculation_frequency(id)      
+              - column:
+                  name: applicaction_frequency_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_8121_application_freq_5
+                    references: applicaction_frequency(id)          
+              - column:
+                  name: type
+                  type: varchar(20)
+                  constraints:
+                    nullable: false                                            
+              - column:
+                  name: note
+                  type: varchar(350)
+                  constraints:
+                    nullable: true   
+              - column:
+                  name: mandatory
+                  type: varchar(20)
+                  constraints:
+                    nullable: false                                
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false   
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false
+                    
+  - changeSet:
+      id: 2
+      author: NipunDilhan
+      changes: 
+        - createTable:
+            tableName: fee_charge_det_optional_pend
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false       
+              - column:
+                  name: fee_charge_pending_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_8123_fee_charge_pending_1
+                    references: fee_charge_pending(id)
+              - column:
+                  name: effective_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: fee_charge_detail_optional_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_8123_fee_charge_det_opt_2
+                    references: fee_charge_detail_optional(id)
+              - column:
+                  name: fee_category_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_8123_fee_category_det_pen_3
+                    references: common_list_item(id)  
+              - column:
+                  name: fee_type_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_8123_other_fee_t_det_pen_4
+                    references: other_fee_type(id) 
+              - column:
+                  name: calculation_frequency_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_8123_calc_freq_det_pen_4
+                    references: calculation_frequency(id)      
+              - column:
+                  name: applicaction_frequency_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_8123_applic_freq_det_pen_5
+                    references: applicaction_frequency(id)          
+              - column:
+                  name: type
+                  type: varchar(20)
+                  constraints:
+                    nullable: false                                       
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false  
+              - column:
+                  name: note
+                  type: varchar(350)
+                  constraints:
+                    nullable: true   
+              - column:
+                  name: mandatory
+                  type: varchar(20)
+                  constraints:
+                    nullable: false                                                                         
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false  
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false                     
+
+                    
+  - changeSet:
+      id: 3
+      author: NipunDilhan
+      changes: 
+        - createTable:
+            tableName: fee_charge_det_optional_hist
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: fee_charge_detail_optional_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_8122_fee_charge_det_opt_1
+                    references: fee_charge_detail_optional(id)   
+              - column:
+                  name: fee_charg_det_optional_pend_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_8122_fee_charge_det_opt_2
+                    references: fee_charge_det_optional_pend(id)
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: fee_charge_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: effective_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: fee_category_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_8122_fee_category_3
+                    references: common_list_item(id)  
+              - column:
+                  name: fee_type_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_8122_other_fee_type_4
+                    references: other_fee_type(id) 
+              - column:
+                  name: calculation_frequency_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_8122_calculation_freq_5
+                    references: calculation_frequency(id)      
+              - column:
+                  name: applicaction_frequency_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_8122_applicaction_freq_6
+                    references: applicaction_frequency(id)  
+              - column:
+                  name: type
+                  type: varchar(20)
+                  constraints:
+                    nullable: false                                              
+              - column:
+                  name: note
+                  type: varchar(350)
+                  constraints:
+                    nullable: true   
+              - column:
+                  name: mandatory
+                  type: varchar(20)
+                  constraints:
+                    nullable: false  
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false                                                
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: his_created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: his_created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false                  
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false 
+         
+              

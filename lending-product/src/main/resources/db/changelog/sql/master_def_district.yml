@@ -1,0 +1,230 @@
+
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: NipunDilhan
+      changes:
+        - createTable:
+            tableName: master_def_district
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: master_def_state_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_9031_mds_1
+                    references: master_def_state(id) 
+              - column:
+                  name: district_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: district_name
+                  type: varchar(350)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false                                
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true        
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp          
+                  constraints:
+                    nullable: false 
+                    
+  - changeSet:
+      id: 2
+      author: NipunDilhan
+      changes:
+        - createTable:
+            tableName: master_def_district_pending
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: master_def_district_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_9032_mdd_1
+                    references: master_def_district(id)    
+              - column:
+                  name: mst_def_state_pend_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_9032_mdsp_2
+                    references: master_def_state_pending(id)                     
+              - column:
+                  name: district_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: district_name
+                  type: varchar(350)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false                    
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp          
+                  constraints:
+                    nullable: false                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+              - column:
+                  name: pcreated_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: pcreated_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: 3
+      author: NipunDilhan
+      changes:
+        - createTable:
+            tableName: master_def_district_history
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: master_def_district_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: master_def_state_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: district_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: district_name
+                  type: varchar(350)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false                                  
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true       
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp          
+                  constraints:
+                    nullable: false                    
+              - column:
+                  name: history_created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: history_created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              

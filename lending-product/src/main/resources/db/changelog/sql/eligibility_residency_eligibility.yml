@@ -1,0 +1,266 @@
+databaseChangeLog: 
+  - changeSet:
+      id: 1
+      author: Piyumi
+      changes: 
+        - createTable:
+            tableName: eligibility_residency_eligib
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: eligibility_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_eli_residency_eligibility
+                    references: eligibility(id)      
+              - column:
+                  name: residency_eligibility_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_eli_resi_eligibility
+                    references: residency_eligibility(id)                                      
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false                                                             
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: approved_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: approved_date
+                  type: timestamp
+                  constraints:
+                    nullable: true     
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: 2
+      author: Piyumi
+      changes: 
+        - createTable:
+            tableName: eligibility_residency_eli_hist
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: eli_residency_eligibility_id
+                  type: bigint
+                  constraints:
+                    nullable: false      
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: eligibility_id
+                  type: bigint
+                  constraints:
+                    nullable: false      
+              - column:
+                  name: residency_eligibility_id
+                  type: bigint
+                  constraints:
+                    nullable: false                                      
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false                                                  
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: approved_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: approved_date
+                  type: timestamp
+                  constraints:
+                    nullable: true                
+              - column:
+                  name: his_created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: his_created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false                  
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false   
+  - changeSet:
+      id: 3
+      author: Piyumi
+      changes: 
+        - createTable:
+            tableName: eligibility_residency_eli_pend
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: eli_residency_eligibility_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_eli_residency_eligi_pend
+                    references: eligibility_residency_eligib(id)
+              - column:
+                  name: lending_workflow_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_eligi_resid_len_workf_pend
+                    references: lending_workflow(id)            
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: eligibility_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_eligi_resi_eligi_pend
+                    references: eligibility(id)     
+              - column:
+                  name: eligibility_pending_id
+                  type: bigint
+                  constraints:
+                    nullable: false  
+                    foreignKeyName: fk_eli_pend_eli_residency_pend
+                    references: eligibility_pending(id)    
+              - column:
+                  name: residency_eligibility_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_eli_pend_residency_eligib
+                    references: residency_eligibility(id)                                   
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false                                                              
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false   
+              - column:
+                  name: approve_status
+                  type: varchar(30)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: approved_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true  
+              - column:
+                  name: approved_date
+                  type: timestamp
+                  constraints:
+                    nullable: true              
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false 
+                

@@ -1,0 +1,85 @@
+databaseChangeLog: 
+  - changeSet:
+      id: 2
+      author: Nipun
+      changes: 
+        - createTable:
+            tableName: master_def_acc_rule_stand_pend
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: 
+              - column:
+                  name: master_def_acc_rule_stand_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_mastr_def_acc_rule_stand_1
+                    references: master_def_acc_rule_set_stand(id)
+              - column:
+                  name: master_def_acc_rule_pend_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_master_def_acc_rule_pend_2
+                    references: master_def_acc_rule_pending(id)
+              - column:
+                  name: master_definition_pending_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_1_master_definition_pend_3
+                    references: master_definition_pending(id)  
+              - column:
+                  name: type_value
+                  type: varchar(70)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: common_list_item_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_1_common_list_item_4
+                    references: common_list_item(id) 
+              - column:
+                  name: common_list_item_name
+                  type: varchar(70)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: is_selected
+                  type: varchar(20)
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp
+                  constraints:
+                    nullable: false

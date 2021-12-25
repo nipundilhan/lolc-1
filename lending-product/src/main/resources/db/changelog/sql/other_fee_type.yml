@@ -1,0 +1,243 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Senitha
+      changes: 
+        - createTable:
+            tableName: other_fee_type
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: code
+                  type: varchar(15)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(70)
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: description
+                  type: varchar(350)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: fee_category_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: transaction_code_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: transaction_sub_code_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp          
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+                    
+  - changeSet:
+      id: 2
+      author: Senitha
+      changes: 
+        - createTable:
+            tableName: other_fee_type_history
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: other_fee_type_id
+                  type: bigint
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: code
+                  type: varchar(15)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(70)
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: description
+                  type: varchar(350)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: fee_category_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: transaction_code_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: transaction_sub_code_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp          
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: other_fee_type_version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: history_created_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: history_created_date
+                  type: timestamp
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false   
+                    
+  - changeSet:
+      id: 3
+      author: nipun_dilhan
+      changes:
+      - addColumn:
+          columns:
+          - column:
+              name: refundable
+              type: varchar(20)
+              constraints:
+                    nullable: true
+          - column:
+              name: refundable_percentage
+              type: decimal(25,5)
+              constraints:
+                    nullable: true
+          - column:
+              name: collection_type
+              type: varchar(20)
+              constraints:
+                    nullable: true
+          tableName: other_fee_type              
+
+                    
+  - changeSet:
+      id: 4
+      author: nipun_dilhan
+      changes:
+      - addColumn:
+          columns:
+          - column:
+              name: refundable
+              type: varchar(20)
+              constraints:
+                    nullable: true
+          - column:
+              name: refundable_percentage
+              type: decimal(25,5)
+              constraints:
+                    nullable: true
+          - column:
+              name: collection_type
+              type: varchar(20)
+              constraints:
+                    nullable: true
+          tableName: other_fee_type_history              
+          

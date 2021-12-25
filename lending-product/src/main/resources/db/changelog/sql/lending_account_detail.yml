@@ -1,0 +1,231 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Thushan
+      changes:
+        - createTable:
+            tableName: lending_account_detail
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: account_number
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: loan_amount
+                  type: decimal(38,2)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: collection_method
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: interest_rate
+                  type: decimal(8,2)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: term_number
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: calculation_method
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: repayment_criteria
+                  type: varchar(50)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: no_of_pre_payment
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: amount_paid_in_advanced
+                  type: decimal(38,2)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: residual_value
+                  type: decimal(38,2)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: rewards
+                  type: varchar(10)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: remarks
+                  type: varchar(500)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: loan_amount_with_tax
+                  type: decimal(38,2)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: total_receivable
+                  type: decimal(38,2)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: down_payment_amount
+                  type: decimal(38,2)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: lease_factor
+                  type: decimal(8,2)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: charge_factor
+                  type: decimal(8,2)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: total_factor
+                  type: decimal(8,2)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: irr
+                  type: decimal(8,2)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: due_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: penal_interest_rate
+                  type: decimal(8,2)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: grace_period
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: expiry_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: currency_code
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: currency_code_numeric
+                  type: varchar(3)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: account_status
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: product_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sub_product_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: branch_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: me_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: currency_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: tc_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: approved_lead_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: recovery_account_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: document_template_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue: 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false

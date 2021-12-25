@@ -1,0 +1,80 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: VenukiR
+      changes:
+        - createTable:
+            tableName: credit_app_col_documents
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: credit_app_collateral_det_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_ca_col_det
+                    references: credit_app_collateral_det(id)
+              - column:
+                  name: document_id
+                  type: bigint
+                  constraints:
+                    nullable: false                                        
+              - column:
+                  name: documet_name
+                  type: varchar(70)
+                  constraints:
+                    nullable: true                                   
+              - column:
+                  name: status
+                  type: varchar(30)
+                  constraints:
+                    nullable: false      
+              - column:
+                  name: document_ref_id
+                  type: bigint
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: created_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp          
+                  constraints:
+                    nullable: false                    
+                       
+        

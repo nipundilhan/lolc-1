@@ -1,0 +1,119 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Sanatha
+      changes:
+        - createTable:
+            tableName: feature_benefit_eligi_his
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true 
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false      
+              - column:
+                  name: feature_benefit_eligi_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column: 
+                  name: name
+                  type: varchar(70)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: varchar(350)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: type_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: amount
+                  type: decimal(25,5)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: indicator
+                  type: boolean
+                  constraints:
+                    nullable: true
+              - column:
+                  name: texual
+                  type: varchar(500)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: period_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                 name: sync_ts
+                 type: timestamp
+                 defaultValueComputed : current_timestamp
+                 constraints: 
+                    nullable: false      
+              - column:
+                  name: created_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: feature_benefit_eligi_ver
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false       
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: hcreated_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: hcreated_date
+                  type: timestamp
+                  constraints:
+                    nullable: false  
+  - changeSet:
+      id: 2
+      author: Sanatha
+      changes:
+        - setTableRemarks:
+            remarks: Added by Sanatha  to maintain feature benifit eligibility history on 23-JUN-2021.
+            tableName: feature_benefit_eligi_his                       

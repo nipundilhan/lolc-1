@@ -1,0 +1,157 @@
+databaseChangeLog:
+- changeSet:
+    id: 1
+    author: Dilki
+    changes:
+    - createTable:
+        tableName: risk_rating_levels
+        columns:
+        - column:
+            name: id
+            type: bigint
+            constraints:
+              primaryKey: true
+              nullable: false
+        - column:
+            name: tenant_id
+            type: varchar(10)
+            constraints:
+              nullable: false
+        - column:
+            name: business_risk_type_id
+            type: bigint
+            constraints:
+              nullable: false
+              foreignKeyName: fk_business_risk_type_rrl
+              references: business_risk_type(id)
+        - column:
+            name: risk_authority_id
+            type: bigint
+            constraints:
+              nullable: false
+              foreignKeyName: fk_risk_authorities_rrl
+              references: risk_authorities(id)
+        - column:
+            name: risk_rating_type
+            type: varchar(20)
+            constraints:
+              nullable: false
+        - column:
+            name: note
+            type: varchar(1000)
+            constraints:
+              nullable: true
+        - column:
+            name: status
+            type: varchar(20)
+            constraints:
+              nullable: false
+        - column:
+            name: created_user
+            type: varchar(255)
+            constraints:
+              nullable: false
+        - column:
+            name: created_date
+            type: timestamp
+            constraints:
+              nullable: false
+        - column:
+            name: modified_user
+            type: varchar(255)
+            constraints:
+              nullable: true
+        - column:
+            name: modified_date
+            type: timestamp
+            constraints:
+              nullable: true
+        - column:
+            name: version
+            type: bigint
+            defaultValue: 0
+            constraints:
+              nullable: false
+        - column:
+            name: sync_ts
+            type: timestamp
+            defaultValueComputed: current_timestamp
+            constraints:
+              nullable: false
+- changeSet:
+    id: 2
+    author: Dilki
+    changes:
+    - createTable:
+        tableName: risk_rating_level_details
+        columns:
+        - column:
+            name: id
+            type: bigint
+            constraints:
+              primaryKey: true
+              nullable: false
+        - column:
+            name: tenant_id
+            type: varchar(10)
+            constraints:
+              nullable: false
+        - column:
+            name: risk_rating_levels_id
+            type: bigint
+            constraints:
+              nullable: false
+              foreignKeyName: fk_risk_rating_levels_rrld
+              references: risk_rating_levels(id)
+        - column:
+            name: sequence
+            type: varchar(20)
+            constraints:
+              nullable: true
+        - column:
+            name: level
+            type: varchar(20)
+            constraints:
+              nullable: true
+        - column:
+            name: grade
+            type: varchar(20)
+            constraints:
+              nullable: true
+        - column:
+            name: status
+            type: varchar(20)
+            constraints:
+              nullable: false
+        - column:
+            name: created_user
+            type: varchar(255)
+            constraints:
+              nullable: false
+        - column:
+            name: created_date
+            type: timestamp
+            constraints:
+              nullable: false
+        - column:
+            name: modified_user
+            type: varchar(255)
+            constraints:
+              nullable: true
+        - column:
+            name: modified_date
+            type: timestamp
+            constraints:
+              nullable: true 
+        - column:
+            name: version
+            type: bigint
+            defaultValue: 0
+            constraints:
+              nullable: false
+        - column:
+            name: sync_ts
+            type: timestamp
+            defaultValueComputed: current_timestamp
+            constraints:
+              nullable: false

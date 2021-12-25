@@ -1,0 +1,298 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Sanatha
+      changes: 
+        - createTable:
+            tableName: disbursement_details
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: customer_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_customer_disburse_dtl
+                    references: customer(id)        
+              - column:
+                  name: amount
+                  type: double
+                  constraints:
+                    nullable: false  
+              - column:
+                  name: pay_method_id
+                  type: bigint
+                  constraints:
+                    nullable: true                
+              - column:
+                  name: pay_method_code
+                  type: varchar(350)
+                  constraints: 
+                    nullable: true 
+              - column:
+                  name: pay_method_name
+                  type: varchar(350)
+                  constraints: 
+                    nullable: true 
+              - column:
+                  name: bank_id
+                  type: bigint
+                  constraints:
+                    nullable: true                
+              - column:
+                  name: bank_code
+                  type: varchar(350)
+                  constraints: 
+                    nullable: true 
+              - column:
+                  name: bank_branch_id
+                  type: bigint
+                  constraints:
+                    nullable: true                
+              - column:
+                  name: bank_branch_code
+                  type: varchar(350)
+                  constraints: 
+                    nullable: true 
+              - column:
+                  name: account
+                  type: bigint
+                  constraints:
+                    nullable: true                
+              - column:
+                  name: status
+                  type: varchar(30)
+                  constraints:
+                    nullable: false        
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: 2
+      author: Sanatha
+      changes:
+        - setTableRemarks:
+            remarks: Added by Sanatha  to maintain disbursement details for Customer on 04-MAY-2021.
+            tableName: disbursement_details   
+  - changeSet:  
+      id:  3
+      author:  Sanatha
+      changes:  
+      -  dropColumn:  
+          columns:  
+          -  column:  
+              name:  pay_method_code 
+              name:  pay_method_name       
+          tableName:  disbursement_details      
+  - changeSet:  
+      id:  4 
+      author:  Sanatha
+      changes:  
+      -  addForeignKeyConstraint:  
+          baseColumnNames:  pay_method_id  
+          baseTableName:  disbursement_details  
+          constraintName:  fk_cci_comn_list_pay_methods
+          referencedColumnNames:  id  
+          referencedTableName:  common_list_item   
+  - changeSet:  
+      id:  5
+      author:  Sanatha
+      changes:  
+      -  dropColumn:  
+          columns:  
+          -  column:  
+              name:  pay_method_code 
+          tableName:  disbursement_details    
+  - changeSet:  
+      id:  6
+      author:  Sanatha
+      changes:  
+      -  modifyDataType:  
+          columnName:  account  
+          newDataType:  varchar(50)  
+          tableName:  disbursement_details        
+  - changeSet:
+      id: 7
+      author: Sanatha
+      changes:
+      - addColumn:
+          columns:
+          - column:
+              name: lead_id
+              type: bigint
+              constraints:
+                nullable: true
+                foreignKeyName: Fk_disburse_lead_id
+                references: lead_info(id)         
+          tableName: disbursement_details    
+          
+  - changeSet:
+       id: 8
+       author: Dilhan
+       changes:
+       - addColumn:
+           columns:
+           - column:
+               name: loan_amount
+               type: double
+               constraints:
+                  nullable: false  
+           - column:
+               name: deductions
+               type: double
+               constraints:
+                  nullable: false  
+           - column:
+               name: balance_disbursement_amount
+               type: double
+               constraints:
+                  nullable: false  
+           - column:
+               name: payee_type
+               type: varchar(20)
+               constraints:
+                  nullable: false
+           - column:
+               name: payee_name
+               type: varchar(300)
+               constraints:
+                  nullable: false
+           - column:
+               name: comments
+               type: varchar(500)
+               constraints:
+                    nullable: true   
+           - column:
+               name: schedule_no
+               type: int
+               constraints:
+                    nullable: false
+           - column:
+               name: disbursement_condition_id
+               type: bigint
+               constraints:
+                    nullable: true
+           - column:
+               name: disbursement_condition_code
+               type: varchar(4)
+               constraints:
+                    nullable: true
+           tableName: disbursement_details  
+           
+  - changeSet:
+       id: 9
+       author: Dilhan
+       changes:
+       - dropForeignKeyConstraint :
+           constraintName: fk_cci_comn_list_pay_methods
+           baseTableName: disbursement_details             
+  - changeSet:
+       id: 10
+       author: Dilhan
+       changes:
+       - dropColumn:
+           columns:
+           - column:
+               name: pay_method_id
+               type: bigint  
+               constraints:
+                   nullable: true
+           tableName: disbursement_details 
+           
+  - changeSet:
+       id: 11
+       author: Dilhan
+       changes:
+       - addColumn:
+           columns:
+           - column:
+               name: pay_mode_id
+               type: bigint
+               constraints:
+                  nullable: false  
+           - column:
+               name: pay_mode_code
+               type: varchar(4)
+               constraints:
+                  nullable: false
+           tableName: disbursement_details  
+
+  - changeSet:  
+      id:  12
+      author:  Dilhan
+      changes:  
+      -  modifyDataType:  
+          columnName:  balance_disbursement_amount  
+          newDataType:  decimal(38,2)  
+          tableName:  disbursement_details                           
+  - changeSet:  
+      id:  13
+      author:  Dilhan
+      changes:  
+      -  modifyDataType:  
+          columnName:  amount  
+          newDataType:  decimal(38,2)  
+          tableName:  disbursement_details                           
+  - changeSet:  
+      id:  14
+      author:  Dilhan
+      changes:  
+      -  modifyDataType:  
+          columnName:  loan_amount  
+          newDataType:  decimal(38,2)  
+          tableName:  disbursement_details                           
+  - changeSet:  
+      id:  15
+      author:  Dilhan
+      changes:  
+      -  modifyDataType:  
+          columnName:  deductions  
+          newDataType:  decimal(38,2)  
+          tableName:  disbursement_details                           
+           
+#  - changeSet:
+#       id: 9
+#       author: Dilhan
+#  - dropNotNullConstraint :
+#           columnName: customer_id
+#           columnDataType: bigint
+#           constraintName: fk_customer_disburse_dtl
+#     tableName: disbursement_details  

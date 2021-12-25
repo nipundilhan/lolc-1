@@ -1,0 +1,449 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Piyumi
+      changes:
+        - createTable:
+            tableName: interest_tier_band
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: interest_tier_band_set_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_tier_band_intrest_tier_set
+                    references: interest_tier_band_set(id) 
+              - column:
+                  name: code
+                  type: varchar(4)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: tier_value_minimum
+                  type: double
+                  constraints:
+                    nullable: false
+              - column:
+                  name: tier_value_maximum
+                  type: double
+                  constraints:
+                    nullable: true   
+              - column:
+                  name: tier_value_min_term_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: min_term_period_id
+                  type: bigint
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: tier_value_max_term_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: max_term_period_id
+                  type: bigint
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: interest_rate_type_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: rep_arp
+                  type: double
+                  constraints:
+                    nullable: true  
+              - column:
+                  name: loan_pr_interest_rate_type_id
+                  type: bigint
+                  constraints:
+                    nullable: true    
+              - column:
+                  name: loan_pr_interest_rate
+                  type: double
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: note
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false               
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: approved_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: approved_date
+                  type: timestamp
+                  constraints:
+                    nullable: true      
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp          
+                  constraints:
+                    nullable: false 
+  - changeSet:
+      id: 2
+      author: Piyumi
+      changes:
+        - createTable:
+            tableName: interest_tier_band_history
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: interest_tier_band_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: interest_tier_band_set_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: code
+                  type: varchar(4)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: tier_value_minimum
+                  type: double
+                  constraints:
+                    nullable: false
+              - column:
+                  name: tier_value_maximum
+                  type: double
+                  constraints:
+                    nullable: true   
+              - column:
+                  name: tier_value_min_term_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: min_term_period_id
+                  type: bigint
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: tier_value_max_term_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: max_term_period_id
+                  type: bigint
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: interest_rate_type_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: rep_arp
+                  type: double
+                  constraints:
+                    nullable: true  
+              - column:
+                  name: loan_pr_interest_rate_type_id
+                  type: bigint
+                  constraints:
+                    nullable: true    
+              - column:
+                  name: loan_pr_interest_rate
+                  type: double
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: note
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false               
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: approved_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: approved_date
+                  type: timestamp
+                  constraints:
+                    nullable: true                   
+              - column:
+                  name: history_created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: history_created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp          
+                  constraints:
+                    nullable: false    
+  - changeSet:
+      id: 3
+      author: Piyumi
+      changes:
+        - createTable:
+            tableName: interest_tier_band_pending
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: interest_tier_band_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_tier_band_pen_intrst_tier_b
+                    references: interest_tier_band(id) 
+              - column:
+                  name: interest_tier_band_set_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_tier_band_interst_tier_bset
+                    references: interest_tier_band_set(id) 
+              - column:
+                  name: interest_tier_band_set_pend_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_tier_band_intrst_tier_bspen
+                    references: interest_tier_band_set_pending(id)
+              - column:
+                  name: code
+                  type: varchar(4)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: tier_value_minimum
+                  type: double
+                  constraints:
+                    nullable: false
+              - column:
+                  name: tier_value_maximum
+                  type: double
+                  constraints:
+                    nullable: true   
+              - column:
+                  name: tier_value_min_term_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: min_term_period_id
+                  type: bigint
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: tier_value_max_term_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: max_term_period_id
+                  type: bigint
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: interest_rate_type_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: rep_arp
+                  type: double
+                  constraints:
+                    nullable: true  
+              - column:
+                  name: loan_pr_interest_rate_type_id
+                  type: bigint
+                  constraints:
+                    nullable: true    
+              - column:
+                  name: loan_pr_interest_rate
+                  type: double
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: note
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false                       
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: approve_status
+                  type: varchar(30)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: approved_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true  
+              - column:
+                  name: approved_date
+                  type: timestamp
+                  constraints:
+                    nullable: true                   
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp          
+                  constraints:
+                    nullable: false     
+  - changeSet:
+        id: 4
+        author: piyumi
+        changes:
+        - addColumn:
+            columns:
+             - column:
+                  name: lending_workflow_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_intrst_tier_band_pend_workf
+                    references: lending_workflow(id)        
+            tableName: interest_tier_band_pending
+         
+  - changeSet:
+        id: 5
+        author: piyumi
+        changes:
+        - dropColumn:
+            columns:
+             - column:
+                  name: code    
+                  type: varchar(4) 
+            tableName: interest_tier_band_pending        
+                                      
+     
+                             
+          
+                    

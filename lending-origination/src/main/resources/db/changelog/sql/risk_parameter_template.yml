@@ -1,0 +1,164 @@
+databaseChangeLog: 
+  - changeSet:
+      id: 1
+      author: SewwandiH
+      changes: 
+        - createTable:
+            tableName: risk_parameter_template
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: code
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: varchar(255)
+                  constraints:
+                    nullable: true                                                     
+              - column:
+                  name: calculation_method
+                  type: varchar(30)
+                  constraints:
+                    nullable: false                                                  
+              - column:
+                  name: equation
+                  type: varchar(500)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: risk_main_criteria_id
+                  type: bigint
+                  constraints:
+                    nullable: false   
+                    foreignKeyName: fk_risk_main_criteria_para
+                    references: risk_main_criteria(id)           
+              - column:
+                  name: risk_sub_criteria_id
+                  type: bigint
+                  constraints:
+                    nullable: false   
+                    foreignKeyName: fk_sub_criteria_para
+                    references: risk_sub_criteria(id)              
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false                                                  
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false
+  - changeSet: 
+      id: 2
+      author: SewwandiH
+      changes: 
+        - createTable:
+            tableName: risk_para_temp_cal_feild
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false     
+              - column:
+                  name: risk_parameter_template_id
+                  type: bigint
+                  constraints:
+                    nullable: false   
+                    foreignKeyName: fk_risk_parameter_template_cal
+                    references: risk_parameter_template(id)                                                               
+              - column:
+                  name: field_setup_id
+                  type: bigint
+                  constraints:
+                    nullable: false   
+                    foreignKeyName: fk_field_setup_id_cal
+                    references: field_setup(id)
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false                                                  
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  constraints:
+                    nullable: false

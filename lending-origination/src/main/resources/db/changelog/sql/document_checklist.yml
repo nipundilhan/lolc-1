@@ -1,0 +1,168 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Dilhan
+      changes:
+        - createTable:
+            tableName: document_checklist
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(20)
+                  constraints:
+                    nullable: false   
+              - column:
+                  name: document_ref_no
+                  type: varchar(100)
+                  constraints:
+                    nullable: false       
+              - column:
+                  name: document_type_id
+                  type: bigint
+                  constraints:
+                    nullable: false  
+              - column:
+                  name: lead_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_lead_info_dckl
+                    references: lead_info(id)                 
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: description
+                  type: varchar(350)
+                  constraints:
+                    nullable: true              
+              - column:
+                  name: is_collected
+                  type: varchar(20)
+                  constraints:
+                    nullable: false              
+              - column:
+                  name: is_mandatory
+                  type: varchar(20)
+                  constraints:
+                    nullable: false  
+              - column:
+                  name: collected_by
+                  type: varchar(255)
+                  constraints:
+                    nullable: true 
+              - column:
+                  name: collected_date
+                  type: date
+                  constraints:
+                    nullable: true                                   
+              - column:
+                  name: created_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: false     
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false 
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp          
+                  constraints:
+                    nullable: false
+                    
+                    
+  - changeSet:
+      id: 2
+      author: Dilhan
+      changes:
+        - createTable:
+            tableName: document_checklist_details
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: document_checklist_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_document_checklist_details
+                    references: document_checklist(id)
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: document_id
+                  type: bigint
+                  constraints:
+                    nullable: false                           
+              - column:
+                  name: created_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_user
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: modified_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue : 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: sync_ts
+                  type: timestamp
+                  defaultValueComputed : current_timestamp
+                  constraints:
+                    nullable: false     
